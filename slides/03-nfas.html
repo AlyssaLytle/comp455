@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-09-02" />
+  <title>Nondeterministic Finite Automata</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Nondeterministic Finite Automata</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">September 2, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/03-nfa.md -o slides/03-nfas.html --webtex -->
+</div>
+<div id="nondeterministic-finite-automata"
+class="title-slide slide section level1">
+<h1>Nondeterministic Finite Automata</h1>
+
+</div>
+<div id="determinism" class="slide section level2">
+<h1>Determinism</h1>
+<p>“When a machine is in a given state and reads the next input symbol,
+we know what the next state will be–it is <em>determined</em>.” <a
+href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="nondeterminism" class="slide section level2">
+<h1>Nondeterminism</h1>
+<ul>
+<li><p>“A state is not uniquely determined by its current state.” -
+Kozen <a href="#fn2" class="footnote-ref"
+id="fnref2"><sup>2</sup></a></p></li>
+<li><p>“…the power to be in several states at once.” - Hopcroft et al.<a
+href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p></li>
+<li><p>“…several choices may exist for the next state at any point.” -
+Sipser <a href="#fn4" class="footnote-ref"
+id="fnref4"><sup>4</sup></a></p></li>
+</ul>
+</div>
+<div id="why" class="slide section level2">
+<h1>Why???</h1>
+<ul>
+<li><p>Represents real-life situations where there’s not
+enough/incomplete/unpredictable/unreliable information about external
+forces and how they impact the state.</p></li>
+<li><p>Can be a useful tool in computation. Some algorithms rely on
+nondeterminism for more efficient solutions.</p></li>
+<li><p>Nondeterministic definitions can be simpler/more
+concise.</p></li>
+</ul>
+</div>
+<div id="nondeterministic-finite-automata-1"
+class="slide section level2">
+<h1>Nondeterministic Finite Automata</h1>
+<p>A Nondeterministic Finite Automaton (NFA) has a similar 5-tuple
+definition as the Deterministic Finite Automata (DFA) we’ve seen so far:
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="(Q, \Sigma, \delta, s, F)" title="(Q, \Sigma, \delta, s, F)"
+class="math inline" />, but one element in defined differently.</p>
+<p>Thinking of our 5-tuple definition and the definition of
+nondeterminism, what element do you think is different?</p>
+</div>
+<div id="nondeterministic-finite-automata-2"
+class="slide section level2">
+<h1>Nondeterministic Finite Automata</h1>
+<p>We still have:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" />: A finite set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" />: A finite
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q"
+alt="F \subseteq Q" title="F \subseteq Q" class="math inline" />: A set
+of accept states</li>
+</ul>
+<p>But we can have a <em>set</em> of start states!</p>
+<p>Also, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" /> is going to behave a
+little differently because now you can transition to a set of possible
+states! You also don’t <em>have</em> to have a transition defined for
+every state, input combination!</p>
+</div>
+<div id="nondeterministic-finite-automata---formal-definition"
+class="slide section level2">
+<h1>Nondeterministic Finite Automata - Formal Definition</h1>
+<p>A <em>nondeterministic finite automaton</em> (NFA) is a
+five-tuple:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20N%20%3D%20%28Q%2C%20%5CSigma%2C%20%5CDelta%2C%20S%2C%20F%29"
+alt="N = (Q, \Sigma, \Delta, S, F)"
+title="N = (Q, \Sigma, \Delta, S, F)" class="math display" /></p>
+<p>where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" />: A finite set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" />: A finite
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CDelta"
+alt="\Delta" title="\Delta" class="math inline" />: a function <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%20%5Ctimes%20%5CSigma%20%5Cto%202%5EQ"
+alt="Q \times \Sigma \to 2^Q" title="Q \times \Sigma \to 2^Q"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Csubseteq%20Q"
+alt="S \subseteq Q" title="S \subseteq Q" class="math inline" />: A
+<em>set</em> of start states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q"
+alt="F \subseteq Q" title="F \subseteq Q" class="math inline" />: A set
+of accept states</li>
+</ul>
+<p>Where <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%202%5EQ"
+alt="2^Q" title="2^Q" class="math inline" /> is the <em>power set</em>
+of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" />. (<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7BA%20%5Cmid%20A%20%5Csubseteq%20Q%5C%7D"
+alt="\{A \mid A \subseteq Q\}" title="\{A \mid A \subseteq Q\}"
+class="math inline" />)</p>
+</div>
+<div id="example" class="slide section level2">
+<h1>Example</h1>
+<p>Draw an NFA over the alphabet <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B0%2C1%5C%7D"
+alt="\{0,1\}" title="\{0,1\}" class="math inline" /> such that it
+accepts:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20A%20%3D%20%5C%7Bw%20%5Cin%20%5C%7B0%2C1%5C%7D%5E%2A%20%5Cmid%20%5Ctextrm%7Bthe%20second%20symbol%20from%20the%20right%20is%20one.%7D%20%5C%7D"
+alt="A = \{w \in \{0,1\}^* \mid \textrm{the second symbol from the right is one.} \}"
+title="A = \{w \in \{0,1\}^* \mid \textrm{the second symbol from the right is one.} \}"
+class="math display" /></p>
+<p>E.g. it accepts <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%2001010"
+alt="01010" title="01010" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20010" alt="010"
+title="010" class="math inline" /> but not <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20101" alt="101"
+title="101" class="math inline" /> or <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%2011001"
+alt="11001" title="11001" class="math inline" />.</p>
+</div>
+<div id="what-does-acceptance-mean" class="slide section level2">
+<h1>What does “acceptance” mean?</h1>
+<!-- - "An NFA accepts a string $w$ if it is possible to make any sequence of choices of next state, while reading the characters of $w$, and go from the start state to any accepting state." - Hopcroft et al. [^hopcroft] -->
+<p>A nondeterministic automaton is said to <em>accept</em> its input
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> if there exists <em>at least</em> one
+computation path on input <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> from a start state to an accept
+state.</p>
+</div>
+<div id="some-properties" class="slide section level2">
+<h1>Some properties</h1>
+<ul>
+<li><p>Every DFA can be expressed as an NFA. (Reasonable.)</p></li>
+<li><p>Every NFA can be expressed as a DFA. (A little more complicated
+to think about…)</p></li>
+</ul>
+</div>
+<div id="every-dfa-can-be-expressed-as-an-nfa"
+class="slide section level2">
+<h1>Every DFA can be expressed as an NFA</h1>
+<p>Let’s take an example DFA from a previous class…</p>
+<p><img src="../static/slide_figs/fa.png" /><a href="#fn5"
+class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+</div>
+
+<div id="sources" class="title-slide slide section level1">
+<h1>Sources</h1>
+
+</div>
+
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><ul>
+<li>Sipser, Michael. “Introduction to the Theory of Computation.” ACM
+Sigact News 27.1 (1996): 27-29</li>
+</ul>
+<a href="#fnref1" class="footnote-back">↩︎</a></li>
+<li id="fn2"><ul>
+<li>Kozen, Dexter C. Automata and computability. Springer Science &amp;
+Business Media, 2007.</li>
+</ul>
+<a href="#fnref2" class="footnote-back">↩︎</a></li>
+<li id="fn3"><ul>
+<li>Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman.
+“Introduction to automata theory, languages, and computation.” Acm
+Sigact News 32.1 (2001): 60-65.</li>
+</ul>
+<a href="#fnref3" class="footnote-back">↩︎</a></li>
+<li id="fn4"><ul>
+<li>Sipser, Michael. “Introduction to the Theory of Computation.” ACM
+Sigact News 27.1 (1996): 27-29</li>
+</ul>
+<a href="#fnref4" class="footnote-back">↩︎</a></li>
+<li id="fn5"><ul>
+<li>Sipser, Michael. “Introduction to the Theory of Computation.” ACM
+Sigact News 27.1 (1996): 27-29</li>
+</ul>
+<a href="#fnref5" class="footnote-back">↩︎</a></li>
+</ol>
+</div>
+</body>
+</html>
