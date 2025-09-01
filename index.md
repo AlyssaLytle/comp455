@@ -14,3 +14,4 @@ Welcome to the class!
 [In-Class Example](static/slide_figs/8-21-example.jpg)
 - Aug 26: [DFA Practice](slides/02-finite-automata-practice.html) 
 - August 28: [DFA + Regular Languages Practice and Proof](static/lecture-notes/8-28-25.pdf)
+- September 2: [NFAs](slides/03-nfas.html)

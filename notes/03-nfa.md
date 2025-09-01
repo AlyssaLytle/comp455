@@ -92,6 +92,8 @@ Let's take an example DFA from a previous class...
 
 ## Every NFA can be expressed as an DFA
 
+Let's use our earlier example...
+
 
 
 # Sources
