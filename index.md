@@ -15,4 +15,4 @@ Welcome to the class!
 - Aug 26, **DFA Practice**: [Slides](slides/02-finite-automata-practice.html) 
 - August 28, **DFAs + Proofs**: [Notes](static/lecture-notes/8-28-25.pdf)
 - September 2, **NFAs**: [Slides](slides/03-nfas.html) | [Notes](static/lecture-notes/9-2-25.pdf)
-- Semptember 4, **NFAs + Proofs**: [Notes](static/lecture-notes/9-4-25.pdf) | (*Typed notes coming soon!)*
+- Semptember 4, **NFAs + Proofs**: [Notes](static/lecture-notes/9-4-25.pdf) | [Typed Notes](static/typed-notes/9-4-25.pdf)
