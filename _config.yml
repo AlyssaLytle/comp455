@@ -56,3 +56,5 @@ plugins:
 #   - vendor/ruby/
 
 show_downloads: false
+
+use_mathjax: true
