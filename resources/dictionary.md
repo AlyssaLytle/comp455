@@ -16,14 +16,14 @@ A DFA can be represented as $$M = (Q, \Sigma, \delta, s, F)$$ where $$Q$$ is a s
 
 ### delta: $$\delta$$
 
-* $$\delta$$ can be expressed as a mapping: $$\delta : Q \times \Sigma \to Q$$
+$$\delta$$ can be expressed as a mapping: $$\delta : Q \times \Sigma \to Q$$
 
 ### delta hat: $$\hat{\delta}$$
 
-* $$\hat{\delta} : Q \times \Sigma^* \to Q  $$
+$$\hat{\delta}$$ can be expressed as a mapping: $$\hat{\delta} : Q \times \Sigma^* \to Q  $$
         and for $$a \in \Sigma, x \in \Sigma^*$$
 
-Definition:
+Inductive Definition:
 
 $$
         \begin{eqnarray*}
