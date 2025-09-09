@@ -14,21 +14,22 @@ Here are some common definitions from class!
 
 A DFA can be represented as $$M = (Q, \Sigma, \delta, s, F)$$ where $$Q$$ is a set of states, $$\Sigma$$ is an alphabet, $$\delta$$ is a transition function, $$s$$ is a start state, and $$F$$ is a set of accept states.
 
-### $$\delta$$
+### delta: $$\delta$$
 
 * $$\delta : Q \times \Sigma \to Q$$
 
-### $$\hat{\delta}$$
+### delta hat: $$\hat{\delta}$$
 
-* $$\dhat : Q \times \Sigma^* \to Q  $$
+* $$\hat{\delta} : Q \times \Sigma^* \to Q  $$
         and for $$a \in \Sigma, x \in \Sigma^*$$
 
 Definition:
+
 $$
         \begin{eqnarray*}
-        \dhat(q, \epsilon) &\defeq& q \textrm{ (base case)} \\
-        \dhat(q, a) &\defeq& \delta(q,a) \textrm{ (optional second base case)} \\
-        \dhat(q, xa) &\defeq& \delta(\dhat(q,x),a) 
+        \hat{\delta}(q, \epsilon) &\defeq& q \textrm{ (base case)} \\
+        \hat{\delta}(q, a) &\defeq& \delta(q,a) \textrm{ (optional second base case)} \\
+        \hat{\delta}(q, xa) &\defeq& \delta(\hat{\delta}(q,x),a) 
         \end{eqnarray*}
 $$
 
