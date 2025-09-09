@@ -14,6 +14,14 @@ Here are some common definitions from class!
 
 A DFA can be represented as $$M = (Q, \Sigma, \delta, s, F)$$ where $$Q$$ is a set of states, $$\Sigma$$ is an alphabet, $$\delta$$ is a transition function, $$s$$ is a start state, and $$F$$ is a set of accept states.
 
+### Language Operations
+
+- Union: $A \cup B = \{x| x\in A \textrm{ or } x \in B\}$ 
+
+- Concatenation: $A \circ B = \{xy| x \in A \textrm{ and } y \in B\}$
+
+- Star: $A^* = \{x_1 x_2 \ldots x_k | k \geq 0 \textrm{ and each } x_i \in A \}$
+
 ### delta: $$\delta$$
 
 $$\delta$$ can be expressed as a mapping: $$\delta : Q \times \Sigma \to Q$$
