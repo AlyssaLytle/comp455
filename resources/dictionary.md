@@ -12,15 +12,15 @@ Here are some common definitions from class!
 
 ### 5-Tuple DFA
 
-A DFA can be represented as $M = (Q, \Sigma, \delta, s, F)$ where $Q$ is a set of states, $\Sigma$ is an alphabet, $\delta$ is a transition function, $s$ is a start state, and $F$ is a set of accept states.
+A DFA can be represented as $$M = (Q, \Sigma, \delta, s, F)$$ where $$Q$$ is a set of states, $$\Sigma$$ is an alphabet, $$\delta$$ is a transition function, $$s$$ is a start state, and $$F$$ is a set of accept states.
 
-### $\delta$
+### $$\delta$$
 
 * $\delta : Q \times \Sigma \to Q$
 
-### $\hat{\delta}$
+### $$\hat{\delta}$$
 
-* $\dhat : Q \times \Sigma^* \to Q  $$
+* $$\dhat : Q \times \Sigma^* \to Q  $$
         and for $a \in \Sigma, x \in \Sigma^*$
 
 Definition:
