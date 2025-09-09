@@ -16,7 +16,7 @@ A DFA can be represented as $$M = (Q, \Sigma, \delta, s, F)$$ where $$Q$$ is a s
 
 ### delta: $$\delta$$
 
-* $$\delta : Q \times \Sigma \to Q$$
+* $$\delta$$ can be expressed as a mapping: $$\delta : Q \times \Sigma \to Q$$
 
 ### delta hat: $$\hat{\delta}$$
 
@@ -27,9 +27,9 @@ Definition:
 
 $$
         \begin{eqnarray*}
-        \hat{\delta}(q, \epsilon) &\defeq& q \textrm{ (base case)} \\
-        \hat{\delta}(q, a) &\defeq& \delta(q,a) \textrm{ (optional second base case)} \\
-        \hat{\delta}(q, xa) &\defeq& \delta(\hat{\delta}(q,x),a) 
+        \hat{\delta}(q, \epsilon) &=& q \textrm{ (base case)} \\
+        \hat{\delta}(q, a) &=& \delta(q,a) \textrm{ (optional second base case)} \\
+        \hat{\delta}(q, xa) &=& \delta(\hat{\delta}(q,x),a) 
         \end{eqnarray*}
 $$
 
