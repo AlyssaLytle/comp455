@@ -42,3 +42,7 @@ $$
 $$
 
 ## NFAs
+
+### 5-tuple NFA
+
+$$N = (Q, \Sigma, \Delta, S, F)$$ 

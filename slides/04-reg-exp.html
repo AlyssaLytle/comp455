@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-09-16" />
+  <title>Regular Expressions</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Regular Expressions</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">September 16, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/04-reg-exp.md -o slides/04-reg-exp.html --webtex -->
+</div>
+<div id="patterns" class="slide section level2">
+<h1>Patterns</h1>
+<ul>
+<li><p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> be a finite alphabet.
+A is a string of symbols representing a set of strings in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%5E%2A"
+alt="\Sigma^*" title="\Sigma^*" class="math inline" /></p></li>
+<li><p>A string a pattern <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ciff"
+alt="\iff" title="\iff" class="math inline" /> it’s accepted by that
+pattern’s language. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%29%20%3D%20%5C%7Bx%20%5Cin%20%5CSigma%5E%2A%20%7C%20x%20%5Cmbox%7B%20matches%20%7D%20%5Calpha%5C%7D"
+alt="L(\alpha) = \{x \in \Sigma^* | x \mbox{ matches } \alpha\}"
+title="L(\alpha) = \{x \in \Sigma^* | x \mbox{ matches } \alpha\}"
+class="math inline" /></p></li>
+<li><p>The UNIX commmands <code>grep</code>, <code>fgrep</code>, and
+<code>egrep</code> are basic pattern-matching utilities that use DFA/NFA
+hybrids in their implementation! </p></li>
+</ul>
+</div>
+<div id="atomic-patterns" class="slide section level2">
+<h1>Atomic Patterns</h1>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />, for each <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20%5CSigma"
+alt="a \in \Sigma" title="a \in \Sigma" class="math inline" />; <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28a%29%20%3D%20%5C%7Ba%5C%7D"
+alt="L(a) = \{a\}" title="L(a) = \{a\}" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cepsilon%7D"
+alt="\boldsymbol{\epsilon}" title="\boldsymbol{\epsilon}"
+class="math inline" />; <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Cboldsymbol%7B%5Cepsilon%7D%29%20%3D%20%5C%7B%5Cepsilon%5C%7D"
+alt="L(\boldsymbol{\epsilon}) = \{\epsilon\}"
+title="L(\boldsymbol{\epsilon}) = \{\epsilon\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cemptyset%7D"
+alt="\boldsymbol{\emptyset}" title="\boldsymbol{\emptyset}"
+class="math inline" />; <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Cboldsymbol%7B%5Cemptyset%7D%29%20%3D%20%5Cemptyset"
+alt="L(\boldsymbol{\emptyset}) = \emptyset"
+title="L(\boldsymbol{\emptyset}) = \emptyset"
+class="math inline" />.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> (any symbol in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" />); <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5C%23%29%3D%5CSigma"
+alt="L(\#)=\Sigma" title="L(\#)=\Sigma" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%40" alt="@"
+title="@" class="math inline" /> (any string in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%5E%2A"
+alt="\Sigma^*" title="\Sigma^*" class="math inline" />); <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%40%29%20%3D%20%5CSigma%5E%2A"
+alt="L(@) = \Sigma^*" title="L(@) = \Sigma^*"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="compound-patterns" class="slide section level2">
+<h1>Compound Patterns</h1>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%20%5Ccup%20%5Cbeta%29"
+alt="L(\alpha \cup \beta)" title="L(\alpha \cup \beta)"
+class="math inline" /> (or <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%20%2B%20%5Cbeta%29"
+alt="L(\alpha + \beta)" title="L(\alpha + \beta)"
+class="math inline" />) <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3D%20L%20%28%5Calpha%29%20%5Ccup%20L%28%5Cbeta%29"
+alt="= L (\alpha) \cup L(\beta)" title="= L (\alpha) \cup L(\beta)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%20%5Ccap%20%5Cbeta%29%20%3D%20%20L%20%28%5Calpha%29%20%5Ccap%20L%28%5Cbeta%29"
+alt="L(\alpha \cap \beta) =  L (\alpha) \cap L(\beta)"
+title="L(\alpha \cap \beta) =  L (\alpha) \cap L(\beta)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%20%5Ccirc%20%5Cbeta%29%20%3D%20L%28%5Calpha%29%20%5Ccirc%20L%28%5Cbeta%29%20%3D%20%5C%7Byz%20%5Cmid%20y%20%5Cin%20L%28%5Calpha%29"
+alt="L(\alpha \circ \beta) = L(\alpha) \circ L(\beta) = \{yz \mid y \in L(\alpha)"
+title="L(\alpha \circ \beta) = L(\alpha) \circ L(\beta) = \{yz \mid y \in L(\alpha)"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20z%20%5Cin%20L%28%5Cbeta%29%20%5C%7D"
+alt="z \in L(\beta) \}" title="z \in L(\beta) \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Csim%20%5Calpha%29%20%3D%20%20%5Csim%20L%28%5Calpha%29%20%3D%20%5CSigma%5E%2A%20-%20L%28%5Calpha%29"
+alt="L(\sim \alpha) =  \sim L(\alpha) = \Sigma^* - L(\alpha)"
+title="L(\sim \alpha) =  \sim L(\alpha) = \Sigma^* - L(\alpha)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28%5Calpha%5E%2A%29%20%3D%20%5C%7Bx_1%20x_2%20%5Cldots%20x_n%20%5Cmid%20n%20%5Cgeq%200"
+alt="L(\alpha^*) = \{x_1 x_2 \ldots x_n \mid n \geq 0"
+title="L(\alpha^*) = \{x_1 x_2 \ldots x_n \mid n \geq 0"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x_i%20%5Cin%20L%28%5Calpha%29%2C%201%20%5Cleq%20i%20%5Cleq%20n%20%3D%20L%28%5Calpha%29%5E%2A%5C%7D"
+alt="x_i \in L(\alpha), 1 \leq i \leq n = L(\alpha)^*\}"
+title="x_i \in L(\alpha), 1 \leq i \leq n = L(\alpha)^*\}"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="redundant-operators" class="slide section level2">
+<h1>Redundant Operators</h1>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha"
+alt="\alpha" title="\alpha" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ccap"
+alt="\cap" title="\cap" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csim"
+alt="\sim" title="\sim" class="math inline" /></li>
+</ul>
+</div>
+<div id="inductive-definition-of-patterns" class="slide section level2">
+<h1>Inductive Definition of Patterns</h1>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20%5CSigma"
+alt="a \in \Sigma" title="a \in \Sigma" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cepsilon%7D"
+alt="\boldsymbol{\epsilon}" title="\boldsymbol{\epsilon}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cemptyset%7D"
+alt="\boldsymbol{\emptyset}" title="\boldsymbol{\emptyset}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbeta%20%5Ccup%20%5Cgamma"
+alt="\beta \cup \gamma" title="\beta \cup \gamma"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbeta%20%5Ccirc%20%5Cgamma"
+alt="\beta \circ \gamma" title="\beta \circ \gamma"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbeta%5E%2A"
+alt="\beta^*" title="\beta^*" class="math inline" /></li>
+</ul>
+</div>
+<div id="inductive-definition-of-regular-expressions"
+class="slide section level2">
+<h1>Inductive Definition of Regular Expressions</h1>
+<p>Regular expressions are patterns used to represent
+<em>languages</em>.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R" alt="R"
+title="R" class="math inline" /> is a regular expression if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R" alt="R"
+title="R" class="math inline" /> is</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20%5CSigma"
+alt="a \in \Sigma" title="a \in \Sigma" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cepsilon%7D"
+alt="\boldsymbol{\epsilon}" title="\boldsymbol{\epsilon}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cboldsymbol%7B%5Cemptyset%7D"
+alt="\boldsymbol{\emptyset}" title="\boldsymbol{\emptyset}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1%5Ccup%20R_2"
+alt="R_1\cup R_2" title="R_1\cup R_2" class="math inline" /> where <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1" alt="R_1"
+title="R_1" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_2" alt="R_2"
+title="R_2" class="math inline" /> are regular expressions</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1%20%5Ccirc%20R_2"
+alt="R_1 \circ R_2" title="R_1 \circ R_2" class="math inline" /> where
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1" alt="R_1"
+title="R_1" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_2" alt="R_2"
+title="R_2" class="math inline" /> are regular expressions</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1%5E%2A"
+alt="R_1^*" title="R_1^*" class="math inline" /> where <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_1" alt="R_1"
+title="R_1" class="math inline" /> is a regular expression</li>
+</ul>
+</div>
+<div id="regular-expressions-and-languages"
+class="slide section level2">
+<h1>Regular Expressions and Languages</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20%5CSigma%5E%2A"
+alt="A \subseteq \Sigma^*" title="A \subseteq \Sigma^*"
+class="math inline" />. The following three statements are
+equivalent:</p>
+<ol style="list-style-type: decimal">
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is a regular language</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20L%28%5Calpha%29"
+alt="A = L(\alpha)" title="A = L(\alpha)" class="math inline" /> for
+some pattern <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha"
+alt="\alpha" title="\alpha" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20L%28%5Calpha%29"
+alt="A = L(\alpha)" title="A = L(\alpha)" class="math inline" /> for
+some regular expression <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha"
+alt="\alpha" title="\alpha" class="math inline" /></li>
+</ol>
+</div>
+<div id="proving-this" class="slide section level2">
+<h1>Proving This…</h1>
+</div>
+</body>
+</html>
