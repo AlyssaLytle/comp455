@@ -72,3 +72,4 @@ Let $A \subseteq \Sigma^*$. The following three statements are equivalent:
 3.  $A = L(\alpha)$ for some regular expression $\alpha$
 
 ## Proving This...
+

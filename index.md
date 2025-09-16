@@ -17,4 +17,4 @@ Welcome to the class!
 - September 2, **NFAs**: [Slides](slides/03-nfas.html), [Notes](static/lecture-notes/9-2-25.pdf)
 - Semptember 4, **NFAs + Proofs**: [Notes](static/lecture-notes/9-4-25.pdf), [Typed Notes](static/typed-notes/9-4-25.pdf) 
 - September 9, **Regular Expressions**: [Typed Notes](static/typed-notes/9-9-25.pdf)
-- September 16, **More on Regular Expressions**: [Slides](slides/04-reg-exp.html), [Typed Notes](static/typed-notes/9-16-25.pdf)
+- September 16, **More on Regular Expressions**: [Slides](slides/04-reg-exp.html), [Typed Notes (Reg Expressions)](static/typed-notes/9-16-25.pdf), [Typed Notes (Pumping Lemma)](static/typed-notes/9-16-25-nonreg-exp.pdf)
