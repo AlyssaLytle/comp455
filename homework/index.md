@@ -16,8 +16,10 @@ We will not be providing solutions for HW2+, but you can work with your classmat
 
 If you post a *unique*, readable, acceptable solution to Edstem, you will get 5 percentage points extra credit on the final exam! **Limit to one per student!** (Note that your solution must be unique, so if someone has already shared the same/a very similar solution you will not get credit.)
 
+You will also get the same credit if you post a meaningful correction to someone's solution. (Same limit of one credit per student applies.)
+
 ## Assignments
 
-* [Homework 0](static/HW/HW0.pdf), [Solutions](/comp455/static/HW/HW0-solutions.pdf)
-* [Homework 1](static/HW/HW1.pdf), [Solutions](static/HW/HW1-solutions.pdf)
-* [Homework 2](static/HW/HW2.pdf)
+* [Homework 0](/comp455/static/HW/HW0.pdf), [Solutions](/comp455/static/HW/HW0-solutions.pdf)
+* [Homework 1](/comp455/static/HW/HW1.pdf), [Solutions](/comp455/static/HW/HW1-solutions.pdf)
+* [Homework 2](/comp455/static/HW/HW2.pdf)
