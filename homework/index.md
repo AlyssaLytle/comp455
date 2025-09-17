@@ -18,6 +18,6 @@ If you post a *unique*, readable, acceptable solution to Edstem, you will get 5 
 
 ## Assignments
 
-* [Homework 0](/homework/HW0.pdf) $\mid$ [Solutions](/homework/HW0-solutions.pdf)
-* [Homework 1](/homework/HW1.pdf) $\mid$ [Solutions](/homework/HW1-solutions.pdf)
+* [Homework 0](/homework/HW0.pdf), [Solutions](/homework/HW0-solutions.pdf)
+* [Homework 1](/homework/HW1.pdf), [Solutions](/homework/HW1-solutions.pdf)
 * [Homework 2](/homework/HW2.pdf)
