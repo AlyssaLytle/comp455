@@ -19,3 +19,4 @@ Welcome to the class!
 - September 9, **Regular Expressions**: [Typed Notes](static/typed-notes/9-9-25.pdf)
 - September 16, **More on Regular Expressions + Intro to Pumping Lemma**: [Slides](slides/04-reg-exp.html), [Notes](static/lecture-notes/9-16-25.pdf), [Typed Notes (Reg Expressions)](static/typed-notes/9-16-25.pdf), [Typed Notes (Pumping Lemma)](static/typed-notes/9-16-25-nonreg-exp.pdf)
 - September 18, **Pumping Lemma**: [Typed Notes](/static/typed-notes/9-18-25.pdf)
+- September 23, **Context Free Grammars**: [Slides](slides/05-CFGs.html), [Typed Notes](/static/typed-notes/9-23-25.pdf)

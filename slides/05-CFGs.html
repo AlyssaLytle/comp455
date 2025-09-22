@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-09-23" />
+  <title>Context Free Grammars</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Context Free Grammars</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">September 23, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/05-cfgs.md -o slides/05-CFGs.html --webtex -->
+</div>
+<div id="context-free-grammars-languages"
+class="title-slide slide section level1">
+<h1>Context-Free Grammars + Languages</h1>
+
+</div>
+<div id="cfgs-and-cfls" class="slide section level2">
+<h1>CFGs and CFLs</h1>
+<ul>
+<li><p>Just as regular expressions describe regular languages,
+<strong>context-free grammars describe context-free
+languages.</strong></p></li>
+<li><p>The “class” of Context-Free Languages <em>contains</em> the set
+of Regular Languages.</p></li>
+<li><p>CFLs are good for describing infinite sets of strings in a finite
+way. They are commonly used for describing the syntax programming
+languages.</p></li>
+</ul>
+</div>
+<div id="cfg-example" class="slide section level2">
+<h1>CFG Example</h1>
+<p><img src="../static/slide_figs/pl-cfg.png" /></p>
+</div>
+<div id="context-free-grammar-definition" class="slide section level2">
+<h1>Context Free Grammar Definition</h1>
+<p>A context-free grammar (CFG) is a quadruple</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20G%20%3D%20%28N%2C%20%5CSigma%2C%20P%2C%20S%29"
+alt="G = (N, \Sigma, P, S)" title="G = (N, \Sigma, P, S)"
+class="math display" /></p>
+<p>where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N" alt="N"
+title="N" class="math inline" /> is a finite set (the
+<em>nonterminal</em> symbols or <em>variables</em>)</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> is a finite set (the
+<em>terminal</em> symbols) dijoint from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N" alt="N"
+title="N" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P" alt="P"
+title="P" class="math inline" /> is a finite subset of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%5Ctimes%20%28N%20%5Ccup%20%5CSigma%29%5E%2A"
+alt="N \times (N \cup \Sigma)^*" title="N \times (N \cup \Sigma)^*"
+class="math inline" /> (the <em>productions</em> or <em>rules</em>),
+and</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Cin%20N"
+alt="S \in N" title="S \in N" class="math inline" /> (the <em>start
+symbol</em>)</li>
+</ul>
+</div>
+<div id="common-conventions" class="slide section level2">
+<h1>Common Conventions</h1>
+<p>Typically,</p>
+<ul>
+<li><p>nonterminals are denoted with capital letters (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%2C%20B%2C%20%5Cldots"
+alt="A, B, \ldots" title="A, B, \ldots" class="math inline" />)</p></li>
+<li><p>terminals are denoted with lowercase letters (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%2Cb%2C%20%5Cldots"
+alt="a,b, \ldots" title="a,b, \ldots" class="math inline" />)</p></li>
+<li><p>strings in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28N%20%5Ccup%20%5CSigma%29%5E%2A"
+alt="(N \cup \Sigma)^*" title="(N \cup \Sigma)^*" class="math inline" />
+are denoted using greek letters (e.g. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%2C%20%5Cbeta%2C%20%5Cgamma%2C%20%5Cldots"
+alt="\alpha, \beta, \gamma, \ldots"
+title="\alpha, \beta, \gamma, \ldots" class="math inline" />)</p></li>
+</ul>
+</div>
+<div id="common-conventions-1" class="slide section level2">
+<h1>Common Conventions</h1>
+<p>Typically,</p>
+<ul>
+<li><p>nonterminals are denoted with capital letters (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%2C%20B%2C%20%5Cldots"
+alt="A, B, \ldots" title="A, B, \ldots" class="math inline" />)</p></li>
+<li><p>terminals are denoted with lowercase letters (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%2Cb%2C%20%5Cldots"
+alt="a,b, \ldots" title="a,b, \ldots" class="math inline" />)</p></li>
+<li><p>strings in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28N%20%5Ccup%20%5CSigma%29%5E%2A"
+alt="(N \cup \Sigma)^*" title="(N \cup \Sigma)^*" class="math inline" />
+are denoted using greek letters (e.g. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%2C%20%5Cbeta%2C%20%5Cgamma%2C%20%5Cldots"
+alt="\alpha, \beta, \gamma, \ldots"
+title="\alpha, \beta, \gamma, \ldots" class="math inline" />)</p></li>
+</ul>
+<p>Think of productions/rules kind of like transitions. Instead of a
+tuple representation like <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28A%2C%20%5Calpha%29"
+alt="(A, \alpha)" title="(A, \alpha)" class="math inline" />, they often
+have an arrow representation <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Crightarrow%20%5Calpha"
+alt="A \rightarrow \alpha" title="A \rightarrow \alpha"
+class="math inline" />.</p>
+<p>To denote a set of productions with the same left-hand side, instead
+of listing them</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Crightarrow%20%5Calpha_1"
+alt="A \rightarrow \alpha_1" title="A \rightarrow \alpha_1"
+class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Crightarrow%20%5Calpha_2"
+alt="A \rightarrow \alpha_2" title="A \rightarrow \alpha_2"
+class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Crightarrow%20%5Calpha_3"
+alt="A \rightarrow \alpha_3" title="A \rightarrow \alpha_3"
+class="math inline" /></p>
+<p>You use the abbreviation</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Crightarrow%20%5Calpha_1%20%20%5Cmid%20%20%5Calpha_2%20%20%5Cmid%20%20%5Calpha_3"
+alt="A \rightarrow \alpha_1  \mid  \alpha_2  \mid  \alpha_3"
+title="A \rightarrow \alpha_1  \mid  \alpha_2  \mid  \alpha_3"
+class="math inline" /></p>
+</div>
+<div id="anbn" class="slide section level2">
+<h1><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
+alt="a^nb^n" title="a^nb^n" class="math inline" /></h1>
+<p>The nonregular set <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Ba%5Enb%5En%20%20%5Cmid%20n%20%5Cgeq%200%20%5C%7D"
+alt="\{a^nb^n  \mid n \geq 0 \}" title="\{a^nb^n  \mid n \geq 0 \}"
+class="math inline" /> can be represented as a CFL</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Crightarrow%20aSb%20%20%5Cmid%20%5Cepsilon"
+alt="S \rightarrow aSb  \mid \epsilon"
+title="S \rightarrow aSb  \mid \epsilon" class="math inline" /></p>
+<p>More specifically, in quadruple form: <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G%20%3D%20%28N%2C%20%5CSigma%2C%20P%2C%20S%29"
+alt="G = (N, \Sigma, P, S)" title="G = (N, \Sigma, P, S)"
+class="math inline" />, where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%3D%20%5C%7BS%5C%7D"
+alt="N = \{S\}" title="N = \{S\}" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%20%3D%20%5C%7Ba%2Cb%5C%7D"
+alt="\Sigma = \{a,b\}" title="\Sigma = \{a,b\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%3D%20%5C%7BS%20%5Crightarrow%20aSb%2C%20S%20%5Crightarrow%20%5Cepsilon%20%5C%7D"
+alt="P = \{S \rightarrow aSb, S \rightarrow \epsilon \}"
+title="P = \{S \rightarrow aSb, S \rightarrow \epsilon \}"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="anbn-1" class="slide section level2">
+<h1><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
+alt="a^nb^n" title="a^nb^n" class="math inline" /></h1>
+<p>Here’s how you would derive the string <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5E3b%5E3"
+alt="a^3b^3" title="a^3b^3" class="math inline" /> or <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20aaabbb"
+alt="aaabbb" title="aaabbb" class="math inline" />:</p>
+<p><img src="../static/slide_figs/anbn-cfg.png" /></p>
+<p>The more common way to write this is:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Cxrightarrow%5BG%5D%7B1%7D%20aSb%20%5Cxrightarrow%5BG%5D%7B1%7D%20aaSbb%20%5Cxrightarrow%5BG%5D%7B1%7D%20aaaSbbb%20%5Cxrightarrow%5BG%5D%7B1%7D%20aaabbb"
+alt="S \xrightarrow[G]{1} aSb \xrightarrow[G]{1} aaSbb \xrightarrow[G]{1} aaaSbbb \xrightarrow[G]{1} aaabbb"
+title="S \xrightarrow[G]{1} aSb \xrightarrow[G]{1} aaSbb \xrightarrow[G]{1} aaaSbbb \xrightarrow[G]{1} aaabbb"
+class="math inline" /></p>
+<p>Or</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Cxrightarrow%5BG%5D%7B4%7D%20aaabbb"
+alt="S \xrightarrow[G]{4} aaabbb" title="S \xrightarrow[G]{4} aaabbb"
+class="math inline" /></p>
+<p>In English you’d say ``This string is derivable from the start symbol
+in 4 steps.’’</p>
+</div>
+<div id="sentential-form-sentence" class="slide section level2">
+<h1>Sentential Form + Sentence</h1>
+<p>A string in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28N%20%5Ccup%20%5CSigma%29%5E%2A"
+alt="(N \cup \Sigma)^*" title="(N \cup \Sigma)^*" class="math inline" />
+derivable from the start symbol <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S" alt="S"
+title="S" class="math inline" /> is called a <em>sentential
+form</em>.</p>
+<p>A sentential form is called a <em>sentence</em> if it consists only
+of terminal symbols.</p>
+<p>(In other words, a sentence would be in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%5E%2A"
+alt="\Sigma^*" title="\Sigma^*" class="math inline" />.)</p>
+</div>
+<div id="derivable-strings" class="slide section level2">
+<h1>Derivable Strings</h1>
+<p>As we showed in the example,</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%20%5Cxrightarrow%5BG%5D%7B1%7D%20%5Cbeta"
+alt="\alpha \xrightarrow[G]{1} \beta"
+title="\alpha \xrightarrow[G]{1} \beta" class="math inline" /> if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbeta"
+alt="\beta" title="\beta" class="math inline" /> can be derived from
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha"
+alt="\alpha" title="\alpha" class="math inline" /> over one step in the
+grammar <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" />.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%20%5Cxrightarrow%5BG%5D%7Bn%7D%20%5Cbeta"
+alt="\alpha \xrightarrow[G]{n} \beta"
+title="\alpha \xrightarrow[G]{n} \beta" class="math inline" /> if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbeta"
+alt="\beta" title="\beta" class="math inline" /> can be derived from
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha"
+alt="\alpha" title="\alpha" class="math inline" /> over <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> steps in the grammar <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" />.</li>
+</ul>
+<p>Moreover</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%20%5Cxrightarrow%5BG%5D%7B%2A%7D%20%5Cbeta"
+alt="\alpha \xrightarrow[G]{*} \beta"
+title="\alpha \xrightarrow[G]{*} \beta" class="math inline" /> if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Calpha%20%5Cxrightarrow%5BG%5D%7Bn%7D%20%5Cbeta"
+alt="\alpha \xrightarrow[G]{n} \beta"
+title="\alpha \xrightarrow[G]{n} \beta" class="math inline" /> for some
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%5Cgeq%200"
+alt="n \geq 0" title="n \geq 0" class="math inline" /></li>
+</ul>
+</div>
+<div id="the-language-of-a-grammar" class="slide section level2">
+<h1>The Language of a Grammar</h1>
+<p>This allows us to define the <em>language</em> of a grammar in the
+following way:</p>
+<p>The <em>language of the grammar</em> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" /> is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Bw%20%5Cin%20%5CSigma%5E%2A%20%20%5Cmid%20S%20%5Cxrightarrow%5BG%5D%7B%2A%7Dw%5C%7D"
+alt="\{w \in \Sigma^*  \mid S \xrightarrow[G]{*}w\}"
+title="\{w \in \Sigma^*  \mid S \xrightarrow[G]{*}w\}"
+class="math inline" /></p>
+</div>
+<div id="converting-a-dfa-into-a-cfg" class="slide section level2">
+<h1>Converting a DFA into a CFG</h1>
+<p>There is an easy step-by-step way to convert a DFA <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M%3D%28Q%2C%5CSigma%2C%5Cdelta%2Cs%2CF%29"
+alt="M=(Q,\Sigma,\delta,s,F)" title="M=(Q,\Sigma,\delta,s,F)"
+class="math inline" /> into a CFG:</p>
+<ul>
+<li>For each <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_i%20%5Cin%20Q"
+alt="q_i \in Q" title="q_i \in Q" class="math inline" />, make a
+nonterminal <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_i" alt="R_i"
+title="R_i" class="math inline" /></li>
+<li>For all transitions <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%28q_i%2C%20x%29%20%3D%20q_j"
+alt="\delta(q_i, x) = q_j" title="\delta(q_i, x) = q_j"
+class="math inline" />, add the rule <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_i%20%5Crightarrow%20xR_j"
+alt="R_i \rightarrow xR_j" title="R_i \rightarrow xR_j"
+class="math inline" /></li>
+<li>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_i" alt="q_i"
+title="q_i" class="math inline" /> is an accept state, add the rule <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_i%20%5Crightarrow%20%5Cepsilon"
+alt="R_i \rightarrow \epsilon" title="R_i \rightarrow \epsilon"
+class="math inline" /></li>
+<li>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_0" alt="q_0"
+title="q_0" class="math inline" /> is the start state of the machine,
+make <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R_0" alt="R_0"
+title="R_0" class="math inline" /> the start variable.</li>
+</ul>
+</div>
+</body>
+</html>
