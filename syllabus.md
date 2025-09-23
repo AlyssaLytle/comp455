@@ -25,7 +25,7 @@ The University of North Carolina at Chapel Hill
 
 - Location: FedEx Global Education Center, Rm 1015
 
-- Platforms: [Canvas](https://edtech.unc.edu/service/canvas/), [Gradescope](www.gradescope.com/), [EdStem](https://edstem.org/), [Course website](/comp455)
+- Platforms: [Canvas](https://edtech.unc.edu/service/canvas/), [Gradescope](https://www.gradescope.com/), [EdStem](https://edstem.org/), [Course website](/comp455)
 
 ## Instructor Information
 
