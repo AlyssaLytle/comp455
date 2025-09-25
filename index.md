@@ -20,4 +20,4 @@ Welcome to the class!
 - September 16, **More on Regular Expressions + Intro to Pumping Lemma**: [Slides](slides/04-reg-exp.html), [Notes](static/lecture-notes/9-16-25.pdf), [Typed Notes (Reg Expressions)](static/typed-notes/9-16-25.pdf), [Typed Notes (Pumping Lemma)](static/typed-notes/9-16-25-nonreg-exp.pdf)
 - September 18, **Pumping Lemma**: [Typed Notes](/static/typed-notes/9-18-25.pdf)
 - September 23, **Context Free Grammars**: [Slides](slides/05-CFGs.html), [Typed Notes](/static/typed-notes/9-23-25.pdf)
-- September 25, **Pushdown Automata**: [Slides](sldies/06-pda.html)
+- September 25, **Pushdown Automata**: [Slides](slides/06-pda.html)
