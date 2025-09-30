@@ -23,4 +23,4 @@ You will also get the same credit if you post a meaningful correction to someone
 * [Homework 0](/comp455/static/HW/HW0.pdf), [Solutions](/comp455/static/HW/HW0-solutions.pdf)
 * [Homework 1](/comp455/static/HW/HW1.pdf), [Solutions](/comp455/static/HW/HW1-solutions.pdf)
 * [Homework 2](/comp455/static/HW/HW2.pdf)
-<!-- * [Homework 3](/comp455/static/HW/HW3.pdf) -->
+* [Homework 3](/comp455/static/HW/HW3.pdf)
