@@ -1,7 +1,7 @@
 ---
 title: "Pushdown Automata"
 author: "Alyssa Lytle"
-date: "September 23, 2025"
+date: "September 25, 2025"
 ---
 
 <!-- pandoc -t slidy -s notes/06-pda.md -o slides/06-pda.html --webtex -->

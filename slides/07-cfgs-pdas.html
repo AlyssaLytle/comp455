@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-09-30" />
+  <title>CFGs + PDAs</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">CFGs + PDAs</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">September 30, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/07-cfgs-pdas.md -o slides/06-cfgs-pdas.html --webtex -->
+</div>
+<div id="recapcontext-free-grammar" class="slide section level2">
+<h1>Recap:Context Free Grammar</h1>
+<p>A context-free grammar (CFG) is a quadruple</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20G%20%3D%20%28N%2C%20%5CSigma%2C%20P%2C%20S%29"
+alt="G = (N, \Sigma, P, S)" title="G = (N, \Sigma, P, S)"
+class="math display" /></p>
+<p>where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N" alt="N"
+title="N" class="math inline" /> is a finite set (the
+<em>nonterminal</em> symbols or <em>variables</em>)</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> is a finite set (the
+<em>terminal</em> symbols) dijoint from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N" alt="N"
+title="N" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P" alt="P"
+title="P" class="math inline" /> is a finite subset of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%5Ctimes%20%28N%20%5Ccup%20%5CSigma%29%5E%2A"
+alt="N \times (N \cup \Sigma)^*" title="N \times (N \cup \Sigma)^*"
+class="math inline" /> (the <em>productions</em> or <em>rules</em>),
+and</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%5Cin%20N"
+alt="S \in N" title="S \in N" class="math inline" /> (the <em>start
+symbol</em>)</li>
+</ul>
+</div>
+<div id="recap-pushdown-automata" class="slide section level2">
+<h1>Recap: Pushdown Automata</h1>
+<p>A <em>pushdown automaton</em> is a 6-tuple <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="(Q, \Sigma, \Gamma, \delta, s, F)"
+title="(Q, \Sigma, \Gamma, \delta, s, F)" class="math inline" />
+where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" /> is the set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> is the the input
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma"
+alt="\Gamma" title="\Gamma" class="math inline" /> is the stack
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CSigma_%5Cepsilon%20%5Ctimes%20%5CGamma_%5Cepsilon%20%5Cto%20%5Cmathcal%7BP%7D%28Q%20%5Ctimes%20%5CGamma_%5Cepsilon%29"
+alt="\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon \to \mathcal{P}(Q \times \Gamma_\epsilon)"
+title="\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon \to \mathcal{P}(Q \times \Gamma_\epsilon)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%5Cin%20Q"
+alt="s \in Q" title="s \in Q" class="math inline" /> is the start
+state</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q"
+alt="F \subseteq Q" title="F \subseteq Q" class="math inline" /> is the
+set of accept states</li>
+</ul>
+</div>
+<div id="theorem" class="slide section level2">
+<h1>Theorem</h1>
+<p>A language is context free if and only if some pushdown automaton
+recognizes it.</p>
+</div>
+<div id="proof" class="slide section level2">
+<h1>Proof</h1>
+<p>(In one direction)</p>
+</div>
+<div id="converting-a-cfg-to-a-pda" class="slide section level2">
+<h1>Converting a CFG to a PDA</h1>
+<ol style="list-style-type: decimal">
+<li>Place the marker symbol $ and the start variable on the stack.</li>
+<li>Repeat the following steps:
+<ol style="list-style-type: lower-alpha">
+<li>If the top element in the stack is a variable symbol (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />), nondeterministically select one of
+the rules for <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and substitute <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> by applying this rule. Push that new
+substution onto the stack.</li>
+<li>If the top element in the stack is a terminal symbol (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />), read the next symbol from the input
+to see if it matches <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />. If they match, continue. Otherwise,
+consider this a reject and try another “branch” of nondeterminism.
+(Apply a different rule in the previous step.)</li>
+<li>If the top of the stack is $, this means the stack is empty, so
+transition to the accept state. If the input has all be read, that means
+that the string is accepted.</li>
+</ol></li>
+</ol>
+</div>
+<div id="non-context-free-languages-the-pumping-lemma"
+class="slide section level2">
+<h1>Non-Context Free Languages + The Pumping Lemma</h1>
+<p>Can use a modified version of the pumping lemma to prove a language
+is not context free:</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is a context-free language, then there
+is a number <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> (the pumping length) where, if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> is any string in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> of length <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cgeq%20p"
+alt="\geq p" title="\geq p" class="math inline" />, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> may be divided into <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%3D%20uvxyz"
+alt="s = uvxyz" title="s = uvxyz" class="math inline" /> satisfying
+these conditions:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7Cvy%7C%20%3E%200"
+alt="|vy| &gt; 0" title="|vy| &gt; 0" class="math inline" /> (at least
+one of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20v" alt="v"
+title="v" class="math inline" /> or <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20y" alt="y"
+title="y" class="math inline" /> is not the empty string <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
+alt="\epsilon" title="\epsilon" class="math inline" />)</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7Cvxy%7C%20%5Cleq%20p"
+alt="|vxy| \leq p" title="|vxy| \leq p" class="math inline" /></li>
+<li>for each <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20i%20%5Cgeq%200"
+alt="i \geq 0" title="i \geq 0" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20uv%5Eixy%5Eiz%20%5Cin%20A"
+alt="uv^ixy^iz \in A" title="uv^ixy^iz \in A"
+class="math inline" /></li>
+</ul>
+<p><img src="../static/slide_figs/parse-tree-pumping-lemma.png" /></p>
+</div>
+<div id="example-anbncn" class="slide section level2">
+<h1>Example: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5Enc%5En"
+alt="a^nb^nc^n" title="a^nb^nc^n" class="math inline" /></h1>
+</div>
+</body>
+</html>
