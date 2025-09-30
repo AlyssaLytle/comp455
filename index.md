@@ -21,3 +21,4 @@ Welcome to the class!
 - September 18, **Pumping Lemma**: [Typed Notes](/static/typed-notes/9-18-25.pdf)
 - September 23, **Context Free Grammars**: [Slides](slides/05-CFGs.html), [Typed Notes](/static/typed-notes/9-23-25.pdf)
 - September 25, **Pushdown Automata**: [Slides](slides/06-pda.html), [Typed Notes](/static/typed-notes/9-25-25.pdf)
+- September 30, **More on PDA + CFGS**: [Typed Notes](/static/typed-notes/9-30-25.pdf)
