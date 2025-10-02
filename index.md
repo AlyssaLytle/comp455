@@ -21,4 +21,5 @@ Welcome to the class!
 - September 18, **Pumping Lemma**: [Typed Notes](/static/typed-notes/9-18-25.pdf)
 - September 23, **Context Free Grammars**: [Slides](slides/05-CFGs.html), [Typed Notes](/static/typed-notes/9-23-25.pdf)
 - September 25, **Pushdown Automata**: [Slides](slides/06-pda.html), [Typed Notes](/static/typed-notes/9-25-25.pdf)
-- September 30, **More on PDA + CFGS**: [Slides](slides/07-cfgs-pdas.html), [Typed Notes](/static/typed-notes/9-30-25.pdf)
+- September 30, **More on PDA + CFGS**: [Slides](slides/07-cfgs-pdas.html), [Typed Notes](/static/typed-notes/9-30-25.pdf), [Recording (Passcode: *hJ2hRga)](https://unc.zoom.us/rec/share/SDw_ZCd4RsvS1AEkUz_JdCIvmM0Q8AsPWFx3IsQ4eb4qxlFuIc3c82ulTOJfYhh6.3Kc9kdQwuljGaVen)
+- October 2, **Turing Machines**: [Slides](slides/08-turing-machines.html)

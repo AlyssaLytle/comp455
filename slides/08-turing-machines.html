@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-10-02" />
+  <title>Turing Machines</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Turing Machines</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">October 2, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/08-turing-machines.md -o slides/08-turing-machines.html --webtex -->
+</div>
+<div id="turing-machines" class="title-slide slide section level1">
+<h1>Turing Machines</h1>
+
+</div>
+<div id="turing-machines-1" class="slide section level2">
+<h1>Turing Machines</h1>
+<p><img src="../static/slide_figs/comp-hierarchy.png" /></p>
+<p>The final and <em>most powerful</em> computational model we will
+discuss</p>
+</div>
+<div id="turing-machines-general-design" class="slide section level2">
+<h1>Turing Machines: General Design</h1>
+<p><img src="../static/slide_figs/turing-scheme.png" /><a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<ul>
+<li>Initially, tape contains only the input string (blank
+otherwise)</li>
+<li>The machine can read + write information on the tape</li>
+<li>Machine continues until it reaches an <em>accept</em> or
+<em>reject</em> state</li>
+<li>The tape is considered <em>infinite</em></li>
+</ul>
+</div>
+<div id="tuple-definition" class="slide section level2">
+<h1>Tuple Definition</h1>
+<p>A <em>Turing machine</em> is a 7-tuple, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20q_accept%2C%20q_reject%29"
+alt="(Q, \Sigma, \Gamma, \delta, s, q_accept, q_reject)"
+title="(Q, \Sigma, \Gamma, \delta, s, q_accept, q_reject)"
+class="math inline" /></p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" /> is the set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> is the input alphabet
+(not containing the <em>blank symbol</em> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctexttt%7B%5Cverbvisiblespace%7D"
+alt="\texttt{\verbvisiblespace}" title="\texttt{\verbvisiblespace}"
+class="math inline" />)</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma"
+alt="\Gamma" title="\Gamma" class="math inline" /> is the tape alphabet,
+where <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctexttt%7B%5Cverbvisiblespace%7D%20%5Cin%20%5CGamma"
+alt="\texttt{\verbvisiblespace} \in \Gamma"
+title="\texttt{\verbvisiblespace} \in \Gamma" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%20%5Csubseteq%20%5CGamma"
+alt="\Sigma \subseteq \Gamma" title="\Sigma \subseteq \Gamma"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CGamma%20%5Cto%20Q%20%5Ctimes%20%5CGamma%20%5Ctimes%20%5C%7BL%2CR%5C%7D"
+alt="\delta: Q \times \Gamma \to Q \times \Gamma \times \{L,R\}"
+title="\delta: Q \times \Gamma \to Q \times \Gamma \times \{L,R\}"
+class="math inline" /> is the transition function</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%5Cin%20Q"
+alt="s \in Q" title="s \in Q" class="math inline" /> is the start
+state</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Baccept%7D%20%5Cin%20Q"
+alt="q_{accept} \in Q" title="q_{accept} \in Q" class="math inline" />
+is the accept state</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Breject%7D%20%5Cin%20Q"
+alt="q_{reject} \in Q" title="q_{reject} \in Q" class="math inline" />
+is the reject state</li>
+</ul>
+</div>
+<div id="configurations" class="slide section level2">
+<h1>Configurations</h1>
+<p>The <em>configuration</em> of the Turing Machine is the current
+state, tape contents, and head location.</p>
+<p>It is represented as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20u~q~v"
+alt="u~q~v" title="u~q~v" class="math inline" /> where <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" /> is the current state and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20uv" alt="uv"
+title="uv" class="math inline" /> are the current contents of the tape,
+with the first character of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20v" alt="v"
+title="v" class="math inline" /> being the current head location.</p>
+<p>The <em>start configuration</em> on input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> would be <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20sw" alt="sw"
+title="sw" class="math inline" />.</p>
+<p>The <em>accepting configuration</em> is the configuration the state
+it contains is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Baccept%7D"
+alt="q_{accept}" title="q_{accept}" class="math inline" /></p>
+<p>and the <em>rejecting configuration</em> is the configuration the
+state it contains is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Breject%7D"
+alt="q_{reject}" title="q_{reject}" class="math inline" /></p>
+<p>A Turing machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> <em>accepts</em> input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> if there are a sequence of
+configurations that begin at the start configurations and finish in an
+accepting configuration.</p>
+</div>
+<div id="example" class="slide section level2">
+<h1>Example:</h1>
+<p>Let’s define a Turing Machine that recognizes <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7B0%5E%7B2%5En%7D%7C%20n%20%5Cgeq%200%5C%7D"
+alt="A = \{0^{2^n}| n \geq 0\}" title="A = \{0^{2^n}| n \geq 0\}"
+class="math inline" />, the language containing all strings of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%200" alt="0"
+title="0" class="math inline" />s that have length of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%202%5En"
+alt="2^n" title="2^n" class="math inline" />.</p>
+<p>The basic idea is to repeatedly “divide” the input in half, hopefully
+finally getting to an input of length <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%201" alt="1"
+title="1" class="math inline" />.</p>
+<p>Steps:</p>
+<ol style="list-style-type: decimal">
+<li>If the tape contains a single <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%200" alt="0"
+title="0" class="math inline" />, accept.</li>
+<li>If the tape contains more than one <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%200" alt="0"
+title="0" class="math inline" />, but an odd number of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%200" alt="0"
+title="0" class="math inline" />s, reject.</li>
+<li>Move left to right across the tape, crossing off every other 0.</li>
+<li>Return the tape head to the left-hand end of the tape and repeat the
+previous steps.</li>
+</ol>
+</div>
+<div id="another-example" class="slide section level2">
+<h1>Another Example:</h1>
+<p>Let’s define a Turing Machine that recognizes <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%20%3D%20%5C%7Bw%5C%23w%20%5Cmid%20w%20%5Cin%20%5C%7B0%2C1%5C%7D%5E%2A%5C%7D"
+alt="B  = \{w\#w \mid w \in \{0,1\}^*\}"
+title="B  = \{w\#w \mid w \in \{0,1\}^*\}" class="math inline" />.</p>
+<p>The basic idea is to “jump” to the corresponsing locations for each
+character in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> on either side of the <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> symbol.</p>
+<p>Steps:</p>
+<ol style="list-style-type: decimal">
+<li>Move accross the tape to corresponding positions on either side of
+the <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> symbol.
+<ul>
+<li>If both positions contain the same symbol, cross off the
+symbols.</li>
+<li>If both positions do <em>not</em> contain the same symbol,
+reject.</li>
+</ul></li>
+<li>Repeat until all symbols to the left of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> have been crossed off. After
+that:
+<ul>
+<li>If there are any remaining symbols to the right of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" />, reject</li>
+<li>Else, accept</li>
+</ul></li>
+</ol>
+</div>
+<div id="languages" class="slide section level2">
+<h1>Languages</h1>
+<p>We call a language <em>Turing-recognizable</em> if some Turing
+machine recognizes it.</p>
+<p>We call a language <em>Turing-decidable</em> (or just
+<em>decidable</em>) if some Turing machine decides it.</p>
+<p>Question: Are all Turing-recognizable languages Turing-decidable?</p>
+</div>
+<div id="resources" class="slide section level2">
+<h1>Resources</h1>
+</div>
+
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+</body>
+</html>
