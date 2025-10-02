@@ -40,7 +40,7 @@ A *Turing machine* is a 7-tuple, $(Q, \Sigma, \Gamma, \delta, s, q_accept, q_rej
 
 The *configuration* of the Turing Machine is the current state, tape contents, and head location.
 
-It is represented as $u~q~v$ where $q$ is the current state and $uv$ are the current contents of the tape, with the first character of $v$ being the current head location.
+It is represented as $u q v$ where $q$ is the current state and $uv$ are the current contents of the tape, with the first character of $v$ being the current head location.
 
 The *start configuration* on input $w$ would be $sw$.
 
