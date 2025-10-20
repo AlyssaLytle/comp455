@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-10-21" />
+  <title>Algorithms and Decidability</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Algorithms and Decidability</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">October 21, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/09-decidability.md -o slides/09-algs-decidability.html --webtex -->
+</div>
+<div id="algorithms" class="slide section level2">
+<h1>Algorithms</h1>
+<h3 id="question-how-would-you-define-an-algorithm">Question: How would
+you define an algorithm?</h3>
+</div>
+<div id="motivation" class="slide section level2">
+<h1>Motivation</h1>
+<p>What are the <em>roots</em> of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%206x%5E3yz%5E2%20%2B%203xy%5E2%20-%20x%5E3%20-%2010"
+alt="6x^3yz^2 + 3xy^2 - x^3 - 10" title="6x^3yz^2 + 3xy^2 - x^3 - 10"
+class="math inline" />?</p>
+<p>In other words, can we find values for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20y" alt="y"
+title="y" class="math inline" />, and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20z" alt="z"
+title="z" class="math inline" /> such that</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%206x%5E3yz%5E2%20%2B%203xy%5E2%20-%20x%5E3%20-%2010%20%3D%200"
+alt="6x^3yz^2 + 3xy^2 - x^3 - 10 = 0"
+title="6x^3yz^2 + 3xy^2 - x^3 - 10 = 0" class="math inline" />?</p>
+</div>
+<div id="motivation-1" class="slide section level2">
+<h1>Motivation</h1>
+<p>What are the <em>roots</em> of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%206x%5E3yz%5E2%20%2B%203xy%5E2%20-%20x%5E3%20-%2010"
+alt="6x^3yz^2 + 3xy^2 - x^3 - 10" title="6x^3yz^2 + 3xy^2 - x^3 - 10"
+class="math inline" />?</p>
+<p>In other words, can we find values for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20y" alt="y"
+title="y" class="math inline" />, and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20z" alt="z"
+title="z" class="math inline" /> such that</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%206x%5E3yz%5E2%20%2B%203xy%5E2%20-%20x%5E3%20-%2010%20%3D%200"
+alt="6x^3yz^2 + 3xy^2 - x^3 - 10 = 0"
+title="6x^3yz^2 + 3xy^2 - x^3 - 10 = 0" class="math inline" />?</p>
+<p>(Yes: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%3D5"
+alt="x=5" title="x=5" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20y%3D3"
+alt="y=3" title="y=3" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20z%3D0"
+alt="z=0" title="z=0" class="math inline" />.)</p>
+<p>Is there an <em>algorithm</em> that can solve this for any
+polynomial?</p>
+</div>
+<div id="defining-an-algorithm-the-church-turing-thesis"
+class="slide section level2">
+<h1>Defining an Algorithm: The Church-Turing Thesis</h1>
+<p>In 1936, algorithms were concurrently defined in two different
+ways!</p>
+<ul>
+<li><p>Alonzo Church: Expressed using <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />-calculus</p></li>
+<li><p>Alan Turing: Expressed using Turing machines</p></li>
+</ul>
+<p>Both representations are considered equivalent.</p>
+</div>
+<div id="an-algorithm-for-a-turing-machine"
+class="slide section level2">
+<h1>An Algorithm for a Turing Machine</h1>
+<p>To express an algorithm using a Turing machine, we do the
+following:</p>
+<ol style="list-style-type: decimal">
+<li><p>Represent the problem we want to solve as a
+set/language.</p></li>
+<li><p>Define a turing machine that <em>decides</em> it. (The
+“algorithm” is essentially the design of your machine.)</p></li>
+</ol>
+</div>
+<div id="recall" class="slide section level2">
+<h1>Recall</h1>
+<p><img src="../static/slide_figs/turing-scheme.png" /><a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<ul>
+<li><p>In a Turing Machine, the tape is considered
+<em>infinite</em>.</p></li>
+<li><p>For a language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /> on machine <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />,</p>
+<ul>
+<li>Turing-recognizable:
+<ul>
+<li>Accepts if the input is in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /></li>
+<li>Rejects <em>or</em> loops forever if the input is not in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /></li>
+</ul></li>
+<li>Turing-decidable:
+<ul>
+<li>Accepts if the input is in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /></li>
+<li>Rejects if the input is not in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="recall-an-example-algorithm" class="slide section level2">
+<h1>Recall: An Example Algorithm</h1>
+<p>Let’s define a Turing Machine that recognizes <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%20%3D%20%5C%7Bw%5C%23w%20%5Cmid%20w%20%5Cin%20%5C%7B0%2C1%5C%7D%5E%2A%5C%7D"
+alt="B  = \{w\#w \mid w \in \{0,1\}^*\}"
+title="B  = \{w\#w \mid w \in \{0,1\}^*\}" class="math inline" />.</p>
+<p>The basic idea is to “jump” to the corresponsing locations for each
+character in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> on either side of the <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> symbol.</p>
+<p>Steps:</p>
+<ol style="list-style-type: decimal">
+<li>Move accross the tape to corresponding positions on either side of
+the <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> symbol.
+<ul>
+<li>If both positions contain the same symbol, cross off the
+symbols.</li>
+<li>If both positions do <em>not</em> contain the same symbol,
+reject.</li>
+</ul></li>
+<li>Repeat until all symbols to the left of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" /> have been crossed off. After
+that:
+<ul>
+<li>If there are any remaining symbols to the right of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%23"
+alt="\#" title="\#" class="math inline" />, reject</li>
+<li>Else, accept</li>
+</ul></li>
+</ol>
+</div>
+<div id="quick-note-input-notation" class="slide section level2">
+<h1>Quick note: Input Notation</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clangle%20A%20%5Crangle"
+alt="\langle A \rangle" title="\langle A \rangle" class="math inline" />
+represent the <em>string representation</em> of input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />.</p>
+<p>Since a Turing Machine takes string inputs, we must translate our
+input into a string representation.</p>
+<p><img src="../static/slide_figs/DG.png" width="250" /></p>
+<p>So, for example, if we are encoding a directed graph <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" />:</p>
+<p>We could encode its vertices in a sequence followed by its edges in a
+sequence:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clangle%20G%20%5Crangle%20%3D%20%281%2C2%2C3%2C4%29%28%281%2C2%29%2C%282%2C3%29%2C%283%2C1%29%2C%281%2C4%29%29"
+alt="\langle G \rangle = (1,2,3,4)((1,2),(2,3),(3,1),(1,4))"
+title="\langle G \rangle = (1,2,3,4)((1,2),(2,3),(3,1),(1,4))"
+class="math inline" /></p>
+</div>
+<div id="decidable-problems-regular-languages"
+class="slide section level2">
+<h1>Decidable Problems + Regular Languages</h1>
+<p>Let’s define an algorithm to determine whether a string is
+<em>accepted</em> by a DFA.</p>
+<p>We do this by building a TM that decides it!</p>
+<p>Let</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BDFA%7D%20%3D%20%5C%7B%20%5Clangle%20B%2C%20w%5Crangle%20%5Cmid%20B%20%5Ctextrm%7B%20is%20a%20DFA%20that%20accepts%20input%20string%20%7D%20w%20%5C%7D"
+alt="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+title="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+class="math inline" /></p>
+<p>For <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />’s string representation, assume we have
+a string representation of the tuple, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%3D%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="B = (Q, \Sigma, \delta, s, F)"
+title="B = (Q, \Sigma, \delta, s, F)" class="math inline" />.</p>
+</div>
+<div id="decidable-problems-regular-languages-cont."
+class="slide section level2">
+<h1>Decidable Problems + Regular Languages (cont.)</h1>
+<p>Let</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BDFA%7D%20%3D%20%5C%7B%20%5Clangle%20B%2C%20w%5Crangle%20%5Cmid%20B%20%5Ctextrm%7B%20is%20a%20DFA%20that%20accepts%20input%20string%20%7D%20w%20%5C%7D"
+alt="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+title="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+class="math inline" /></p>
+<p>High-level design of Turing Machine <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />:</p>
+<ol style="list-style-type: decimal">
+<li>Simulate <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> on input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />
+<ul>
+<li>Take as input the string representations for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> and confirm they are in proper format
+(otherwise reject).</li>
+<li>Write on the tape to keep track of the changing state of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> as we step through <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />. (*Read from the tape to find out the
+transitions defined in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" />.) Continue until we
+reach the end of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />.</li>
+</ul></li>
+<li>If the simulation ends in an accept state in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, <em>accept</em>! If it ends in a
+nonaccepting state in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, <em>reject</em>! (Determine if the
+state is in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F" alt="F"
+title="F" class="math inline" /> by reading <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F" alt="F"
+title="F" class="math inline" /> from the tape.)</li>
+</ol>
+</div>
+<div id="decidable-problems-regular-languages-lemmas"
+class="slide section level2">
+<h1>Decidable Problems + Regular Languages, Lemmas</h1>
+<ol style="list-style-type: decimal">
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BDFA%7D%20%3D%20%5C%7B%20%5Clangle%20B%2C%20w%5Crangle%20%5Cmid%20B%20%5Ctextrm%7B%20is%20a%20DFA%20that%20accepts%20input%20string%20%7D%20w%20%5C%7D"
+alt="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+title="A_{DFA} = \{ \langle B, w\rangle \mid B \textrm{ is a DFA that accepts input string } w \}"
+class="math inline" />. <br> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BDFA%7D"
+alt="A_{DFA}" title="A_{DFA}" class="math inline" /> is a decidable
+language.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BNFA%7D%20%3D%20%5C%7B%20%5Clangle%20B%2C%20w%5Crangle%20%5Cmid%20B%20%5Ctextrm%7B%20is%20an%20NFA%20that%20accepts%20input%20string%20%7D%20w%20%5C%7D"
+alt="A_{NFA} = \{ \langle B, w\rangle \mid B \textrm{ is an NFA that accepts input string } w \}"
+title="A_{NFA} = \{ \langle B, w\rangle \mid B \textrm{ is an NFA that accepts input string } w \}"
+class="math inline" />. <br> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BNFA%7D"
+alt="A_{NFA}" title="A_{NFA}" class="math inline" /> is a decidable
+language.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BREX%7D%20%3D%20%5C%7B%20%5Clangle%20B%2C%20w%5Crangle%20%5Cmid%20B%20%5Ctextrm%7B%20is%20a%20regular%20expression%20that%20generates%20string%20%7D%20w%20%5C%7D"
+alt="A_{REX} = \{ \langle B, w\rangle \mid B \textrm{ is a regular expression that generates string } w \}"
+title="A_{REX} = \{ \langle B, w\rangle \mid B \textrm{ is a regular expression that generates string } w \}"
+class="math inline" />. <br> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BREX%7D"
+alt="A_{REX}" title="A_{REX}" class="math inline" /> is a decidable
+language.</li>
+</ol>
+</div>
+<div id="decidable-problems-regular-languages-general-acceptance"
+class="slide section level2">
+<h1>Decidable Problems + Regular Languages, General Acceptance</h1>
+<p>What if we want to check if a DFA accepts <em>anything</em>? Is this
+decidable?</p>
+<p><em>YES!</em></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20E_%7BDFA%7D%20%3D%20%5C%7B%5Clangle%20A%20%5Crangle%20%7C%20A%20%5Ctextrm%7B%20is%20a%20DFA%20and%20%7D%20L%28A%29%20%5Cneq%20%5Cemptyset%20%5C%7D"
+alt="E_{DFA} = \{\langle A \rangle | A \textrm{ is a DFA and } L(A) \neq \emptyset \}"
+title="E_{DFA} = \{\langle A \rangle | A \textrm{ is a DFA and } L(A) \neq \emptyset \}"
+class="math inline" /></p>
+<ul>
+<li><p>General idea: We can’t test all possible strings <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> because that could be infinite, so
+let’s leverage the fact that the sets of states <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" /> and transitions <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" /> <em>are</em>
+finite!</p></li>
+<li><p>Starting with the start state, “mark” a state and follow all
+outgoing transitions. Mark every visited state. Repeat until either all
+states are marked or all transitions have been followed. If an accept
+state has been marked, <em>accept</em>. Otherwise,
+<em>reject</em>!</p></li>
+</ul>
+</div>
+<div id="decidable-problems-cfls" class="slide section level2">
+<h1>Decidable Problems + CFLs</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20E_%7BCFG%7D%20%3D%20%5C%7B%5Clangle%20A%20%5Crangle%20%7C%20A%20%5Ctextrm%7B%20is%20a%20CFG%20and%20%7D%20L%28G%29%20%5Cneq%20%5Cemptyset%20%5C%7D"
+alt="E_{CFG} = \{\langle A \rangle | A \textrm{ is a CFG and } L(G) \neq \emptyset \}"
+title="E_{CFG} = \{\langle A \rangle | A \textrm{ is a CFG and } L(G) \neq \emptyset \}"
+class="math inline" /></p>
+<ul>
+<li>General idea:
+<ul>
+<li>Similar to the previous example, we can’t test all possible strings
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />, but we know we have <em>finite</em>
+rules.</li>
+<li>What does it mean to generate a string <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />. There has to be a mapping from a start
+variable to a string of all terminals.</li>
+<li>This algorithms works similarly to the previous one, but backwards
+in a way. Start on all <em>terminal symbols</em>, and “mark” them. Mark
+any variable that has a rule mapping to only marked symbols. Keep going
+until all variables or all rules have been marked. If the start state
+has been marked, <em>accept</em>. Otherwise, <em>reject</em>!</li>
+</ul></li>
+</ul>
+</div>
+<div id="undecidability" class="slide section level2">
+<h1>Undecidability</h1>
+<p><img src="../static/slide_figs/sipser-lang-classes.png" /><a
+href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<!-- Sources -->
+</div>
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+</body>
+</html>
