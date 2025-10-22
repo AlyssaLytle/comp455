@@ -26,5 +26,6 @@ Welcome to the class!
 - October 2, **Turing Machines**: [Slides](slides/08-turing-machines.html), [Recording (Passcode: Pe9NzT&m)](https://unc.zoom.us/rec/share/3O7Xpot0Bb1LVRvVWa6nxXpsV1HhMND6sIcfILsCdljoP51jZQnIhUIimdy3YSvG.BCisClKRs8quG2O8), [Automata from Examples](/static/slide_figs/10-2-automata.pdf)
 - October 9, **Quiz Review**: [Pumping Lemma Proofs](/static/typed-notes/PumpingLemmaProofs.pdf), [Proofs by Construction](/static/typed-notes/ProofsByConstruction.pdf), [Recording](https://unc.zoom.us/rec/share/72EDQzRmTJ9HZUoSW3kBl-C4HVxmOCk3zWQlAeQSReXOK2XhszjzOWpMUg0jxKfy.KtnRYcCYOXhf9xXx)
 - October 14, **Quiz 01**
-- October 21,[Algorithms and Decidability](slides/09-algs-decidability.html)
+- October 21,**Algorithms and Decidability** : [Slides](slides/09-algs-decidability.html)
+- October 23, **Undecidability**: [Bonus Video 1](youtube.com/watch?v=macM_MtS_w4&pp=ygUfaGFsdGluZyBwcm9ibGVtIGRpYWdvbmFsaXphdGlvbg%3D%3D), [Bonus Video 2](https://www.youtube.com/watch?v=0UrcKOJhjnE)
 - November 13, **Quiz 02**
