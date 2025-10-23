@@ -44,9 +44,9 @@ It is represented as $u q v$ where $q$ is the current state and $uv$ are the cur
 
 The *start configuration* on input $w$ would be $sw$.
 
-The *accepting configuration* is the configuration the state it contains is $q_{accept}$ 
+The *accepting configuration* is the configuration that contains the state $q_{accept}$ 
 
-and the *rejecting configuration* is the configuration the state it contains is $q_{reject}$
+and the *rejecting configuration* is the configuration that contains the state $q_{reject}$
 
 A Turing machine $M$ *accepts* input $w$ if there are a sequence of configurations that begin at the start configurations and finish in an accepting configuration.
 

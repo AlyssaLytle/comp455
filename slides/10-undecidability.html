@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-10-23" />
+  <title>Undecidability</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Undecidability</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">October 23, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/10-undecidability.md -o slides/10-undecidability.html --webtex -->
+</div>
+<div id="undecidability" class="title-slide slide section level1">
+<h1>Undecidability</h1>
+
+</div>
+<div id="undecidability-1" class="slide section level2">
+<h1>Undecidability</h1>
+<p>How do we <em>prove</em> that a problem is undecidable?</p>
+<p>The main approach is to focus on one problem that we know to be
+undecidable which we will call <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BTM%7D"
+alt="A_{TM}" title="A_{TM}" class="math inline" />, and if we want to
+prove any other problem is undecidable, we convert (or <em>reduce</em>)
+it to express it as an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BTM%7D"
+alt="A_{TM}" title="A_{TM}" class="math inline" /> problem.</p>
+</div>
+<div id="input-acceptance-on-a-turing-machine"
+class="slide section level2">
+<h1>Input Acceptance on A Turing Machine</h1>
+<p>Previously, we talked about how we can check whether or not other
+automata accept a string, and how this is decidable.</p>
+<p>However, if we define:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20A_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%2C%20w%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20a%20Turing%20Machine%20and%20accepts%20%7D%20w%20%5C%7D"
+alt="A_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and accepts } w \}"
+title="A_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and accepts } w \}"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BTM%7D"
+alt="A_{TM}" title="A_{TM}" class="math inline" /> is <em>NOT</em>
+decidable. (It <em>is</em> Turing-recognizable, though!)</p>
+</div>
+<div id="proof" class="slide section level2">
+<h1>Proof</h1>
+</div>
+<div id="theorem" class="slide section level2">
+<h1>Theorem</h1>
+<p>A language is decidable iff it is Turing-recognizable <em>and</em>
+its complement is Turing recognizable.</p>
+</div>
+<div id="reducibility" class="slide section level2">
+<h1>Reducibility</h1>
+<p>The primary method used to prove that problems are unsolvable is
+<em>reducibility</em>.</p>
+<p>Given two problems <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, a <em>reduction</em> is a way of
+converting problem <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> to problem <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> in such a way that a solution to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> can be used to solve <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />. If this is the case then you can say
+“<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is reducible to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />”</p>
+</div>
+<div id="ramifications-of-reducibility" class="slide section level2">
+<h1>Ramifications of Reducibility</h1>
+<p>Reducibility has some powerful ramifications.</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is reducible to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is decidable, then that means <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is decidable!</p>
+<p>Similarly, if <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is reducible to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is undecidable, the <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is undecidable.</p>
+<p>(This second line of reasoning shows how we will prove the
+undecidability of other problems.)</p>
+</div>
+<div id="the-halting-problem" class="slide section level2">
+<h1>The Halting Problem</h1>
+<p>Another common question is: “Will the machine <em>halt</em> on this
+input or will it loop forever?”</p>
+<p>This can be expressed as: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20HALT_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%2C%20w%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20a%20Turing%20Machine%20and%20halts%20on%20input%20%7D%20w%20%5C%7D"
+alt="HALT_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and halts on input } w \}"
+title="HALT_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and halts on input } w \}"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20HALT_%7BTM%7D"
+alt="HALT_{TM}" title="HALT_{TM}" class="math inline" /> is also not
+Turing-decidable. Let’s prove it using the idea of reducibility.</p>
+</div>
+<div id="proof-1" class="slide section level2">
+<h1>Proof</h1>
+</div>
+<div id="undecidable-problems" class="slide section level2">
+<h1>Undecidable Problems</h1>
+<p>Other common problems can be shown to be undecidable in a similar
+way.</p>
+<p>The following problems are undecidable:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20HALT_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%2C%20w%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20a%20Turing%20Machine%20and%20halts%20on%20input%20%7D%20w%20%5C%7D"
+alt="HALT_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and halts on input } w \}"
+title="HALT_{TM} = \{\langle M, w \rangle \mid M \textrm{ is a Turing Machine and halts on input } w \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20E_%7BTM%7D%20%3D%20%20%5C%7B%5Clangle%20M%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20a%20Turing%20Machine%20and%20%7D%20L%28M%29%20%5Cneq%200%20%5C%7D"
+alt="E_{TM} =  \{\langle M \rangle \mid M \textrm{ is a Turing Machine and } L(M) \neq 0 \}"
+title="E_{TM} =  \{\langle M \rangle \mid M \textrm{ is a Turing Machine and } L(M) \neq 0 \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20REGULAR_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20a%20Turing%20Machine%20and%20%7D%20L%28M%29%20%5Ctextrm%7Bis%20a%20regular%20language%7D%20%5C%7D"
+alt="REGULAR_{TM} = \{\langle M \rangle \mid M \textrm{ is a Turing Machine and } L(M) \textrm{is a regular language} \}"
+title="REGULAR_{TM} = \{\langle M \rangle \mid M \textrm{ is a Turing Machine and } L(M) \textrm{is a regular language} \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20EQ_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M_1%2C%20M_2%20%5Crangle%20%5Cmid%20M_1%20%5Ctextrm%20%7B%20and%20%7D%20M_2%20%5Ctextrm%7B%20are%20Turing%20Machines%20and%20%7D%20L%28M_1%29%20%3D%20L%28M_2%29%20%5C%7D"
+alt="EQ_{TM} = \{\langle M_1, M_2 \rangle \mid M_1 \textrm { and } M_2 \textrm{ are Turing Machines and } L(M_1) = L(M_2) \}"
+title="EQ_{TM} = \{\langle M_1, M_2 \rangle \mid M_1 \textrm { and } M_2 \textrm{ are Turing Machines and } L(M_1) = L(M_2) \}"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="reductions-via-computation-histories"
+class="slide section level2">
+<h1>Reductions via Computation Histories</h1>
+<p>We’ve previously talked about <em>configurations</em> on Turing
+machines.</p>
+<ul>
+<li><p>The <em>configuration</em> of the Turing Machine is the current
+state, tape contents, and head location.</p></li>
+<li><p>It is represented as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20u%20q%20v"
+alt="u q v" title="u q v" class="math inline" /> where <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" /> is the current state and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20uv" alt="uv"
+title="uv" class="math inline" /> are the current contents of the tape,
+with the first character of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20v" alt="v"
+title="v" class="math inline" /> being the current head location.</p>
+<ul>
+<li>The <em>start configuration</em> on input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> would be <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20sw" alt="sw"
+title="sw" class="math inline" />.</li>
+<li>The <em>accepting configuration</em> is the configuration that
+contains the state <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Baccept%7D"
+alt="q_{accept}" title="q_{accept}" class="math inline" /></li>
+<li>and the <em>rejecting configuration</em> is the configuration that
+contains the state <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_%7Breject%7D"
+alt="q_{reject}" title="q_{reject}" class="math inline" /></li>
+</ul></li>
+<li><p>A Turing machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> <em>accepts</em> input <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> if there are a sequence of
+configurations that begin at the start configurations and finish in an
+accepting configuration.</p></li>
+</ul>
+</div>
+<div id="computation-history" class="slide section level2">
+<h1>Computation History</h1>
+<p>The computation history of a machine is defined in terms of these
+configurations.</p>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> be a Turing Machine and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> an input string.</p>
+<p>An <em>accepting computation history</em> for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> is a sequence of configurations <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C_1%2C%20C_2%2C%20%5Cldots%2C%20C_l"
+alt="C_1, C_2, \ldots, C_l" title="C_1, C_2, \ldots, C_l"
+class="math inline" />, where</p>
+<ul>
+<li>$C_1 $ is the start configuration of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> on <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />,<br />
+</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C_l" alt="C_l"
+title="C_l" class="math inline" /> is an accepting configuration of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />,</li>
+<li>and each <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C_i" alt="C_i"
+title="C_i" class="math inline" /> legally follows from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C_%7Bi-1%7D"
+alt="C_{i-1}" title="C_{i-1}" class="math inline" /> according to the
+rules of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />.</li>
+</ul>
+<p>A <em>rejecting computation history</em> for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> on <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> is defined similarly, except that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C_l" alt="C_l"
+title="C_l" class="math inline" /> is a rejecting configuration.</p>
+</div>
+<div id="linear-bounded-automata" class="slide section level2">
+<h1>Linear Bounded Automata</h1>
+<p>A <em>linear bounded automaton</em> (LBA) is a type of Turing Machine
+with a finite memory, determined by the size of the input tape.</p>
+<p>The problem of whether or not a string is accepted by an LBA is
+actually decidable!</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20A_%7BLBA%7D%20%3D%20%5C%7B%20%5Clangle%20M%20%2C%20w%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20an%20LBA%20that%20accepts%20string%20%7D%20w%5C%7D"
+alt="A_{LBA} = \{ \langle M , w \rangle \mid M \textrm{ is an LBA that accepts string } w\}"
+title="A_{LBA} = \{ \langle M , w \rangle \mid M \textrm{ is an LBA that accepts string } w\}"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BLBA%7D"
+alt="A_{LBA}" title="A_{LBA}" class="math inline" /> is decidable
+because, since our memory is now finite, there are a finite number of
+configurations possible over <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />. Therefore, we can bound our machine to
+stop after a certain number of configurations.</p>
+</div>
+<div id="linear-bounded-automata-1" class="slide section level2">
+<h1>Linear Bounded Automata</h1>
+<p>A <em>linear bounded automaton</em> (LBA) is a type of Turing Machine
+with a finite memory, determined by the size of the input tape.</p>
+<p>The problem of whether or not a string is accepted by an LBA is
+actually decidable!</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20A_%7BLBA%7D%20%3D%20%5C%7B%20%5Clangle%20M%20%2C%20w%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20an%20LBA%20that%20accepts%20string%20%7D%20w%5C%7D"
+alt="A_{LBA} = \{ \langle M , w \rangle \mid M \textrm{ is an LBA that accepts string } w\}"
+title="A_{LBA} = \{ \langle M , w \rangle \mid M \textrm{ is an LBA that accepts string } w\}"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BLBA%7D"
+alt="A_{LBA}" title="A_{LBA}" class="math inline" /> is decidable
+because, since our memory is now finite, there are a finite number of
+configurations possible over <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />. Therefore, we can bound our machine to
+stop after a certain number of configurations.</p>
+<p>However, what about the question of whether or not an LBA accepts any
+strings?</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20E_%7BLBA%7D%20%3D%20%5C%7B%20%5Clangle%20M%20%20%5Crangle%20%5Cmid%20M%20%5Ctextrm%7B%20is%20an%20LBA%20where%20%7D%20L%28M%29%20%5Cneq%200%20%5C%7D"
+alt="E_{LBA} = \{ \langle M  \rangle \mid M \textrm{ is an LBA where } L(M) \neq 0 \}"
+title="E_{LBA} = \{ \langle M  \rangle \mid M \textrm{ is an LBA where } L(M) \neq 0 \}"
+class="math display" /></p>
+<p>This is, in fact, undecidable.</p>
+</div>
+<div id="proof-2" class="slide section level2">
+<h1>Proof</h1>
+</div>
+</body>
+</html>
