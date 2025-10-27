@@ -102,7 +102,7 @@ Let $M$ be a Turing Machine and $w$ an input string.
 
 An *accepting computation history* for $M$ is a sequence of configurations $C_1, C_2, \ldots, C_l$, where 
 
-* $C_1 $ is the start configuration of $M$ on $w$,  
+* $C_1$ is the start configuration of $M$ on $w$,  
 * $C_l$ is an accepting configuration of $M$, 
 * and each $C_i$ legally follows from $C_{i-1}$ according to the rules of $M$.
 
