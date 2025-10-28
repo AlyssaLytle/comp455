@@ -55,18 +55,11 @@ Alyssa Lytle
 <ul>
 <li><p>The goal of this lesson: formalize the concept of
 reducibility</p></li>
-<li><p>We define the <em>mapping reducibility</em> of problem <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> to problem <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" /> as the ability to define a function
-mapping from <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> to <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" />. (We will formalize this
+<li><p>We define the <em>mapping reducibility</em> of problem <span
+class="math inline"><em>A</em></span> to problem <span
+class="math inline"><em>B</em></span> as the ability to define a
+function mapping from <span class="math inline"><em>A</em></span> to
+<span class="math inline"><em>B</em></span>. (We will formalize this
 more!)</p></li>
 </ul>
 </div>
@@ -76,177 +69,108 @@ more!)</p></li>
 <li>First let’s define the <em>type</em> of function we will be talking
 about here.</li>
 </ul>
-<p>A function <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%3A%20%5CSigma%5E%2A%20%5Cto%20%5CSigma%5E%2A"
-alt="f: \Sigma^* \to \Sigma^*" title="f: \Sigma^* \to \Sigma^*"
-class="math inline" /> is a <em>computable function</em> if some turing
-machine <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
-title="M" class="math inline" />, on every input <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
-title="w" class="math inline" />, halts with just <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28w%29"
-alt="f(w)" title="f(w)" class="math inline" /> on its tape.</p>
+<p>A function <span
+class="math inline"><em>f</em> : <em>Σ</em><sup>*</sup> → <em>Σ</em><sup>*</sup></span>
+is a <em>computable function</em> if some turing machine <span
+class="math inline"><em>M</em></span>, on every input <span
+class="math inline"><em>w</em></span>, halts with just <span
+class="math inline"><em>f</em>(<em>w</em>)</span> on its tape.</p>
 <ul>
-<li><p>E.g. We can show that <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20m%20%2B%20n"
-alt="m + n" title="m + n" class="math inline" /> is a computable
-function by designing a TM that takes <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clangle%20m%2C%20n%20%5Crangle"
-alt="\langle m, n \rangle" title="\langle m, n \rangle"
-class="math inline" /> as input and outputs <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20m%20%2B%20n"
-alt="m + n" title="m + n" class="math inline" />.</p></li>
+<li><p>E.g. We can show that <span
+class="math inline"><em>m</em> + <em>n</em></span> is a computable
+function by designing a TM that takes <span
+class="math inline">⟨<em>m</em>, <em>n</em>⟩</span> as input and outputs
+<span class="math inline"><em>m</em> + <em>n</em></span>.</p></li>
 <li><p>Note: A computable function can be a transformation of a machine
 description. In other words, a TM can take a string description of a
-turing machine <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
-title="M" class="math inline" /> as input and return a string
-description of another machine <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M%27"
-alt="M&#39;" title="M&#39;" class="math inline" />.</p></li>
+turing machine <span class="math inline"><em>M</em></span> as input and
+return a string description of another machine <span
+class="math inline"><em>M</em><sup>′</sup></span>.</p></li>
 </ul>
 </div>
 <div id="mapping-reducibility-2" class="slide section level2">
 <h1>Mapping Reducibility</h1>
 <p><img src="../static/slide_figs/mapping-reducibility.png" /><a
 href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>Language <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> is <strong><em>mapping
-reducible</em></strong> to language <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" />, denoted <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_m%20B"
-alt="A \leq_m B" title="A \leq_m B" class="math inline" />, if there is
-a computable function <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%3A%20%5CSigma%5E%2A%20%5Cto%20%5CSigma%5E%2A"
-alt="f: \Sigma^* \to \Sigma^*" title="f: \Sigma^* \to \Sigma^*"
-class="math inline" />, where for every <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
-title="w" class="math inline" />,</p>
-<p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20w%20%5Cin%20A%20%5Ciff%20f%28w%29%20%5Cin%20B"
-alt="w \in A \iff f(w) \in B" title="w \in A \iff f(w) \in B"
-class="math display" />.</p>
-<p>The function of <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f" alt="f"
-title="f" class="math inline" /> is called the
-<strong><em>reduction</em></strong> from <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> to <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" />.</p>
-<p>If <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> is the solution set of one problem, and
-<img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" /> is the solution set to another problem,
-we can convert questions about membership in <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> to questions about membership in <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" />!</p>
+<p>Language <span class="math inline"><em>A</em></span> is
+<strong><em>mapping reducible</em></strong> to language <span
+class="math inline"><em>B</em></span>, denoted <span
+class="math inline"><em>A</em>≤<sub><em>m</em></sub><em>B</em></span>,
+if there is a computable function <span
+class="math inline"><em>f</em> : <em>Σ</em><sup>*</sup> → <em>Σ</em><sup>*</sup></span>,
+where for every <span class="math inline"><em>w</em></span>,</p>
+<p><span
+class="math display"><em>w</em> ∈ <em>A</em> ⇔ <em>f</em>(<em>w</em>) ∈ <em>B</em></span>.</p>
+<p>The function of <span class="math inline"><em>f</em></span> is called
+the <strong><em>reduction</em></strong> from <span
+class="math inline"><em>A</em></span> to <span
+class="math inline"><em>B</em></span>.</p>
+<p>If <span class="math inline"><em>A</em></span> is the solution set of
+one problem, and <span class="math inline"><em>B</em></span> is the
+solution set to another problem, we can convert questions about
+membership in <span class="math inline"><em>A</em></span> to questions
+about membership in <span class="math inline"><em>B</em></span>!</p>
 </div>
 <div id="reducibility-decidability" class="slide section level2">
 <h1>Reducibility + Decidability</h1>
-<p>If <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_m%20B"
-alt="A \leq_m B" title="A \leq_m B" class="math inline" /> and <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" /> is decidable, then <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> is decidable.</p>
+<p>If <span
+class="math inline"><em>A</em>≤<sub><em>m</em></sub><em>B</em></span>
+and <span class="math inline"><em>B</em></span> is decidable, then <span
+class="math inline"><em>A</em></span> is decidable.</p>
 </div>
 <div id="reducibility-decidability-1" class="slide section level2">
 <h1>Reducibility + Decidability</h1>
-<p>If <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_m%20B"
-alt="A \leq_m B" title="A \leq_m B" class="math inline" /> and <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" /> is decidable, then <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> is decidable.</p>
-<p>If <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_m%20B"
-alt="A \leq_m B" title="A \leq_m B" class="math inline" /> and <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
-title="A" class="math inline" /> is undecidable, then <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
-title="B" class="math inline" /> is undecidable.</p>
+<p>If <span
+class="math inline"><em>A</em>≤<sub><em>m</em></sub><em>B</em></span>
+and <span class="math inline"><em>B</em></span> is decidable, then <span
+class="math inline"><em>A</em></span> is decidable.</p>
+<p>If <span
+class="math inline"><em>A</em>≤<sub><em>m</em></sub><em>B</em></span>
+and <span class="math inline"><em>A</em></span> is undecidable, then
+<span class="math inline"><em>B</em></span> is undecidable.</p>
 </div>
 <div id="example" class="slide section level2">
 <h1>Example</h1>
-<p>Let’s again show <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20HALT_%7BTM%7D"
-alt="HALT_{TM}" title="HALT_{TM}" class="math inline" /> is undecidable
-by showing <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BTM%7D"
-alt="A_{TM}" title="A_{TM}" class="math inline" /> can be reduced to
-<img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20HALT_%7BTM%7D"
-alt="HALT_{TM}" title="HALT_{TM}" class="math inline" />.</p>
+<p>Let’s again show <span
+class="math inline"><em>H</em><em>A</em><em>L</em><em>T</em><sub><em>T</em><em>M</em></sub></span>
+is undecidable by showing <span
+class="math inline"><em>A</em><sub><em>T</em><em>M</em></sub></span> can
+be reduced to <span
+class="math inline"><em>H</em><em>A</em><em>L</em><em>T</em><sub><em>T</em><em>M</em></sub></span>.</p>
 <p>Recall:</p>
-<p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%2C%20w%20%5Crangle%20%7C%20M"
-alt="A_{TM} = \{\langle M, w \rangle | M"
-title="A_{TM} = \{\langle M, w \rangle | M" class="math inline" /> is a
-Turing Machine and accepts <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%20%5C%7D"
-alt="w \}" title="w \}" class="math inline" /></p>
-<p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20HALT_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M%2C%20w%20%5Crangle%20%7C%20M"
-alt="HALT_{TM} = \{\langle M, w \rangle | M"
-title="HALT_{TM} = \{\langle M, w \rangle | M" class="math inline" /> is
-a Turing Machine and halts on input <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%20%5C%7D"
-alt="w \}" title="w \}" class="math inline" /></p>
+<p><span
+class="math inline"><em>A</em><sub><em>T</em><em>M</em></sub> = {⟨<em>M</em>, <em>w</em>⟩|<em>M</em></span>
+is a Turing Machine and accepts <span
+class="math inline"><em>w</em>}</span></p>
+<p><span
+class="math inline"><em>H</em><em>A</em><em>L</em><em>T</em><sub><em>T</em><em>M</em></sub> = {⟨<em>M</em>, <em>w</em>⟩|<em>M</em></span>
+is a Turing Machine and halts on input <span
+class="math inline"><em>w</em>}</span></p>
+</div>
+<div id="workspace" class="slide section level2">
+<h1>Workspace</h1>
 </div>
 <div id="example-1" class="slide section level2">
 <h1>Example</h1>
 <p>Recall:</p>
-<p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20E_%7BTM%7D%20%3D%20%20%5C%7B%5Clangle%20M%20%5Crangle%20%7C%20M"
-alt="E_{TM} =  \{\langle M \rangle | M"
-title="E_{TM} =  \{\langle M \rangle | M" class="math inline" /> is a
-Turing Machine and <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M%29%20%5Cneq%20%5Cemptyset%20%5C%7D"
-alt="L(M) \neq \emptyset \}" title="L(M) \neq \emptyset \}"
-class="math inline" /></p>
+<p><span
+class="math inline"><em>E</em><sub><em>T</em><em>M</em></sub> = {⟨<em>M</em>⟩|<em>M</em></span>
+is a Turing Machine and <span
+class="math inline"><em>L</em>(<em>M</em>) ≠ ∅}</span></p>
 <p>and</p>
-<p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20EQ_%7BTM%7D%20%3D%20%5C%7B%5Clangle%20M_1%2C%20M_2%20%5Crangle%20%7C%20M_1"
-alt="EQ_{TM} = \{\langle M_1, M_2 \rangle | M_1"
-title="EQ_{TM} = \{\langle M_1, M_2 \rangle | M_1"
-class="math inline" /> and <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_2" alt="M_2"
-title="M_2" class="math inline" /> are Turing Machines and <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_1%29%20%3D%20L%28M_2%29%20%5C%7D"
-alt="L(M_1) = L(M_2) \}" title="L(M_1) = L(M_2) \}"
-class="math inline" /></p>
-<p>Let’s assume we know <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20E_%7BTM%7D"
-alt="E_{TM}" title="E_{TM}" class="math inline" /> is undecidable, and
-let’s use that to show <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20EQ_%7BTM%7D"
-alt="EQ_{TM}" title="EQ_{TM}" class="math inline" /> is also
-undecidable.</p>
+<p><span
+class="math inline"><em>E</em><em>Q</em><sub><em>T</em><em>M</em></sub> = {⟨<em>M</em><sub>1</sub>, <em>M</em><sub>2</sub>⟩|<em>M</em><sub>1</sub></span>
+and <span class="math inline"><em>M</em><sub>2</sub></span> are Turing
+Machines and <span
+class="math inline"><em>L</em>(<em>M</em><sub>1</sub>) = <em>L</em>(<em>M</em><sub>2</sub>)}</span></p>
+<p>Let’s assume we know <span
+class="math inline"><em>E</em><sub><em>T</em><em>M</em></sub></span> is
+undecidable, and let’s use that to show <span
+class="math inline"><em>E</em><em>Q</em><sub><em>T</em><em>M</em></sub></span>
+is also undecidable.</p>
+</div>
+<div id="workspace-1" class="slide section level2">
+<h1>Workspace</h1>
 </div>
 
 <div class="footnotes slide">

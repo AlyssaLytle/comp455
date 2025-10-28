@@ -61,6 +61,8 @@ $A_{TM} = \{\langle M, w \rangle | M$ is a Turing Machine and accepts $w \}$
 
 $HALT_{TM} = \{\langle M, w \rangle | M$ is a Turing Machine and halts on input $w \}$
 
+## Workspace
+
 ## Example
 
 Recall:
@@ -72,5 +74,7 @@ and
 $EQ_{TM} = \{\langle M_1, M_2 \rangle | M_1$ and $M_2$ are Turing Machines and $L(M_1) = L(M_2) \}$
 
 Let's assume we know $E_{TM}$ is undecidable, and let's use that to show $EQ_{TM}$ is also undecidable.
+
+## Workspace
 
 [^sipser]: Sipser, Michael. "Introduction to the Theory of Computation." ACM Sigact News 27.1 (1996): 27-29.

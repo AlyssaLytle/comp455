@@ -28,6 +28,6 @@ Welcome to the class!
 - October 14, **Quiz 01**
 - October 21,**Algorithms and Decidability** : [Slides](slides/09-algs-decidability.html)
 - October 23, **Undecidability**: [Slides](slides/10-undecidability.html), [Typed Notes](static/typed-notes/10-23-25.pdf), [Bonus Video 1](youtube.com/watch?v=macM_MtS_w4&pp=ygUfaGFsdGluZyBwcm9ibGVtIGRpYWdvbmFsaXphdGlvbg%3D%3D), [Bonus Video 2](https://www.youtube.com/watch?v=0UrcKOJhjnE)
-- October 28, **Mapping Reducibility**: [Slides](slides/11-mapping-reducibility.html)
+- October 28, **Mapping Reducibility**: [Slides](slides/11-mapping-reducibility.html), [Typed Notes](/static/typed-notes/10-28-25.pdf), [Recording](https://unc.zoom.us/rec/share/cmsIyfShhBYsGcnV7J0R3q3ovXAQe3WG69TrAlvfuiZLTY7at6yIIa3BEdgorBeX.13oC4NPrO31Mwvhz)
 - October 30, **Undecidability + Reducibility Practice**
 - November 13, **Quiz 02**
