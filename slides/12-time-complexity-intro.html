@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-10-23" />
+  <title>Introduction to Time Complexity</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Introduction to Time Complexity</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">October 23, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/12-time-complexity-intro.md -o slides/12-time-complexity-intro.html --webtex -->
+</div>
+<div id="time-complexity" class="title-slide slide section level1">
+<h1>Time Complexity</h1>
+
+</div>
+<div id="complexity-theory" class="slide section level2">
+<h1>Complexity Theory</h1>
+<ul>
+<li>We’ve talked about problems being computationally solvable <em>in
+principle</em>, but what about in practice?</li>
+<li><em>Complexity Theory</em> is the investigation of the time, memory,
++ other resources required to solve computational problems.</li>
+<li>We will focus on <em>time complexity</em>.</li>
+</ul>
+</div>
+<div id="importance-of-time-complexity" class="slide section level2">
+<h1>Importance of Time Complexity</h1>
+<ul>
+<li><p>Measures how <em>long</em> an algorithm will take to
+compute.</p></li>
+<li><p>Can consider average case, best case, or worst case
+scenarios.</p></li>
+<li><p>Why is this important?</p>
+<ul>
+<li><p>Security: Modern crypto relies on the fact that private keys take
+too long to compute.</p></li>
+<li><p>User Experience: People want fast interfaces.</p></li>
+<li><p>Safety: Critical systems need to make fast decisions.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="some-questions-you-can-answer-with-time-complexity"
+class="slide section level2">
+<h1>Some Questions You Can Answer With Time Complexity</h1>
+<ul>
+<li><p>Is this problem solvable on a modern computer in a reasonable
+amount of time?</p></li>
+<li><p>Does this problem take as long to solve as this other
+problem?</p></li>
+<li><p>Is this algorithm faster than this other algorithm?</p></li>
+</ul>
+<p>For this lesson, we will work on formalizing the idea of time
+complexity to answer these questions directly.</p>
+</div>
+<div id="big-o-notation" class="slide section level2">
+<h1>Big-O Notation</h1>
+<p>What do you know about Big-O notation + runtime?</p>
+</div>
+<div id="time-complexity-1" class="slide section level2">
+<h1>Time Complexity</h1>
+<p>The main approach to talking about the time complexity to solve a
+problem is to consider a specific algorithm used to solve it.</p>
+<p>“I have a turing machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> that decides problem <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />. How much time does the algorithm for
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> take to decide <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />?”</p>
+<p>Reasoned about as a number of “steps” taken to complete the
+algorithm.</p>
+<p>Consider the steps taken based on the size of the input.</p>
+<p>“How long will it take <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> to decide if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> is in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />?” will be determined by and expressed
+in terms of the size of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />.</p>
+<p>Typically, we use <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%20%7Cw%7C"
+alt="n = |w|" title="n = |w|" class="math inline" />.</p>
+</div>
+<div id="running-time" class="slide section level2">
+<h1>Running Time</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> be a Turing machine that halts on all
+inputs.</p>
+<p>The <em>running time</em> or <em>time complexity</em> of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> is the function <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%3A%20%5Cmathbb%7BN%7D%20%5Cto%20%5Cmathbb%7BN%7D"
+alt="f: \mathbb{N} \to \mathbb{N}" title="f: \mathbb{N} \to \mathbb{N}"
+class="math inline" />, where <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> is the maximum number of
+steps that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> uses on any input of length <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" />.</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> is the running time of
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> we say that</p>
+<p>“<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> runs in time <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" />” and that</p>
+<p>“<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> is an <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> time Turing machine”</p>
+</div>
+<div id="big-o-notation-1" class="slide section level2">
+<h1>Big-O Notation</h1>
+<p>We typically talk about <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> in terms of its
+bounds.</p>
+<p>Can consider average case, best case, or worst case
+<em>inputs</em>.</p>
+<p>“What <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />, with <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7Cw%7C%20%3D%20n"
+alt="|w| = n" title="|w| = n" class="math inline" />, will cause <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> to make the most steps to decide if
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%20%5Cin%20A"
+alt="w \in A" title="w \in A" class="math inline" />? How many steps
+will that be?”</p>
+<p>For this lesson, we will focus on worst case runtime, or the upper
+bound of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" />.</p>
+<p>This is expressed using the <em>big-O notation</em> for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" />.</p>
+</div>
+<div id="big-o-notation-2" class="slide section level2">
+<h1>Big-O Notation</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f" alt="f"
+title="f" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g" alt="g"
+title="g" class="math inline" /> be functions, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%2Cg%3A%20%5Cmathbb%7BN%7D%20%5Cto%20%5Cmathbb%7BR%7D%5E%2B"
+alt="f,g: \mathbb{N} \to \mathbb{R}^+"
+title="f,g: \mathbb{N} \to \mathbb{R}^+" class="math inline" />. Say
+that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20O%28g%28n%29%29"
+alt="f(n) = O(g(n))" title="f(n) = O(g(n))" class="math inline" /> if
+positive integers <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20c" alt="c"
+title="c" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n_0" alt="n_0"
+title="n_0" class="math inline" /> exist such that for every integer
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%5Cgeq%20n_0"
+alt="n \geq n_0" title="n \geq n_0" class="math inline" />,</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20f%28n%29%20%5Cleq%20c%20g%28n%29."
+alt="f(n) \leq c g(n)." title="f(n) \leq c g(n)."
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g%28n%29"
+alt="g(n)" title="g(n)" class="math inline" /> is an “upper bound” for
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" />.</p>
+<p>Essentially, this means <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> is less than or equal to
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g%28n%29"
+alt="g(n)" title="g(n)" class="math inline" /> for a high enough <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> if we ignore constants.</p>
+</div>
+<div id="determining-g" class="slide section level2">
+<h1>Determining g</h1>
+<p>Generally, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g" alt="g"
+title="g" class="math inline" /> is determined by choosing the highest
+order term and suppressing its constant.</p>
+<p>Example:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%205n%5E3%20%2B%202n%5E2%20%2B%2022n%20%2B%206"
+alt="f(n) = 5n^3 + 2n^2 + 22n + 6" title="f(n) = 5n^3 + 2n^2 + 22n + 6"
+class="math inline" /></li>
+<li>choose highest order term <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%205n%5E3"
+alt="5n^3" title="5n^3" class="math inline" /></li>
+<li>supressing the constant <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%205" alt="5"
+title="5" class="math inline" />.</li>
+<li>So, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g%28n%29%20%3D%20n%5E3"
+alt="g(n) = n^3" title="g(n) = n^3" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20O%28g%28n%29%29%20%3D%20O%28n%5E3%29"
+alt="f(n) = O(g(n)) = O(n^3)" title="f(n) = O(g(n)) = O(n^3)"
+class="math inline" />.</li>
+</ul>
+</div>
+<div id="example" class="slide section level2">
+<h1>Example</h1>
+<p>For any <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20O%28%5Clog_x%20n%29"
+alt="f(n) = O(\log_x n)" title="f(n) = O(\log_x n)"
+class="math inline" /> we can write <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20O%28%5Clog%20n%29"
+alt="f(n) = O(\log n)" title="f(n) = O(\log n)" class="math inline" />.
+In other words we can suppress the log base. Why?</p>
+<!-- ## Example
+
+For any $f(n) = O(\log_x n)$ we can write $f(n) = O(\log n)$. In other words we can suppress the log base. Why?
+
+    We can use the fact that $\log_b n = \frac{\log_x n}{\log_x b} $. Therefore, $\log_x n = (\log_b n)(\log_x b)$. Since $\log_x b$ is a constant, $\log_x n = O(\log_b n)$ -->
+</div>
+<div id="example-selection-sort" class="slide section level2">
+<h1>Example: Selection Sort</h1>
+<pre><code>def selection_sort(items: list[int]) -&gt; list[int]:
+&quot;&quot;&quot;Repeatedly pull out the minimum.&quot;&quot;&quot;
+# Outer loop keeps track of how far we&#39;ve sorted
+outer_idx: int = 0
+while outer_idx &lt; len(items):
+    # Inner loop repeatedly finds the minimum
+    inner_idx: int = outer_idx
+    min_index: int = outer_idx
+    while inner_idx &lt; len(items):
+        # Finding the minimum
+        if items[inner_idx] &lt; items[min_index]:
+            min = items[inner_idx]
+            min_index = inner_idx
+        inner_idx += 1
+    # Swap the minimum with the first unsorted element
+    min = items[min_index]
+    items[min_index] = items[outer_idx] 
+    items[outer_idx] = min 
+    outer_idx += 1
+return items</code></pre>
+</div>
+<div id="small-o-notation" class="slide section level2">
+<h1>Small-o Notation</h1>
+<p>Another definition that may be useful is small-o notation, or <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20o%28n%29"
+alt="o(n)" title="o(n)" class="math inline" />. This essentially lets
+you express that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29"
+alt="f(n)" title="f(n)" class="math inline" /> is strictly smaller than
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g%28n%29"
+alt="g(n)" title="g(n)" class="math inline" />.</p>
+<p>et <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f" alt="f"
+title="f" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20g" alt="g"
+title="g" class="math inline" /> be functions, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%2Cg%3A%20%5Cmathbb%7BN%7D%20%5Cto%20%5Cmathbb%7BR%7D%5E%2B"
+alt="f,g: \mathbb{N} \to \mathbb{R}^+"
+title="f,g: \mathbb{N} \to \mathbb{R}^+" class="math inline" />. Say
+that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20o%28g%28n%29%29"
+alt="f(n) = o(g(n))" title="f(n) = o(g(n))" class="math inline" />
+if</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Clim_%7Bn%20%5Cto%20%5Cinfty%7D%20%5Cfrac%7Bf%28n%29%7D%7Bg%28n%29%7D%20%3D%200."
+alt="\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0."
+title="\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0."
+class="math display" /></p>
+<p>In other words, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28n%29%20%3D%20o%28g%28n%29%29"
+alt="f(n) = o(g(n))" title="f(n) = o(g(n))" class="math inline" /> if
+positive integers <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20c" alt="c"
+title="c" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n_0" alt="n_0"
+title="n_0" class="math inline" /> exist such that for every integer
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%5Cgeq%20n_0%2C%20f%28n%29%20%3C%20c%20g%28n%29."
+alt="n \geq n_0, f(n) &lt; c g(n)."
+title="n \geq n_0, f(n) &lt; c g(n)." class="math inline" /></p>
+</div>
+<div id="common-runtimes" class="slide section level2">
+<h1>Common Runtimes</h1>
+<p><img src="../static/slide_figs/big-o-runtimes.png" /></p>
+</div>
+<div id="time-complexity-classes" class="slide section level2">
+<h1>Time Complexity Classes</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t%3A%20%5Cmathbb%7BN%7D%20%5Cto%20%5Cmathbb%7BR%7D%5E%2B"
+alt="t: \mathbb{N} \to \mathbb{R}^+"
+title="t: \mathbb{N} \to \mathbb{R}^+" class="math inline" /> be a
+function. Define the <em>time complexity class</em>, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctextrm%7BTIME%7D%28t%28n%29%29"
+alt="\textrm{TIME}(t(n))" title="\textrm{TIME}(t(n))"
+class="math inline" />, to be the collection of all languages that are
+decidable by an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20O%28t%28n%29%29"
+alt="O(t(n))" title="O(t(n))" class="math inline" /> time Turing
+Machine.</p>
+<p>Example:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctextrm%7BTIME%7D%28n%5E2%29"
+alt="\textrm{TIME}(n^2)" title="\textrm{TIME}(n^2)"
+class="math inline" /> contains all languages that can be decided in
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20O%28n%5E2%29"
+alt="O(n^2)" title="O(n^2)" class="math inline" /> time.</li>
+<li>So, if there exists a machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> that decides <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> in time <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20O%28n%5E2%29"
+alt="O(n^2)" title="O(n^2)" class="math inline" />, we say <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cin%20%5Ctextrm%7BTIME%7D%28n%5E2%29"
+alt="A \in \textrm{TIME}(n^2)" title="A \in \textrm{TIME}(n^2)"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="time-complexity-class-p" class="slide section level2">
+<h1>Time Complexity Class P</h1>
+<p>Now, we will introduce the class of languages decidable in polynomial
+time, P.</p>
+<p>P is the class of languages that are decidable in polynomial time on
+a deterministic single-tape Turing machine.</p>
+<p>In other words,</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20P%20%3D%20%5Cbigcup_k%20%5Ctextrm%7BTIME%7D%28n%5Ek%29."
+alt="P = \bigcup_k \textrm{TIME}(n^k)."
+title="P = \bigcup_k \textrm{TIME}(n^k)." class="math display" /></p>
+<p>P is important because it describes the class of problems that are
+realistically solvable on a computer.</p>
+</div>
+<div id="problems-in-p" class="slide section level2">
+<h1>Problems in P</h1>
+<p>Now we can talk about some examples of problems that are in P and
+show how we can prove this. We prove a problem is in P by presenting an
+algorithm to solve it in polynomial time.</p>
+<p>Essentially for our proof we should:</p>
+<ol style="list-style-type: decimal">
+<li>Express our problem as a language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></li>
+<li>Present an Turing machine computable algorithm <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> that decides <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></li>
+<li>Argue the runtime of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /></li>
+</ol>
+</div>
+<div id="example-1" class="slide section level2">
+<h1>Example</h1>
+<p>Say we have a directed graph <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" /> that contains nodes <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" />. The problem we want to solve is
+whether or not there exists a direct path from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /> in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" />.</p>
+</div>
+</body>
+</html>
