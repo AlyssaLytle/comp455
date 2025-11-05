@@ -30,5 +30,6 @@ Welcome to the class!
 - October 23, **Undecidability**: [Slides](slides/10-undecidability.html), [Typed Notes](static/typed-notes/10-23-25.pdf), [Bonus Video 1](youtube.com/watch?v=macM_MtS_w4&pp=ygUfaGFsdGluZyBwcm9ibGVtIGRpYWdvbmFsaXphdGlvbg%3D%3D), [Bonus Video 2](https://www.youtube.com/watch?v=0UrcKOJhjnE)
 - October 28, **Mapping Reducibility**: [Slides](slides/11-mapping-reducibility.html), [Typed Notes](/static/typed-notes/10-28-25.pdf), [Recording](https://unc.zoom.us/rec/share/cmsIyfShhBYsGcnV7J0R3q3ovXAQe3WG69TrAlvfuiZLTY7at6yIIa3BEdgorBeX.13oC4NPrO31Mwvhz)
 - October 30, **Undecidability + Reducibility Practice**: [Slides](static/lecture-notes/10-30-review.pdf)
-- November 4, **Time Complexity**: [Slides](slides/12-time-complexity-intro.html)
+- November 4, **Time Complexity**: [Slides](slides/12-time-complexity-intro.html), [Typed Notes](static/typed-notes/11-4-25.pdf)
+- November 6, **P vs. NP**: [Slides](slides/13-p-vs-np.html), [Typed Notes](static/typed-notes/11-6-25.pdf)
 - November 13, **Quiz 02**

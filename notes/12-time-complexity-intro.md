@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Time Complexity"
 author: "Alyssa Lytle"
-date: "October 23, 2025"
+date: "November 4, 2025"
 ---
 
 <!-- pandoc -t slidy -s notes/12-time-complexity-intro.md -o slides/12-time-complexity-intro.html --webtex -->

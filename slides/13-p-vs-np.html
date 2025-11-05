@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-11-06" />
+  <title>P vs NP</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">P vs NP</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">November 6, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/13-p-vs-np.md -o slides/13-p-vs-np.html --webtex -->
+</div>
+<div id="p-vs-np" class="title-slide slide section level1">
+<h1>P vs NP</h1>
+
+</div>
+<div id="question" class="slide section level2">
+<h1>Question:</h1>
+<p>What do you know about the “P vs. NP” problem?</p>
+</div>
+<div id="review" class="slide section level2">
+<h1>Review</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t%3A%20%5Cmathbb%7BN%7D%20%5Cto%20%5Cmathbb%7BR%7D%5E%2B"
+alt="t: \mathbb{N} \to \mathbb{R}^+"
+title="t: \mathbb{N} \to \mathbb{R}^+" class="math inline" /> be a
+function. Define the <em>time complexity class</em>, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctextrm%7BTIME%7D%28t%28n%29%29"
+alt="\textrm{TIME}(t(n))" title="\textrm{TIME}(t(n))"
+class="math inline" />, to be the collection of all languages that are
+decidable by an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20O%28t%28n%29%29"
+alt="O(t(n))" title="O(t(n))" class="math inline" /> time Turing
+Machine.</p>
+<p>P is the class of languages that are decidable in polynomial time on
+a deterministic single-tape Turing machine.</p>
+<p>In other words,</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20P%20%3D%20%5Cbigcup_k%20%5Ctextrm%7BTIME%7D%28n%5Ek%29."
+alt="P = \bigcup_k \textrm{TIME}(n^k)."
+title="P = \bigcup_k \textrm{TIME}(n^k)." class="math display" /></p>
+<p>P is important because it describes the class of problems that are
+realistically solvable on a computer.</p>
+</div>
+<div id="showing-a-problem-is-in-p" class="slide section level2">
+<h1>Showing a Problem is in P</h1>
+<ol style="list-style-type: decimal">
+<li>Express our problem as a language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></li>
+<li>Present an Turing machine computable algorithm <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> that decides <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></li>
+<li>Argue the runtime of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /></li>
+</ol>
+</div>
+<div id="example" class="slide section level2">
+<h1>Example</h1>
+<p>Show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20RELPRIME%20%5Cin%20P"
+alt="RELPRIME \in P" title="RELPRIME \in P" class="math inline" /> where
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20RELPRIME%20%3D%20%5C%7B%5Clangle%20x%2Cy%20%5Crangle%20%5Cmid%20x"
+alt="RELPRIME = \{\langle x,y \rangle \mid x"
+title="RELPRIME = \{\langle x,y \rangle \mid x" class="math inline" />
+and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20y" alt="y"
+title="y" class="math inline" /> are relatively prime<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" />.</p>
+<p>First, what is our “problem”?</p>
+</div>
+<div id="np" class="slide section level2">
+<h1>NP</h1>
+<p>So now, let’s talk about the <em>other</em> problems…</p>
+<p>Let’s talk about the “solvability” of a problem in a different
+way.</p>
+<p>Maybe we can’t produce an algorithm that solves it in polynomial
+time, but perhaps we can produce an algorithm that <em>verifies</em> it
+in polynomial time.</p>
+<p>In other words, maybe we don’t have an algorithm that produces a
+solution, but we have one that checks if a solution is valid.</p>
+<p>A <em>verifier</em> for a language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is an algorithm <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V" alt="V"
+title="V" class="math inline" />, where</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20A%20%3D%20%5C%7Bw%20%5Cmid%20V%20%5Ctextrm%7B%20accepts%20%7D%20%5Clangle%20w%2C%20c%5Crangle%20%5Ctextrm%7B%20for%20some%20string%20%7D%20c%20%5C%7D"
+alt="A = \{w \mid V \textrm{ accepts } \langle w, c\rangle \textrm{ for some string } c \}"
+title="A = \{w \mid V \textrm{ accepts } \langle w, c\rangle \textrm{ for some string } c \}"
+class="math display" /></p>
+<p>A <em>polynomial time verifier</em> runs in polynomial time in the
+length of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />.</p>
+<p>A language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is <em>polynomially verifiable</em> if
+it has a polynomial time verifier.</p>
+</div>
+<div id="example-1" class="slide section level2">
+<h1>Example</h1>
+<p>Recall</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20PATH%20%3D%20%5C%7B%5Clangle%20G%2C%20s%2C%20t%20%5Crangle%20%7C%20G%20%5Ctextrm%7B%20is%20a%20directed%20graph%20that%20has%20a%20directed%20path%20from%20%7D%20s%20%5Ctextrm%7B%20to%20%7D%20t%20%5C%7D"
+alt="PATH = \{\langle G, s, t \rangle | G \textrm{ is a directed graph that has a directed path from } s \textrm{ to } t \}"
+title="PATH = \{\langle G, s, t \rangle | G \textrm{ is a directed graph that has a directed path from } s \textrm{ to } t \}"
+class="math display" /></p>
+<p>We showed that we could build a machine that decides <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20PATH"
+alt="PATH" title="PATH" class="math inline" /> in polynomial time.</p>
+<p>If we wanted to build a machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V" alt="V"
+title="V" class="math inline" /> that <em>verifies</em> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20PATH"
+alt="PATH" title="PATH" class="math inline" />, you could say</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20PATH%20%3D%20%5C%7B%20%5Clangle%20G%2Cs%2Ct%20%5Crangle%20%5Cmid%20V%20%5Ctextrm%7B%20accepts%20%7D%20%5Clangle%20G%2Cs%2Ct%2Ce%5Crangle%2C%20%5Ctextrm%7B%20where%20%7D%20e%20%5Ctextrm%7B%20is%20a%20path%20from%20%7D%20s%20%5Ctextrm%7B%20to%20%7D%20t%20%5Ctextrm%7B%20over%20%7D%20G%20%20%5C%7D"
+alt="PATH = \{ \langle G,s,t \rangle \mid V \textrm{ accepts } \langle G,s,t,e\rangle, \textrm{ where } e \textrm{ is a path from } s \textrm{ to } t \textrm{ over } G  \}"
+title="PATH = \{ \langle G,s,t \rangle \mid V \textrm{ accepts } \langle G,s,t,e\rangle, \textrm{ where } e \textrm{ is a path from } s \textrm{ to } t \textrm{ over } G  \}"
+class="math display" /></p>
+<p>So <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V" alt="V"
+title="V" class="math inline" /> should be able to take graph <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" />, nodes <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /> and a path/set of edges <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20e" alt="e"
+title="e" class="math inline" /> and verify that it is <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20e" alt="e"
+title="e" class="math inline" /> is indeed a set of edges from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20G" alt="G"
+title="G" class="math inline" /> that forms a directed path from <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s" alt="s"
+title="s" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" />.</p>
+</div>
+<div id="defining-np" class="slide section level2">
+<h1>Defining NP</h1>
+<p>Now that we have this definition of a polynomial time verifier, we
+can define NP.</p>
+<p>NP is the class of languages that have polynomial time verifiers.</p>
+</div>
+<div id="p-vs-np-1" class="slide section level2">
+<h1>P vs NP</h1>
+<p>Note that we have discussed how <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20PATH%20%5Cin%20P"
+alt="PATH \in P" title="PATH \in P" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20PATH%20%5Cin%20%5Ctextrm%7BNP%7D"
+alt="PATH \in \textrm{NP}" title="PATH \in \textrm{NP}"
+class="math inline" />. In fact, it is true that P <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csubseteq"
+alt="\subseteq" title="\subseteq" class="math inline" /> NP.</p>
+<p>In other words, <em>every problem that can be decided in polynomial
+time can also be verified in polynomial time</em>.</p>
+<p>What about the reverse? Can every problem that can be verified in
+polynomial time also be decided in polynomial time?</p>
+<p>This is an open question. If this were true, then it would be the
+case that NP <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csubseteq"
+alt="\subseteq" title="\subseteq" class="math inline" /> P, and
+therefore P <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3D" alt="="
+title="=" class="math inline" /> NP.</p>
+</div>
+<div id="p-vs.-np" class="slide section level2">
+<h1>P vs. NP</h1>
+<p><img src="../static/slide_figs/PvsNP.png" /></p>
+<p>This figure illustrates the two possibilities this creates. Either P
+is strictly a subset of NP (meaning there are problems in NP that cannot
+be decided in polynomial time) or they are the same set.</p>
+</div>
+<div id="nondeterministic-polynomial-time-turing-machines"
+class="slide section level2">
+<h1>Nondeterministic Polynomial Time + Turing Machines</h1>
+<p>Where does NP come from?</p>
+<p>It’s shorthand for <em>Nondeterministic polynomial time</em>.</p>
+<p>In fact, any NP problem <em>could</em> be decided in polynomial time
+on a <em>nondeterministic</em> Turing machine..</p>
+<ul>
+<li><p>A language is in NP iff it is decided by some nondeterministic
+polynomial time Turing machine.</p></li>
+<li><p>A nondeterministic Turing Machine is defined the same as a
+deterministic one, except the transition function is defined as a
+probability mapping. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CGamma%20%5Cto%20P%28Q%20%5Ctimes%20%5CGamma%20%5Ctimes%20%5C%7B%5Ctextrm%7BL%7D%2C%5Ctextrm%7BR%7D%5C%7D%29"
+alt="\delta: Q \times \Gamma \to P(Q \times \Gamma \times \{\textrm{L},\textrm{R}\})"
+title="\delta: Q \times \Gamma \to P(Q \times \Gamma \times \{\textrm{L},\textrm{R}\})"
+class="math inline" /></p></li>
+<li><p><em>Question: It’s known that every nondeterministic TM has an
+equivalent deterministic TM, so why isn’t this enough to show
+P=NP?</em></p></li>
+</ul>
+</div>
+<div id="ntime" class="slide section level2">
+<h1>NTIME</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Ctextrm%7BNTIME%7D%28t%28n%29%29%20%3D%20%5C%7B%20L%20%5Cmid%20%20L%20%5Ctextrm%7B%20is%20a%20language%20decided%20by%20an%20O%28t%28n%29%29%20time%20nondeterministic%20Turing%20machine%7D%20%5C%7D"
+alt="\textrm{NTIME}(t(n)) = \{ L \mid  L \textrm{ is a language decided by an O(t(n)) time nondeterministic Turing machine} \}"
+title="\textrm{NTIME}(t(n)) = \{ L \mid  L \textrm{ is a language decided by an O(t(n)) time nondeterministic Turing machine} \}"
+class="math display" /></p>
+<p>This allows us to define NP as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Ctextrm%7BNP%7D%20%3D%20%5Cbigcup_k%20%5Ctextrm%7BNTIME%7D%28n%5Ek%29"
+alt="\textrm{NP} = \bigcup_k \textrm{NTIME}(n^k)"
+title="\textrm{NP} = \bigcup_k \textrm{NTIME}(n^k)"
+class="math display" /></p>
+<p>This helps us with the question: how do I argue that a problem is in
+NP?</p>
+<p>For this, you could either design a nondeterministic turing machine
+that decides it in polynomial time <em>or</em> you can design a
+deterministic turing machine that verifies it in polynomial time.</p>
+</div>
+<div id="example-2" class="slide section level2">
+<h1>Example</h1>
+<p>A clique in an undirected graph is a subgraph where every node is
+connected by an edge. A <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k" alt="k"
+title="k" class="math inline" />-clique is a clique that contains <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k" alt="k"
+title="k" class="math inline" /> nodes.</p>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20CLIQUE%20%3D%20%5C%7B%5Clangle%20G%2C%20k%20%5Crangle%20%7C%20G%20%5Ctextrm%7B%20is%20an%20undirected%20graph%20with%20a%20k-clique%7D%5C%7D"
+alt="CLIQUE = \{\langle G, k \rangle | G \textrm{ is an undirected graph with a k-clique}\}"
+title="CLIQUE = \{\langle G, k \rangle | G \textrm{ is an undirected graph with a k-clique}\}"
+class="math inline" /></p>
+<p>Show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20CLIQUE"
+alt="CLIQUE" title="CLIQUE" class="math inline" /> is in NP.</p>
+</div>
+<div id="example-3" class="slide section level2">
+<h1>Example</h1>
+<p>Say we have a collection of numbers <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%3D%5C%7Bx_1%2C%20x_2%2C%20%5Cldots%2C%20x_k%5C%7D"
+alt="S=\{x_1, x_2, \ldots, x_k\}" title="S=\{x_1, x_2, \ldots, x_k\}"
+class="math inline" /> and we want to know if a subset of the elements
+of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S" alt="S"
+title="S" class="math inline" /> can be summed to equal a specific value
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" />. For example, can I sum a subset of
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B1%2C2%2C3%2C4%5C%7D"
+alt="\{1,2,3,4\}" title="\{1,2,3,4\}" class="math inline" /> to get <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%207" alt="7"
+title="7" class="math inline" />?</p>
+<p>This is how we define our problem:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20SUBSETSUM%20%3D%20%5C%7B%5Clangle%20S%2C%20t%20%5Crangle%20%7C%20S%20%3D%20%5C%7Bx_1%2C%20x_2%2C%20%5Cldots%2C%20x_k%5C%7D%2C%20%0A%5Ctextrm%7Band%20for%20some%20%7D%20%5C%7By_1%2C%20%5Cldots%2C%20y_l%5C%7D%20%5Csubseteq%20S%2C%0A%5Csum%20y_i%20%3D%20t%20%5C%7D"
+alt="SUBSETSUM = \{\langle S, t \rangle | S = \{x_1, x_2, \ldots, x_k\}, 
+\textrm{and for some } \{y_1, \ldots, y_l\} \subseteq S,
+\sum y_i = t \}"
+title="SUBSETSUM = \{\langle S, t \rangle | S = \{x_1, x_2, \ldots, x_k\}, 
+\textrm{and for some } \{y_1, \ldots, y_l\} \subseteq S,
+\sum y_i = t \}" class="math display" /></p>
+<p>Show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20SUBSETSUM"
+alt="SUBSETSUM" title="SUBSETSUM" class="math inline" /> is in NP.</p>
+</div>
+</body>
+</html>
