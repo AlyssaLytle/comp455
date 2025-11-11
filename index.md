@@ -23,7 +23,7 @@ Welcome to the class!
 - September 23, **Context Free Grammars**: [Slides](slides/05-CFGs.html), [Typed Notes](/static/typed-notes/9-23-25.pdf)
 - September 25, **Pushdown Automata**: [Slides](slides/06-pda.html), [Typed Notes](/static/typed-notes/9-25-25.pdf)
 - September 30, **More on PDA + CFGS**: [Slides](slides/07-cfgs-pdas.html), [Typed Notes](/static/typed-notes/9-30-25.pdf), [Recording (Passcode: *hJ2hRga)](https://unc.zoom.us/rec/share/SDw_ZCd4RsvS1AEkUz_JdCIvmM0Q8AsPWFx3IsQ4eb4qxlFuIc3c82ulTOJfYhh6.3Kc9kdQwuljGaVen)
-- October 2, **Turing Machines**: [Slides](slides/08-turing-machines.html), [Recording (Passcode: Pe9NzT&m)](https://unc.zoom.us/rec/share/3O7Xpot0Bb1LVRvVWa6nxXpsV1HhMND6sIcfILsCdljoP51jZQnIhUIimdy3YSvG.BCisClKRs8quG2O8), [Automata from Examples](/static/slide_figs/10-2-automata.pdf)
+- October 2, **Turing Machines**: [Slides](slides/08-turing-machines.html), [Recording](https://uncch.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35196287-44bf-4145-ba10-b36a00f56e7d), [Automata from Examples](/static/slide_figs/10-2-automata.pdf)
 - October 9, **Quiz Review**: [Pumping Lemma Proofs](/static/typed-notes/PumpingLemmaProofs.pdf), [Proofs by Construction](/static/typed-notes/ProofsByConstruction.pdf), [Recording](https://unc.zoom.us/rec/share/72EDQzRmTJ9HZUoSW3kBl-C4HVxmOCk3zWQlAeQSReXOK2XhszjzOWpMUg0jxKfy.KtnRYcCYOXhf9xXx)
 - October 14, **Quiz 01**
 - October 21,**Algorithms and Decidability** : [Slides](slides/09-algs-decidability.html)
