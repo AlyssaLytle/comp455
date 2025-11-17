@@ -33,4 +33,5 @@ Welcome to the class!
 - November 4, **Time Complexity**: [Slides](slides/12-time-complexity-intro.html), [Typed Notes](static/typed-notes/11-4-25.pdf), [Example](static/lecture-notes/11-4-25.pdf)
 - November 6, **P vs. NP**: [Slides](slides/13-p-vs-np.html), [Typed Notes](static/typed-notes/11-6-25.pdf)
 - November 11, **Quiz Review**: [Notes](static/lecture-notes/11-11-25.pdf)
-- November 13, **Quiz 02**
+- November 13, **P vs. NP Reviw + NP Reductions**: [Notes](static/lecture-notes/11-13-2025.pdf) 
+- November 18, **Quiz 02**
