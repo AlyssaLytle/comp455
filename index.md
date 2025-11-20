@@ -35,3 +35,4 @@ Welcome to the class!
 - November 11, **Quiz Review**: [Notes](static/lecture-notes/11-11-25.pdf)
 - November 13, **P vs. NP Reviw + NP Reductions**: [Notes](static/lecture-notes/11-13-2025.pdf) 
 - November 18, **Quiz 02**
+- November 20, **NP-Completeness**: [Slides](slides/14-np-complete.html)

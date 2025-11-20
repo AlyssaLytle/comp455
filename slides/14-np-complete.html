@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-11-20" />
+  <title>NP Completeness</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">NP Completeness</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">November 20, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/14-np-complete.md -o slides/14-np-complete.html --webtex -->
+</div>
+<div id="np-completeness" class="title-slide slide section level1">
+<h1>NP Completeness</h1>
+
+</div>
+<div id="last-class" class="slide section level2">
+<h1>Last Class</h1>
+<p>For the guest lecture, you covered the following topics:</p>
+<ul>
+<li>You reviewed how to show if problem set <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is in P and how to show if it is in
+NP.</li>
+<li>You reviewed the general open question of P vs. NP.</li>
+<li>You did an example of reducing a problem <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> in polynomial time (<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_%5Ctextrm%7BP%7D%20B"
+alt="A \leq_\textrm{P} B" title="A \leq_\textrm{P} B"
+class="math inline" />) to show that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20NP" alt="NP"
+title="NP" class="math inline" /></li>
+</ul>
+<p>For this lesson, we’re going to explicitly layout the reasoning and
+process of <em>polynomial time reduction</em> (the final bullet
+point).</p>
+</div>
+<div id="polynomial-time-reducibility" class="slide section level2">
+<h1>Polynomial Time Reducibility</h1>
+<p>When discussing decidability, we introduced the concept of reducing
+one problem to another.</p>
+<p>If we can reduce problem <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> to problem <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, we can use a solution for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> to solve <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />.</p>
+<p>We also showed how this can be done via a computable function using
+mapping reduction.</p>
+<p>The idea of <em>polynomial time mapping reducibility</em> extends
+this line of thinking, considering the time (or number of computations)
+it would take to do this reduction.</p>
+</div>
+<div id="polynomial-time-computability" class="slide section level2">
+<h1>Polynomial Time Computability</h1>
+<p>This definition is very similar to that of mapping reducibility, but
+the mapping function must be computed in polynomial time.</p>
+<p>A function <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%3A%20%5CSigma%5E%2A%20%5Cto%20%5CSigma%5E%2A"
+alt="f: \Sigma^* \to \Sigma^*" title="f: \Sigma^* \to \Sigma^*"
+class="math inline" /> is a <em>polynomial time computable function</em>
+if some polynomial time Turing machine M exists that halts with just
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%28w%29"
+alt="f(w)" title="f(w)" class="math inline" /> on its tape, when started
+on any input <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />.</p>
+<p>Language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is <em>polynomial time mapping
+reducible</em>, or <em>polynomial time reducible</em>, to language <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, written <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_%5Ctextrm%7BP%7D"
+alt="A \leq_\textrm{P}" title="A \leq_\textrm{P}" class="math inline" />
+if polynomial time computable function <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f%3A%20%5CSigma%5E%2A%20%5Cto%20%5CSigma%5E%2A"
+alt="f: \Sigma^* \to \Sigma^*" title="f: \Sigma^* \to \Sigma^*"
+class="math inline" /> exists, where for every <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" />,</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20w%20%5Cin%20A%20%5Ciff%20f%28w%29%20%5Cin%20B"
+alt="w \in A \iff f(w) \in B" title="w \in A \iff f(w) \in B"
+class="math display" /></p>
+<p>The function <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20f" alt="f"
+title="f" class="math inline" /> is called the <em>polynomial time
+reduction</em> of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+</div>
+<div id="reducibility-and-membership-in-p" class="slide section level2">
+<h1>Reducibility and Membership in P</h1>
+<p>Also similar to previous lessons, we use this reducibility to show
+whether something is in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P" alt="P"
+title="P" class="math inline" />.</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_%5Ctextrm%7BP%7D%20B"
+alt="A \leq_\textrm{P} B" title="A \leq_\textrm{P} B"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Cin%20P"
+alt="B \in P" title="B \in P" class="math inline" />, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cin%20P"
+alt="A \in P" title="A \in P" class="math inline" />.</p>
+</div>
+<div id="reducibility-and-membership-in-p-1"
+class="slide section level2">
+<h1>Reducibility and Membership in P</h1>
+<p>Also similar to previous lessons, we use this reducibility to show
+whether something is in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P" alt="P"
+title="P" class="math inline" />.</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cleq_%5Ctextrm%7BP%7D%20B"
+alt="A \leq_\textrm{P} B" title="A \leq_\textrm{P} B"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Cin%20P"
+alt="B \in P" title="B \in P" class="math inline" />, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Cin%20P"
+alt="A \in P" title="A \in P" class="math inline" />.</p>
+<p>Proof?</p>
+<!-- The reasoning behind this proof is quite straightforward. If $B \in P$, then there exists a polynomial time algorithm $M$ that decides $B$. And if $A \leq_\textrm{P} B$ then there is a polynomial time function $f$ mapping every input to $A$ to an input for $B$. So, you just compute $f(w)$ on every $w$ input into $A$, and then input $f(w)$ into $M$. -->
+</div>
+<div id="np-completeness-1" class="slide section level2">
+<h1>NP-Completeness</h1>
+<p>Previously, we’ve discussed what the process of proving whether or
+not P <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3D" alt="="
+title="=" class="math inline" /> NP would look like.</p>
+<p>The heart of this lies in the set of <em>NP-complete</em>
+problems.</p>
+<p>If we can show one of these problems is solvable in polynomial time,
+then all problems in NP would be solvable in polynomial time.</p>
+<p>A language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is <em>NP-Complete</em> if it satisfies
+two conditions:</p>
+<ol style="list-style-type: decimal">
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is in NP</li>
+<li>every <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> in NP is polynomial time reducible to
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /></li>
+</ol>
+</div>
+<div id="np-completeness-2" class="slide section level2">
+<h1>NP-Completeness</h1>
+<p>Previously, we’ve discussed what the process of proving whether or
+not P <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3D" alt="="
+title="=" class="math inline" /> NP would look like.</p>
+<p>The heart of this lies in the set of <em>NP-complete</em>
+problems.</p>
+<p>If we can show one of these problems is solvable in polynomial time,
+then all problems in NP would be solvable in polynomial time.</p>
+<p>A language <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is <em>NP-Complete</em> if it satisfies
+two conditions:</p>
+<ol style="list-style-type: decimal">
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is in NP</li>
+<li>every <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> in NP is polynomial time reducible to
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /></li>
+</ol>
+<p>Q: What does it mean if <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is NP-Complete AND <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Cin%20P"
+alt="B \in P" title="B \in P" class="math inline" />?</p>
+</div>
+<div id="proving-np-completeness" class="slide section level2">
+<h1>Proving NP-Completeness</h1>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is NP-complete and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Cleq_%5Ctextrm%7BP%7D%20C"
+alt="B \leq_\textrm{P} C" title="B \leq_\textrm{P} C"
+class="math inline" /> for <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C" alt="C"
+title="C" class="math inline" /> in NP, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C" alt="C"
+title="C" class="math inline" /> is NP-complete.</p>
+</div>
+<div id="proving-np-completeness-1" class="slide section level2">
+<h1>Proving NP-Completeness</h1>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is NP-complete and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Cleq_%5Ctextrm%7BP%7D%20C"
+alt="B \leq_\textrm{P} C" title="B \leq_\textrm{P} C"
+class="math inline" /> for <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C" alt="C"
+title="C" class="math inline" /> in NP, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C" alt="C"
+title="C" class="math inline" /> is NP-complete.</p>
+<p>Proof?</p>
+<!-- This proof is pretty straightforward as well. If $B$ is NP-complete, every $A$ in NP is polynomial time reducible to $B$ ($A \leq_\textrm{P} B$). If $B \leq_\textrm{P} C$, then $B$ is polynomial time reducible to $C$. You can compose polynomial time reductions. E.g. if $A \leq_\textrm{P} B$ and $B \leq_\textrm{P} C$, then $A \leq_\textrm{P} C$. -->
+</div>
+<div id="common-np-complete-problems" class="slide section level2">
+<h1>Common NP-Complete Problems</h1>
+<p>A common NP-Complete Problem is the satisfiability problem (SAT).</p>
+<p>A boolean expression <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cphi"
+alt="\phi" title="\phi" class="math inline" /> is <em>satisfiable</em>
+if there is an assignment of and values such that the expression
+evaluates to .</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20SAT%20%3D%20%5C%7B%20%5Clangle%20%5Cphi%20%5Crangle%20%5Cmid%20%5Cphi"
+alt="SAT = \{ \langle \phi \rangle \mid \phi"
+title="SAT = \{ \langle \phi \rangle \mid \phi" class="math inline" />
+is a satisfiable boolean formula <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" />.</p>
+<p>The proof that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20SAT" alt="SAT"
+title="SAT" class="math inline" /> is NP-Complete is a very famous one,
+written by Stephen Cook and Leonid Levin the the early 1970s.</p>
+</div>
+<div id="common-np-complete-problems-1" class="slide section level2">
+<h1>Common NP-Complete Problems</h1>
+<p>A subset of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20SAT" alt="SAT"
+title="SAT" class="math inline" /> that will prove to be useful is <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203SAT"
+alt="3SAT" title="3SAT" class="math inline" />, defined the following
+way:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203SAT%20%3D%20%5C%7B%20%5Clangle%20%5Cphi%20%5Crangle%20%5Cmid%20%5Cphi"
+alt="3SAT = \{ \langle \phi \rangle \mid \phi"
+title="3SAT = \{ \langle \phi \rangle \mid \phi" class="math inline" />
+is a satisfiable 3cnf-formula <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" />.</p>
+<p>Conjunctive normal form is defined as clauses connected by
+conjunctions <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cland"
+alt="\land" title="\land" class="math inline" />.</p>
+<p>A clause is several literals combined by <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clor"
+alt="\lor" title="\lor" class="math inline" />’s.</p>
+<p>A 3cnf-formula has clauses of length 3.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203SAT"
+alt="3SAT" title="3SAT" class="math inline" /> is also NP-Complete.</p>
+</div>
+<div id="example" class="slide section level2">
+<h1>Example</h1>
+<p>Now, we will show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20CLIQUE"
+alt="CLIQUE" title="CLIQUE" class="math inline" /> is NP-Complete by
+showing <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203SAT%20%5Cleq_%5Ctextrm%7BP%7D%20CLIQUE"
+alt="3SAT \leq_\textrm{P} CLIQUE" title="3SAT \leq_\textrm{P} CLIQUE"
+class="math inline" />.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20CLIQUE%20%3D%20%5C%7B%5Clangle%20G%2C%20k%20%5Crangle%20%5Cmid%20G"
+alt="CLIQUE = \{\langle G, k \rangle \mid G"
+title="CLIQUE = \{\langle G, k \rangle \mid G" class="math inline" /> is
+an undirected graph with a <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k" alt="k"
+title="k" class="math inline" />-clique <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203SAT%20%3D%20%5C%7B%20%5Clangle%20%5Cphi%20%5Crangle%20%5Cmid%20%5Cphi"
+alt="3SAT = \{ \langle \phi \rangle \mid \phi"
+title="3SAT = \{ \langle \phi \rangle \mid \phi" class="math inline" />
+is a satisfiable 3cnf-formula <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" />.</p>
+</div>
+</body>
+</html>
