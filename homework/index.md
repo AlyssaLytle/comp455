@@ -26,3 +26,4 @@ You will also get the same credit if you post a meaningful correction to someone
 * [Homework 3](/comp455/static/HW/HW3.pdf)
 * [Homework 4](/comp455/static/HW/HW4.pdf)
 * [Homework 5](/comp455/static/HW/HW5.pdf)
+* [Homework 6](/comp455/static/HW/HW6.pdf)
