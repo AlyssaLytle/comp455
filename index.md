@@ -36,3 +36,4 @@ Welcome to the class!
 - November 13, **P vs. NP Reviw + NP Reductions**: [Notes](static/lecture-notes/11-13-2025.pdf) 
 - November 18, **Quiz 02**
 - November 20, **NP-Completeness**: [Slides](slides/14-np-complete.html)
+- December 2, **Practice Problems**: [Recording](https://unc.zoom.us/rec/share/afvWx4PNSvL_pEKmDUjPgtygWciQDnKESQJ_kwK_orbw-oLfr0acRYYxd4ozeakW.vj1rNgmNcp6QmtKZ)
