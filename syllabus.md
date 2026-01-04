@@ -45,9 +45,7 @@ mathematically analyze their behavior, and explore the limits of computation. St
 will also become familiar with core concepts in complexity theory, including reducibility, time
 complexity, and space complexity.
 
-## Course Schedule
 
-The course schedule can be found [here](https://docs.google.com/spreadsheets/d/1bb36y9Wo_nLjdFo2vysgdBsLj8fcrqNlC-M7xwX27DQ/edit?usp=sharing).
 
 
 ## Course Texts and Materials
@@ -60,21 +58,21 @@ Attendance is expected, and it is the student's responsibility to keep up with c
 
 ## Grading
 
-1. Homework (0%): Homework will not be apart of your grade for this course. However, problem sets will be released periodically, and from these problem sets the quiz and final exam questions will be chosen. You can have these assignments graded for you with feedback by submitting them to Gradescope. 
+1. Homework (0%): Homework will not be apart of your grade for this course. However, problem sets will be released periodically, and from these problem sets the quiz and final exam questions will be chosen. You can have these assignments graded for you with feedback by submitting them to Gradescope.
 
-2. Lessons (10%): There will be multiple choice Gradescope assignments throughout the semester to assess your understanding of the material.
+2. Lessons (20%): There will be multiple choice Gradescope assignments throughout the semester to assess your understanding of the material.
 
-2. Quizzes (60%): There will be three in-person, handwritten quizzes throughout the semester.
+3. Quizzes (60%): There will be four in-person, handwritten quizzes throughout the semester, worth 15% each.
 
-3. Final Exam (30%): The final exam will be in-person and handwritten.
+4. Final Exam (20%): The final exam will be in-person and handwritten.
 
 ### Quiz Absence Policy
 
-You may be absent for up to one quiz.
+You may have an unexcused absence for up to one quiz.
 
 Being absent from a quiz results in the quiz’s credit being drawn down from your final exam score’s weight. As such, this is not a penalty; your mastery of this quiz’ material will be assessed on the cumulative final exam.
 
-If, and only if, you take all quizzes and your final examination score exceeds your lowest quiz score, then we will retroactively grant you an absence for the lowest quiz score and your final exam score will be worth 50%.
+If, and only if, you take all quizzes and your final examination score exceeds your lowest quiz score, then we will retroactively grant you an absence for the lowest quiz score and your final exam score will be worth 35%.
 
 ### Grading Scale
 
@@ -167,3 +165,9 @@ Want to get the most out of this course or others this semester? Visit [UNC’s 
 #### *Writing Center*
 
 For free feedback on any course writing projects, check out UNC’s Writing Center. Writing Center coaches can assist with any writing project, including multimedia projects and application essays, at any stage of the writing process. You don’t even need a draft to come visit. To schedule a 45-minute appointment, review quick tips, or request written feedback online, visit [UNC’s Writing Center online](http://writingcenter.unc.edu/).  
+
+#### Required UNC Statement
+
+This course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate and inclusion of a reading does not imply endorsement. 
+
+*The instructor reserves the right to modify this syllabus at any time. For the most up-to-date version of the syllabus, check the Canvas site.*
