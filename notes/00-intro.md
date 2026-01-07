@@ -2,6 +2,9 @@
 % Alyssa Lytle
 % January 8, 2026
 
+<!-- pandoc -t slidy -s notes/00-intro.md -o slides/00-intro.html --webtex -->
+
+
 # Course Introduction: Some Context
 
 ## What is this class about?
