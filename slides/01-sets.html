@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2026-01-08" />
+  <title>Set Notation Review</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Set Notation Review</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">January 8, 2026</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/01-set-review.md -o slides/01-sets.html --webtex -->
+</div>
+<div id="review-set-notation-and-operations"
+class="title-slide slide section level1">
+<h1>Review: Set Notation and Operations</h1>
+
+</div>
+<div id="sets---definitions" class="slide section level2">
+<h1>Sets - Definitions</h1>
+<p>A <strong><em>set</em></strong> is an unordered collection of
+objects.</p>
+<p>The following are sets:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B1%2C2%2C3%5C%7D"
+alt="\{1,2,3\}" title="\{1,2,3\}" class="math inline" /></li>
+<li>“all multiples of 7’’</li>
+<li>{apples, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%207" alt="7"
+title="7" class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctexttt%7BTrue%7D"
+alt="\texttt{True}" title="\texttt{True}" class="math inline" />}</li>
+</ul>
+<p>Sets don’t inherently have an order.</p>
+</div>
+<div id="sets---terminology" class="slide section level2">
+<h1>Sets - Terminology</h1>
+<p>A set is a <strong><em>finite set</em></strong> if it has a finite
+number of elements.</p>
+<p>Any set that is not finite is an <strong><em>infinite
+set</em></strong>.</p>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> be a finite set. The number of
+different elements in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is called its
+<strong><em>cardinality</em></strong>.</p>
+<p>The cardinality of a finite set is denoted <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7CA%7C"
+alt="|A|" title="|A|" class="math inline" />.</p>
+<h3 id="examples">Examples</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B1%2C2%2C3%5C%7D"
+alt="\{1,2,3\}" title="\{1,2,3\}" class="math inline" /> is a finite
+set. Its cardinality is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%203" alt="3"
+title="3" class="math inline" />.</p>
+</blockquote>
+<blockquote>
+<p>“all multiples of 7” is an infinite set.</p>
+</blockquote>
+</div>
+<div id="sets---notation" class="slide section level2">
+<h1>Sets - Notation</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20A"
+alt="a \in A" title="a \in A" class="math inline" /> means <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cnotin%20A"
+alt="a \notin A" title="a \notin A" class="math inline" /> means <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is <em>not</em> an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />.</p>
+<h3 id="example">Example</h3>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7Bapples%2C%20bananas%2C%20oranges%5C%7D"
+alt="A = \{apples, bananas, oranges\}"
+title="A = \{apples, bananas, oranges\}" class="math inline" /></p>
+</blockquote>
+<blockquote>
+<p>“apples” <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cin%20A"
+alt="\in A" title="\in A" class="math inline" /></p>
+</blockquote>
+<blockquote>
+<p>“blueberries” <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cnotin%20A"
+alt="\notin A" title="\notin A" class="math inline" /></p>
+</blockquote>
+</div>
+<div id="sets---notation-1" class="slide section level2">
+<h1>Sets - Notation</h1>
+<p>Sets are commonly expressed using <em>set notation</em>.</p>
+<p>Within braces, we can write a rule consisting of a function, a
+vertical bar, and a set to which the function is applied.</p>
+<p><img src="https://i.imgur.com/AG0hluA.png" width="700"/></p>
+</div>
+<div id="sets---notation-2" class="slide section level2">
+<h1>Sets - Notation</h1>
+<h3 id="example-1">Example</h3>
+<blockquote>
+<p>We can express the set <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B%5Cfrac%7B1%7D%7B2%7D%2C%20%5Cfrac%7B1%7D%7B4%7D%2C%20%5Cfrac%7B1%7D%7B8%7D%20%5C%7D"
+alt="\{\frac{1}{2}, \frac{1}{4}, \frac{1}{8} \}"
+title="\{\frac{1}{2}, \frac{1}{4}, \frac{1}{8} \}"
+class="math inline" /> as…</p>
+</blockquote>
+<blockquote>
+<p><img src="https://i.imgur.com/S8631Np.png" width="700"/></p>
+</blockquote>
+</div>
+<div id="subsets" class="slide section level2">
+<h1>Subsets</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is a <strong><em>subset</em></strong>
+of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> if and only if every element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<p>Can also be written: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" /></p>
+<h3 id="examples-1">Examples</h3>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7B1%2C3%2C5%5C%7D"
+alt="A = \{1,3,5\}" title="A = \{1,3,5\}" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%3D%20%5C%7B1%2C2%2C3%2C4%2C5%5C%7D"
+alt="B = \{1,2,3,4,5\}" title="B = \{1,2,3,4,5\}"
+class="math inline" />.</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" />.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7B1%2C2%2C3%5C%7D"
+alt="A = \{1,2,3\}" title="A = \{1,2,3\}" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%3D%20%5C%7B3%2C2%2C1%5C%7D"
+alt="B = \{3,2,1\}" title="B = \{3,2,1\}" class="math inline" />.</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Csubseteq%20A"
+alt="B \subseteq A" title="B \subseteq A" class="math inline" />.</p>
+</blockquote>
+</blockquote>
+</div>
+<div id="equality" class="slide section level2">
+<h1>Equality</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20B"
+alt="A = B" title="A = B" class="math inline" /> if and only if every
+element of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> and conversely every element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />. That is, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Csubseteq%20A"
+alt="B \subseteq A" title="B \subseteq A" class="math inline" />.</p>
+<h3 id="example-2">Example</h3>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7B1%2C2%2C3%5C%7D"
+alt="A = \{1,2,3\}" title="A = \{1,2,3\}" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%3D%20%5C%7B3%2C2%2C1%5C%7D"
+alt="B = \{3,2,1\}" title="B = \{3,2,1\}" class="math inline" />.
+<br><br> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Csubseteq%20A"
+alt="B \subseteq A" title="B \subseteq A" class="math inline" />, so
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%3DB"
+alt="A=B" title="A=B" class="math inline" /></p>
+</blockquote>
+</div>
+<div id="common-sets" class="slide section level2">
+<h1>Common Sets</h1>
+<ul>
+<li>There are some standard symbols that represent specific sets you
+will see:</li>
+<li>The set of <strong>Natural Numbers</strong> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathbb%7BN%7D"
+alt="\mathbb{N}" title="\mathbb{N}" class="math inline" /> is the set of
+all whole numbers <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cgeq%200"
+alt="\geq 0" title="\geq 0" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B0%2C1%2C2%2C3%2C4%2C%5Cldots%5C%7D"
+alt="\{0,1,2,3,4,\ldots\}" title="\{0,1,2,3,4,\ldots\}"
+class="math inline" />.*</li>
+<li>The set of <strong>Integers</strong> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathbb%7BZ%7D"
+alt="\mathbb{Z}" title="\mathbb{Z}" class="math inline" /> is the set of
+all whole numbers, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B%5Cldots%2C%20-3%2C%20-2%2C%20-1%2C%200%2C%201%2C%202%2C%203%2C%20%5Cldots%5C%7D"
+alt="\{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}"
+title="\{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}"
+class="math inline" />.</li>
+<li>The set of <strong>Rational Numbers</strong> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathbb%7BQ%7D"
+alt="\mathbb{Q}" title="\mathbb{Q}" class="math inline" /> are numbers
+that can be represented as a quotient of whole numbers, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B%5Cfrac%7Bp%7D%7Bq%7D%20%5Cmid%20p%2Cq%20%5Cin%20%5Cmathbb%7BZ%7D%5C%7D"
+alt="\{\frac{p}{q} \mid p,q \in \mathbb{Z}\}"
+title="\{\frac{p}{q} \mid p,q \in \mathbb{Z}\}"
+class="math inline" /></li>
+<li>The set of <strong>Real Numbers</strong> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathbb%7BR%7D"
+alt="\mathbb{R}" title="\mathbb{R}" class="math inline" /> is all
+<em>real</em> numbers.</li>
+</ul>
+</div>
+<div id="tuples" class="slide section level2">
+<h1>Tuples</h1>
+<p>A <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k" alt="k"
+title="k" class="math inline" />-<strong><em>tuple</em></strong> is an
+ordered sequence of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k" alt="k"
+title="k" class="math inline" /> elements, which we write down in
+parentheses, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28a_1%2Ca_2%2C%5Cldots%2Ca_k%29"
+alt="(a_1,a_2,\ldots,a_k)" title="(a_1,a_2,\ldots,a_k)"
+class="math inline" />.</p>
+<blockquote>
+<p>The most common tuple seen in math is the coordinate pair <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28x%2Cy%29"
+alt="(x,y)" title="(x,y)" class="math inline" /> on a graph.</p>
+</blockquote>
+<blockquote>
+<p>A 2-tuple is commonly called an <em>ordered pair</em>.</p>
+</blockquote>
+<p>Two tuples are equal if and only if all of their corresponding
+elements are equal. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28a_1%2Ca_2%2C%5Cldots%2Ca_k%29"
+alt="(a_1,a_2,\ldots,a_k)" title="(a_1,a_2,\ldots,a_k)"
+class="math inline" /> iff for all <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20i%5Cin%5B1%2C%5Cldots%2Ck%5D"
+alt="i\in[1,\ldots,k]" title="i\in[1,\ldots,k]" class="math inline" />
+we have <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a_i%3Db_i"
+alt="a_i=b_i" title="a_i=b_i" class="math inline" />.</p>
+<!-- 
+## Tuples - Cartesian Product
+
+The basic operation to create tuples is the Cartesian Product of two sets.
+
+The \textbf{cartesian product} of $A$ and $B$, $A \times B = \{(a,b)|$ for all $a \in A$ and for all $b \in B\}$
+
+### Example
+>Let $L=\{a,b,c\}$ and let $D = \{0,1\}$
+$L \times D = \{(a,0),(a,1),(b,0),(b,1),(c,0),(c,1)\}$
+$D \times L = \{(0,a),(0,b),(0,c),(1,a),(1, b),(1,c)\}$
+$L \times L = L^2 = \{(a,a),(a,b),(a,c),(b,a),(b, b),(b,c),(c,a),(c, b),(c,c)\}$
+
+The cartesian product is associative: $D \times(L \times D) = (D \times L) \times D$.
+
+The cartesian product is not necessarily commutative: $D\times L \neq L \times D$.
+ -->
+</div>
+<div id="concatenation" class="slide section level2">
+<h1>Concatenation</h1>
+<p><strong><em>Concatenation</em></strong> is used to join two strings
+or lists by putting all elements of the second string behind all
+elements of the first.</p>
+<h3 id="example-3">Example</h3>
+<blockquote>
+<p>The concatenation of “hello” and “world” is “helloworld”.</p>
+</blockquote>
+</div>
+<div id="range" class="slide section level2">
+<h1>Range</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ba%2Cb%5D"
+alt="[a,b]" title="[a,b]" class="math inline" /> is the set of whole
+numbers <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cgeq%20a"
+alt="\geq a" title="\geq a" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cleq%20b"
+alt="\leq b" title="\leq b" class="math inline" />.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28a%2Cb%29"
+alt="(a,b)" title="(a,b)" class="math inline" /> is the set of whole
+numbers <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3E%20a"
+alt="&gt; a" title="&gt; a" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%3C%20b"
+alt="&lt; b" title="&lt; b" class="math inline" />.</p>
+<h3 id="examples-2">Examples</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5B1%2C5%5D%20%3D%20%5C%7B1%2C2%2C3%2C4%2C5%5C%7D"
+alt="[1,5] = \{1,2,3,4,5\}" title="[1,5] = \{1,2,3,4,5\}"
+class="math inline" /></p>
+</blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%281%2C5%29%20%3D%20%5C%7B2%2C3%2C4%5C%7D"
+alt="(1,5) = \{2,3,4\}" title="(1,5) = \{2,3,4\}"
+class="math inline" /></p>
+</blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5B1%2C5%29%20%3D%20%5C%7B1%2C2%2C3%2C4%5C%7D"
+alt="[1,5) = \{1,2,3,4\}" title="[1,5) = \{1,2,3,4\}"
+class="math inline" /></p>
+</blockquote>
+</div>
+
+<div id="set-operations" class="title-slide slide section level1">
+<h1>Set Operations</h1>
+
+</div>
+<div id="set-operations-1" class="slide section level2">
+<h1>Set Operations</h1>
+<p><img src="https://i.imgur.com/0c94JPz.png" width="240"/></p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20B"
+alt="a \in B" title="a \in B" class="math inline" /> means <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.<br></li>
+</ul>
+</div>
+<div id="set-operations-2" class="slide section level2">
+<h1>Set Operations</h1>
+<p><img src="https://i.imgur.com/UwPfgSt.png" width="300"/></p>
+<ul>
+<li><p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cnotin%20B"
+alt="a \notin B" title="a \notin B" class="math inline" /> means <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is <em>not</em> an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p></li>
+<li><p>Note that technically, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20B"
+alt="a \in B" title="a \in B" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cnotin%20B"
+alt="a \notin B" title="a \notin B" class="math inline" /> are
+predicates! They take an element and a set as input and give True or
+False as an output.</p></li>
+</ul>
+</div>
+<div id="subset" class="slide section level2">
+<h1>Subset</h1>
+<p><img src="https://i.imgur.com/ZLuhg2i.png" width="300"/></p>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> be sets. We say that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is a <strong>subset</strong> of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> if and only if every element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<p>We write <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Csubseteq%20B"
+alt="A \subseteq B" title="A \subseteq B" class="math inline" /> to
+denote the fact that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is a subset of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<!-- ## Subsets Cont.
+
+
+### Using Predicate Logic 
+
+- $\forall A,B,  A \subseteq B \leftrightarrow \forall x \in A,  x \in A \rightarrow x \in B$
+- Technically, we didn't define the domains for $A$ and $B$, but given the context, we know they are sets, so we'll let it slide... 
+- We *could* say that all sets exist in some universe of sets $S$. 
+- Then our quantifier would say $\forall A,B \in S \ldots$ 
+- However, for the rest of these slides, we will just do it the lazy/easier to read way...  -->
+</div>
+<div id="equality-1" class="slide section level2">
+<h1>Equality</h1>
+<p><img src="https://i.imgur.com/sHL4goN.png" width="150"/></p>
+<h3 id="using-predicate-logic">Using Predicate Logic</h3>
+<ul>
+<li>Remember this?</li>
+<li>For all sets <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20B"
+alt="A = B" title="A = B" class="math inline" /> if and only if every
+element of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> and every element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is an element of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2CB%2C%20A%20%3D%20B%20%5Cleftrightarrow%20%28A%20%5Csubseteq%20B"
+alt="\forall A,B, A = B \leftrightarrow (A \subseteq B"
+title="\forall A,B, A = B \leftrightarrow (A \subseteq B"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%20%5Csubseteq%20A%29"
+alt="B \subseteq A)" title="B \subseteq A)" class="math inline" />
+<!-- - $\forall A,B,  A = B \leftrightarrow (\forall x,  (x \in A \leftrightarrow x \in B))$ --></li>
+</ul>
+</div>
+<div id="complement" class="slide section level2">
+<h1>Complement</h1>
+<p><img src="https://i.imgur.com/R9uDave.png" width="200"/></p>
+<p>The complement of a set <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />, denoted <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%5E%5Cmathcal%7BC%7D"
+alt="A^\mathcal{C}" title="A^\mathcal{C}" class="math inline" /> is the
+set of all elements in the universe <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20U" alt="U"
+title="U" class="math inline" /> that are <em>not</em> in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />.</p>
+<h3 id="using-set-notation">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%5E%5Cmathcal%7BC%7D%20%3D%20%5C%7Bx%20%20%7C%20%20x%20%5Cnotin%20A%5C%7D"
+alt="A^\mathcal{C} = \{x  |  x \notin A\}"
+title="A^\mathcal{C} = \{x  |  x \notin A\}" class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-1">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20a%2C%20%20a%20%5Cin%20A%5E%5Cmathcal%7BC%7D%20%5Cleftrightarrow%20a%20%5Cnotin%20A"
+alt="\forall a,  a \in A^\mathcal{C} \leftrightarrow a \notin A"
+title="\forall a,  a \in A^\mathcal{C} \leftrightarrow a \notin A"
+class="math inline" /></p>
+</blockquote>
+<blockquote>
+<p>or, equivalently, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20a%20%5Cin%20U%2C%20%20a%20%5Cnotin%20A%5E%5Cmathcal%7BC%7D%20%5Cleftrightarrow%20a%20%5Cin%20A"
+alt="\forall a \in U,  a \notin A^\mathcal{C} \leftrightarrow a \in A"
+title="\forall a \in U,  a \notin A^\mathcal{C} \leftrightarrow a \in A"
+class="math inline" /></p>
+</blockquote>
+</div>
+<div id="intersection" class="slide section level2">
+<h1>Intersection</h1>
+<p><img src="https://i.imgur.com/HpI6xVu.png" width="300"/></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccap%20B"
+alt="A \cap B" title="A \cap B" class="math inline" /> are the elements
+that are both in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<h3 id="using-set-notation-1">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccap%20B%20%3D%20%5C%7B%20x%20%20%7C%20%20x%20%5Cin%20A%20%5Cland%20x%20%5Cin%20B%20%5C%7D"
+alt="A \cap B = \{ x  |  x \in A \land x \in B \}"
+title="A \cap B = \{ x  |  x \in A \land x \in B \}"
+class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-2">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2C%20B%2C%20x%2C%20%20x%20%5Cin%20A%20%5Ccap%20B%20%5Cleftrightarrow%20%28x%20%5Cin%20A%20%5Cland%20x%20%5Cin%20B%29"
+alt="\forall A, B, x,  x \in A \cap B \leftrightarrow (x \in A \land x \in B)"
+title="\forall A, B, x,  x \in A \cap B \leftrightarrow (x \in A \land x \in B)"
+class="math inline" /></p>
+</blockquote>
+</div>
+<div id="union" class="slide section level2">
+<h1>Union</h1>
+<p><img src="https://i.imgur.com/thTdr8m.png" width="300"/></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccup%20B"
+alt="A \cup B" title="A \cup B" class="math inline" /> are the elements
+that are either in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> or <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<h3 id="using-set-notation-2">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccup%20B%20%3D%20%5C%7B%20x%20%20%7C%20%20x%20%5Cin%20A%20%5Clor%20x%20%5Cin%20B%20%5C%7D"
+alt="A \cup B = \{ x  |  x \in A \lor x \in B \}"
+title="A \cup B = \{ x  |  x \in A \lor x \in B \}"
+class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-3">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2C%20B%2C%20x%2C%20%20x%20%5Cin%20A%20%5Ccup%20B%20%5Cleftrightarrow%20%28x%20%5Cin%20A%20%5Clor%20x%20%5Cin%20B%29"
+alt="\forall A, B, x,  x \in A \cup B \leftrightarrow (x \in A \lor x \in B)"
+title="\forall A, B, x,  x \in A \cup B \leftrightarrow (x \in A \lor x \in B)"
+class="math inline" /></p>
+</blockquote>
+</div>
+<div id="difference" class="slide section level2">
+<h1>Difference</h1>
+<p><img src="https://i.imgur.com/FOqpwIS.png" width="300"/></p>
+<p>The <strong>difference</strong> of sets <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> is the set that contains all elements
+in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> that are not in <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />.</p>
+<h3 id="using-set-notation-3">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20-%20B%20%3D%20A%20%5Cbackslash%20B%20%3D%5C%7B%5C%2C%20x%20%20%7C%20%20x%20%5Cin%20A%20%5Cland%20x%20%5Cnotin%20B%20%5C%7D"
+alt="A - B = A \backslash B =\{\, x  |  x \in A \land x \notin B \}"
+title="A - B = A \backslash B =\{\, x  |  x \in A \land x \notin B \}"
+class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-4">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2C%20B%2C%20x%2C%20%20x%20%5Cin%20A%20-%20B%20%5Cleftrightarrow%20x%20%5Cin%20A%20%5Cland%20x%20%5Cnotin%20B"
+alt="\forall A, B, x,  x \in A - B \leftrightarrow x \in A \land x \notin B"
+title="\forall A, B, x,  x \in A - B \leftrightarrow x \in A \land x \notin B"
+class="math inline" /></p>
+</blockquote>
+</div>
+<div id="difference-cont." class="slide section level2">
+<h1>Difference Cont.</h1>
+<h3 id="example-4">Example</h3>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%3D%5C%7B1%2C3%2C5%2C7%5C%7D"
+alt="A=\{1,3,5,7\}" title="A=\{1,3,5,7\}" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%3D%5C%7B4%2C5%2C6%2C7%2C8%5C%7D"
+alt="B=\{4,5,6,7,8\}" title="B=\{4,5,6,7,8\}"
+class="math inline" />.</p>
+</blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A-B%20%3D%20%5C%7B1%2C3%5C%7D"
+alt="A-B = \{1,3\}" title="A-B = \{1,3\}" class="math inline" />.</p>
+</blockquote>
+<h3 id="example-5">Example</h3>
+<blockquote>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C%3D%5C%7B%5Cbigcirc%2C%5Cdiamondsuit%2C%5CBox%2C%5Cheartsuit%5C%7D"
+alt="C=\{\bigcirc,\diamondsuit,\Box,\heartsuit\}"
+title="C=\{\bigcirc,\diamondsuit,\Box,\heartsuit\}"
+class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20e%20%3D%20%5Cheartsuit"
+alt="e = \heartsuit" title="e = \heartsuit" class="math inline" />.</p>
+</blockquote>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20C-%5C%7Be%5C%7D%20%3D%20%5C%7B%5Cbigcirc%2C%20%5Cdiamondsuit%2C%20%5CBox%5C%7D"
+alt="C-\{e\} = \{\bigcirc, \diamondsuit, \Box\}"
+title="C-\{e\} = \{\bigcirc, \diamondsuit, \Box\}"
+class="math inline" />.</p>
+</blockquote>
+</div>
+<div id="xor" class="slide section level2">
+<h1>Xor</h1>
+<p><img src="https://i.imgur.com/lF0EPYP.png" width="300"/></p>
+<h3 id="using-set-notation-4">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Coplus%20B%20%3D%20%5C%7Bx%20%20%7C%20%20x%20%5Cin%20A%20%5Coplus%20x%20%5Cin%20B%5C%7D"
+alt="A \oplus B = \{x  |  x \in A \oplus x \in B\}"
+title="A \oplus B = \{x  |  x \in A \oplus x \in B\}"
+class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-5">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2CB%2Cx%2C%20%20x%20%5Cin%20A%20%5Coplus%20B%20%5Cleftrightarrow%20x%20%5Cin%20A%20%5Coplus%20x%20%5Cin%20B"
+alt="\forall A,B,x,  x \in A \oplus B \leftrightarrow x \in A \oplus x \in B"
+title="\forall A,B,x,  x \in A \oplus B \leftrightarrow x \in A \oplus x \in B"
+class="math inline" /></p>
+</blockquote>
+<!-- 
+## Disjoint Sets
+
+
+Two sets are **disjoint** if they share no elements.
+
+>$\forall A,B,$ $A$ and $B$ are disjoint $\leftrightarrow A \cap B = \emptyset$ 
+
+>$\forall A,B,$ $A$ and $B$ are disjoint $\leftrightarrow \forall x, (x \in B \rightarrow x \notin A) \land (x \in A \rightarrow x \notin B)$ -->
+<!-- 
+## Disjoint Union
+
+<img src="https://i.imgur.com/e1baS8x.png" width="300"/> -->
+<!-- $A \uplus B$ is the union of two **disjoint** sets.
+
+
+
+If $A$ and $B$ are disjoint (share no elements), then $A \uplus B = A \cup B$
+
+If $A$ and $B$ share elements, then $A \uplus B = ERROR$
+
+### Using Predicate Logic
+
+>$\forall A,B, A \uplus B = A \cup B \leftrightarrow A \cap B = \emptyset$
+
+ -->
+</div>
+<div id="cartesian-product" class="slide section level2">
+<h1>Cartesian Product</h1>
+<p><img src="https://i.imgur.com/SgxWVdP.png" width="300"/></p>
+<p>The <strong>cartesian product</strong> of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" />,</p>
+<h3 id="using-set-notation-5">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ctimes%20B%20%3D%20%5C%7B%28a%2Cb%29%7C%20%5Cforall%20a%20%5Cin%20A"
+alt="A \times B = \{(a,b)| \forall a \in A"
+title="A \times B = \{(a,b)| \forall a \in A" class="math inline" />,
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20b%20%5Cin%20B%5C%7D"
+alt="\forall b \in B\}" title="\forall b \in B\}"
+class="math inline" /></p>
+</blockquote>
+<h3 id="using-predicate-logic-6">Using Predicate Logic</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20A%2CB%2C%20a%2Cb%2C%20%20%28%28a%2Cb%29%20%5Cin%20A%20%5Ctimes%20B%29%20%5Cleftrightarrow%20%28a%20%5Cin%20A%20%5Cland%20b%20%5Cin%20B%29"
+alt="\forall A,B, a,b,  ((a,b) \in A \times B) \leftrightarrow (a \in A \land b \in B)"
+title="\forall A,B, a,b,  ((a,b) \in A \times B) \leftrightarrow (a \in A \land b \in B)"
+class="math inline" /></p>
+</blockquote>
+</div>
+<div id="powerset" class="slide section level2">
+<h1>Powerset</h1>
+<p><img src="https://i.imgur.com/THuABsa.png" width="300"/></p>
+<p>The powerset of a set <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />, denoted <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathcal%7BP%7D%28A%29"
+alt="\mathcal{P}(A)" title="\mathcal{P}(A)" class="math inline" /> is
+the set of all subsets of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /></p>
+<h3 id="using-set-notation-6">Using Set Notation</h3>
+<blockquote>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathcal%7BP%7D%28A%29%20%3D%20%5C%7B%20S%20%20%7C%20%20S%20%5Csubseteq%20A%5C%7D"
+alt="\mathcal{P}(A) = \{ S  |  S \subseteq A\}"
+title="\mathcal{P}(A) = \{ S  |  S \subseteq A\}"
+class="math inline" /></p>
+</blockquote>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7C%5Cmathcal%7BP%7D%28A%29%7C%20%3D%202%5E%7B%7CA%7C%7D"
+alt="|\mathcal{P}(A)| = 2^{|A|}" title="|\mathcal{P}(A)| = 2^{|A|}"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="next" class="slide section level2">
+<h1>Next</h1>
+<p>There’s a lesson on Gradescope!</p>
+</div>
+</body>
+</html>

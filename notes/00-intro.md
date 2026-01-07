@@ -1,6 +1,6 @@
 % Course Introduction
 % Alyssa Lytle
-% August 21, 2025
+% January 8, 2026
 
 # Course Introduction: Some Context
 
@@ -34,6 +34,7 @@
 - Work through the mathematical representations used to develop modern computers
 
 - Develop more advanced language to describe problems and solutions (algorithms)
+
 
 ## Resources
 
