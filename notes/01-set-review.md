@@ -3,6 +3,7 @@
 % January 8, 2026
 
 <!-- pandoc -t slidy -s notes/01-set-review.md -o slides/01-sets.html --webtex -->
+<!-- pandoc notes/01-set-review.md -o pdfs/01-sets.pdf --webtex  -->
 
 
 # Review: Set Notation and Operations

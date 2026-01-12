@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2026-01-08" />
+  <title>Proofs</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Proofs</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">January 8, 2026</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/02-proofs.md -o slides/02-proofs.html --webtex -->
+<!-- pandoc notes/02-proofs.md -o pdfs/01-proofs.pdf --webtex  -->
+<!-- pandoc notes/02-proofs.md -o pdfs/01-proofs.tex  -->
+</div>
+<div id="proofs" class="slide section level2">
+<h1>Proofs</h1>
+<ul>
+<li>Proofs are useful because they let you say something about the tools
+you’re using and building!</li>
+<li>In the real world, this is useful because it helps you explain your
+work and really convince people of your contribution.</li>
+<li>Proofs are also helpful because they force you to write down your
+thoughts. In writing down your thoughts, you might find out that your
+thinking is flawed or you’re making assumptions where you
+shouldn’t.<br />
+</li>
+<li>Examples of some things that you might prove:
+<ul>
+<li>This cryptography scheme is secure.</li>
+<li>This new algorithm is the fastest out there.</li>
+<li>This network will lose less than <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20.001%20%5C%25"
+alt=".001 \%" title=".001 \%" class="math inline" /> of the messages
+sent over it.</li>
+<li>This new robot won’t become sentient and kill you.</li>
+</ul></li>
+</ul>
+</div>
+<div id="what-a-proof-looks-like" class="slide section level2">
+<h1>What a proof looks like</h1>
+<ul>
+<li>A good proof is like good code, clear and easy to follow!</li>
+<li>When we were proving our logical equivalences, we always stated what
+equivalence we were using to get from one line to the next. You can
+think of this as something similar to commenting your code. You want the
+next person to read it to be able to follow your train of thought.</li>
+<li>We’re going to write our proofs in this class in a specific way. As
+you advance in Computer Science or Math, you will find that you don’t
+need to be this structured when writing proofs. You can think of this
+method as your “training wheels”. The benefit of it is that it helps you
+practice writing down your reasoning in a linear way, and it helps you
+remember to justify every statement you make.</li>
+</ul>
+</div>
+<div id="what-a-proof-looks-like-1" class="slide section level2">
+<h1>What a proof looks like</h1>
+<p>The two column format looks like this:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%26%20%5Ctextrm%7BColumn%201%7D%20%26%20%5Ctextrm%7BColumn%202%7D%20%5C%5C%0A%20%5Chline%0A%20%20%20%201.%20%26%20%5Ctextrm%7BYour%20conclusion%7D%20%26%20%5Ctextrm%7BHow%20you%20came%20to%20that%20conclusion%7D%20%20%5C%5C%0A%20%20%20%20%202.%20%26%20%5Cldots%5C%5C%0A%20%20%20%20%203.%20%26%20%5Cldots%5C%5C%0A%20%20%20%20%20%5Cvdots%20%5C%5C%0A%20%20%20%20%20%20%5Csquare%0A%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+ &amp; \textrm{Column 1} &amp; \textrm{Column 2} \\
+ \hline
+    1. &amp; \textrm{Your conclusion} &amp; \textrm{How you came to that conclusion}  \\
+     2. &amp; \ldots\\
+     3. &amp; \ldots\\
+     \vdots \\
+      \square
+ \end{array}" title="\begin{array}{l l l}
+ &amp; \textrm{Column 1} &amp; \textrm{Column 2} \\
+ \hline
+    1. &amp; \textrm{Your conclusion} &amp; \textrm{How you came to that conclusion}  \\
+     2. &amp; \ldots\\
+     3. &amp; \ldots\\
+     \vdots \\
+      \square
+ \end{array}" class="math inline" /></p>
+</div>
+<div id="finding-p-and-q" class="slide section level2">
+<h1>Finding P and Q</h1>
+<h3 id="example">Example</h3>
+<ul>
+<li>“If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even.”</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%3A" alt="P:"
+title="P:" class="math inline" /> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%3A" alt="Q:"
+title="Q:" class="math inline" /> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even</li>
+</ul>
+</div>
+<div id="finding-p-and-q-1" class="slide section level2">
+<h1>Finding P and Q</h1>
+<h3 id="example-1">Example</h3>
+<ul>
+<li>“There are infinitely many primes.”</li>
+<li>This can be restated as “For all <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="a \in \mathbb{Z}" title="a \in \mathbb{Z}" class="math inline" />,
+if <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is prime, then there exists a prime
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="b \in \mathbb{Z}" title="b \in \mathbb{Z}" class="math inline" />
+such that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b%3Ea"
+alt="b&gt;a" title="b&gt;a" class="math inline" />.’’<br />
+</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%3A" alt="P:"
+title="P:" class="math inline" /> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="a \in \mathbb{Z}" title="a \in \mathbb{Z}" class="math inline" />
+is prime</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%3A" alt="Q:"
+title="Q:" class="math inline" /> There exists <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="b \in \mathbb{Z}" title="b \in \mathbb{Z}" class="math inline" />
+such that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b%3Ea"
+alt="b&gt;a" title="b&gt;a" class="math inline" /></li>
+</ul>
+</div>
+<div id="finding-p-and-q-2" class="slide section level2">
+<h1>Finding P and Q</h1>
+<h3 id="example-2">Example</h3>
+<ul>
+<li>“<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
+alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
+title="x-1 &lt; \left \lfloor{x}\right \rfloor"
+class="math inline" />”</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%3A" alt="P:"
+title="P:" class="math inline" /> Everything you know about math is
+true</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%3A" alt="Q:"
+title="Q:" class="math inline" /> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
+alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
+title="x-1 &lt; \left \lfloor{x}\right \rfloor"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="rewrites" class="slide section level2">
+<h1>Rewrites</h1>
+<p>Here are some common rewrites you might see when constructing your
+proofs:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> is an even integer converts to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%202t"
+alt="n = 2t" title="n = 2t" class="math inline" /> for some <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> is an odd integer converts to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%202t%20%2B%201"
+alt="n = 2t + 1" title="n = 2t + 1" class="math inline" /> for some <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> is a rational number converts to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%20%5Cfrac%7Ba%7D%7Bb%7D"
+alt="n = \frac{a}{b}" title="n = \frac{a}{b}" class="math inline" />
+where <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
+title="b" class="math inline" /> are integers</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> divides <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20m" alt="m"
+title="m" class="math inline" /> converts to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20m%20%3D%20nt"
+alt="m = nt" title="m = nt" class="math inline" /> for some integer <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> is a square converts to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%20t%5E2"
+alt="n = t^2" title="n = t^2" class="math inline" /> for some integer
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" />.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%20a%20%5Cbmod%20b"
+alt="n = a \bmod b" title="n = a \bmod b" class="math inline" />
+converts to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%20bt%20%2B%20a"
+alt="n = bt + a" title="n = bt + a" class="math inline" /> for some
+integer <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" />.</li>
+</ul>
+</div>
+<div id="types-of-proofs---direct" class="slide section level2">
+<h1>Types of Proofs - Direct</h1>
+<p>The first type of proof we will discuss is called a <strong>direct
+proof</strong>. Basically, we are trying to to prove <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
+alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />
+by starting at <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> and getting to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" />.</p>
+<p>For example, say we want to prove the following: “If <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even”.</p>
+<p>Then <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> is “<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even” and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" /> is “<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even”</p>
+</div>
+<div id="types-of-proofs---direct-1" class="slide section level2">
+<h1>Types of Proofs - Direct</h1>
+<p>The first type of proof we will discuss is called a <strong>direct
+proof</strong>. Basically, we are trying to to prove <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
+alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />
+by starting at <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> and getting to <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" />.</p>
+<p>For example, say we want to prove the following: “If <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even”.</p>
+<p>Then <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> is “<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even” and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" /> is “<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even”</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%20%201.%20%26%20x%20%5Ctextrm%7B%20is%20even%7D%20%26%20%5Ctextrm%7BGiven%20%28In%20other%20words%2C%20this%20is%20our%20%7D%20p%20%5Ctextrm%7B%29%7D%5C%5C%0A%20%20%20%20%20%202.%20%26%20x%20%3D%202k%2C%20%7B%7D%20k%20%5Cin%20%5Cmathbb%7BZ%7D%20%26%20%5Ctextrm%7BDefinition%20of%20Even%20Number%7D%5C%5C%0A%20%20%20%20%20%203.%20%26%20x%5E2%20%3D%20%282k%29%5E2%20%26%20%5Ctextrm%7BSquared%20both%20sides%20of%20Line%202%7D%20%5C%5C%0A%20%20%20%20%20%204.%20%26%20x%5E2%20%3D%204k%5E2%20%26%20%5Ctextrm%7BSimplified%20Line%203%7D%20%5C%5C%0A%20%20%20%20%20%205.%20%26%20x%5E2%20%3D%202%282k%5E2%29%20%26%20%5Ctextrm%7BRewrote%20Line%204%7D%20%5C%5C%0A%20%20%20%20%20%206.%20%26%20x%5E2%20%5Ctextrm%7B%20is%20even%7D%20%26%20%5Ctextrm%7BDefinition%20of%20Even%20Number%20%7D%20%5Csquare%0A%20%20%20%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+      1. &amp; x \textrm{ is even} &amp; \textrm{Given (In other words, this is our } p \textrm{)}\\
+      2. &amp; x = 2k, {} k \in \mathbb{Z} &amp; \textrm{Definition of Even Number}\\
+      3. &amp; x^2 = (2k)^2 &amp; \textrm{Squared both sides of Line 2} \\
+      4. &amp; x^2 = 4k^2 &amp; \textrm{Simplified Line 3} \\
+      5. &amp; x^2 = 2(2k^2) &amp; \textrm{Rewrote Line 4} \\
+      6. &amp; x^2 \textrm{ is even} &amp; \textrm{Definition of Even Number } \square
+    \end{array}" title="\begin{array}{l l l}
+      1. &amp; x \textrm{ is even} &amp; \textrm{Given (In other words, this is our } p \textrm{)}\\
+      2. &amp; x = 2k, {} k \in \mathbb{Z} &amp; \textrm{Definition of Even Number}\\
+      3. &amp; x^2 = (2k)^2 &amp; \textrm{Squared both sides of Line 2} \\
+      4. &amp; x^2 = 4k^2 &amp; \textrm{Simplified Line 3} \\
+      5. &amp; x^2 = 2(2k^2) &amp; \textrm{Rewrote Line 4} \\
+      6. &amp; x^2 \textrm{ is even} &amp; \textrm{Definition of Even Number } \square
+    \end{array}" class="math inline" /></p>
+<p><strong>Note that at every step you’re basically saying, “Therefore…”
+this is where your implication <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Crightarrow"
+alt="\rightarrow" title="\rightarrow" class="math inline" /> is coming
+in.</strong></p>
+</div>
+<div id="example-proof" class="slide section level2">
+<h1>Example Proof</h1>
+<p>We want to show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
+alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
+title="x-1 &lt; \left \lfloor{x}\right \rfloor"
+class="math inline" /></p>
+</div>
+<div id="example-proof-1" class="slide section level2">
+<h1>Example Proof</h1>
+<p>We want to show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
+alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
+title="x-1 &lt; \left \lfloor{x}\right \rfloor"
+class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%201.%20%26%20x%20%3D%20y%20%2B%20d%2C%20y%20%5Cin%20%5Cmathbb%7BZ%7D%2C%20d%20%5Cin%20%5B0%2C1%29%20%26%20%5Ctextrm%7BRewrite%20of%20x%7D%20%20%5C%5C%0A%20%20%20%20%202.%20%26%20d%20%3C%201%20%26%20%5Ctextrm%7BDefined%20in%20Line%201%7D%5C%5C%0A%20%20%20%20%203.%20%26%20d%20-%201%20%3C%200%20%26%20%5Ctextrm%7BSubtracted%20%7D1%20%5Ctextrm%7B%20from%20both%20sides%20of%20Line%202%7D%5C%5C%0A%20%20%20%20%204.%20%26%20y%20%2B%20d%20-%201%20%3C%20y%20%26%20%5Ctextrm%7BAdded%20%7D%20y%20%5Ctextrm%7B%20to%20both%20sides%7D%5C%5C%0A%20%20%20%20%205.%20%26%20x%20-%201%20%3C%20y%20%26%20%5Ctextrm%7BPlugged%20in%20Line%201%20to%20Line%204.%7D%20%5C%5C%0A%20%20%20%20%206.%20%26%20y%20%3D%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor%20%26%20%5Ctextrm%7BApplied%20definition%20of%20floor%20to%20line%201.%7D%20%5C%5C%0A%20%20%20%20%207.%20%26%20x%20-%201%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor%20%26%20%5Ctextrm%7BPlugged%20line%206%20into%20line%205.%20%7D%20%5Csquare%0A%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+     1. &amp; x = y + d, y \in \mathbb{Z}, d \in [0,1) &amp; \textrm{Rewrite of x}  \\
+     2. &amp; d &lt; 1 &amp; \textrm{Defined in Line 1}\\
+     3. &amp; d - 1 &lt; 0 &amp; \textrm{Subtracted }1 \textrm{ from both sides of Line 2}\\
+     4. &amp; y + d - 1 &lt; y &amp; \textrm{Added } y \textrm{ to both sides}\\
+     5. &amp; x - 1 &lt; y &amp; \textrm{Plugged in Line 1 to Line 4.} \\
+     6. &amp; y = \left \lfloor{x}\right \rfloor &amp; \textrm{Applied definition of floor to line 1.} \\
+     7. &amp; x - 1 &lt; \left \lfloor{x}\right \rfloor &amp; \textrm{Plugged line 6 into line 5. } \square
+ \end{array}" title="\begin{array}{l l l}
+     1. &amp; x = y + d, y \in \mathbb{Z}, d \in [0,1) &amp; \textrm{Rewrite of x}  \\
+     2. &amp; d &lt; 1 &amp; \textrm{Defined in Line 1}\\
+     3. &amp; d - 1 &lt; 0 &amp; \textrm{Subtracted }1 \textrm{ from both sides of Line 2}\\
+     4. &amp; y + d - 1 &lt; y &amp; \textrm{Added } y \textrm{ to both sides}\\
+     5. &amp; x - 1 &lt; y &amp; \textrm{Plugged in Line 1 to Line 4.} \\
+     6. &amp; y = \left \lfloor{x}\right \rfloor &amp; \textrm{Applied definition of floor to line 1.} \\
+     7. &amp; x - 1 &lt; \left \lfloor{x}\right \rfloor &amp; \textrm{Plugged line 6 into line 5. } \square
+ \end{array}" class="math inline" /></p>
+<p><strong>Note that this is still a direct proof (<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
+alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />)
+but <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> is never directly stated. If <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> is never directly stated, you can just
+think of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" /> as your set of knowledge of the
+world.</strong></p>
+</div>
+<div id="example-proof-2" class="slide section level2">
+<h1>Example Proof 2</h1>
+<p>Another example of this is when we do our logical equivalences.</p>
+<p>For example, you’ve previously proved <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%5Cequiv%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
+alt="\neg a \lor \neg(b \land \neg c) \equiv a  \rightarrow (b  \rightarrow c)"
+title="\neg a \lor \neg(b \land \neg c) \equiv a  \rightarrow (b  \rightarrow c)"
+class="math inline" />.</p>
+<p>Since you are showing <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%5Cequiv%20q"
+alt="p \equiv q" title="p \equiv q" class="math inline" />, you actually
+are showing <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Cleftrightarrow%20q"
+alt="p  \leftrightarrow q" title="p  \leftrightarrow q"
+class="math inline" /> rather than just <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
+alt="p  \rightarrow q" title="p  \rightarrow q"
+class="math inline" />.</p>
+<p>We could do this two ways. We could prove both <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
+alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />
+and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q%20%20%5Crightarrow%20p"
+alt="q  \rightarrow p" title="q  \rightarrow p" class="math inline" />,
+or we can consolidate it into one proof by using <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cleftrightarrow"
+alt="\leftrightarrow" title="\leftrightarrow" class="math inline" /> at
+any step.</p>
+<p>We start at <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" />: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29"
+alt="\neg a \lor \neg(b \land \neg c)"
+title="\neg a \lor \neg(b \land \neg c)" class="math inline" /> and use
+our equivalences to get to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" />: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
+alt="a  \rightarrow (b  \rightarrow c)"
+title="a  \rightarrow (b  \rightarrow c)" class="math inline" />.</p>
+</div>
+<div id="example-proof-2-1" class="slide section level2">
+<h1>Example Proof 2</h1>
+<p>We start at <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
+title="p" class="math inline" />: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29"
+alt="\neg a \lor \neg(b \land \neg c)"
+title="\neg a \lor \neg(b \land \neg c)" class="math inline" /> and use
+our equivalences to get to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
+title="q" class="math inline" />: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
+alt="a  \rightarrow (b  \rightarrow c)"
+title="a  \rightarrow (b  \rightarrow c)" class="math inline" />.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%201.%20%26%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%20%26%20%5Ctextrm%7BGiven%7D%20%5C%5C%0A%20%20%202.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%26%20%5Ctextrm%7BImplication%20Definition%7D%5C%5C%0A%20%20%203.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%28%5Cneg%20b%20%5Clor%20c%29%20%26%20%5Ctextrm%7BDeMorgan%27s%7D%5C%5C%0A%20%20%204.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29%20%26%20%5Ctextrm%7BImplication%20Definition%20%7D%20%5Csquare%20%5C%5C%0A%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+   1. &amp; \neg a \lor \neg(b \land \neg c)  &amp; \textrm{Given} \\
+   2. &amp; \equiv a  \rightarrow \neg(b \land \neg c) &amp; \textrm{Implication Definition}\\
+   3. &amp; \equiv a  \rightarrow (\neg b \lor c) &amp; \textrm{DeMorgan&#39;s}\\
+   4. &amp; \equiv a  \rightarrow (b  \rightarrow c) &amp; \textrm{Implication Definition } \square \\
+\end{array}" title="\begin{array}{l l l}
+   1. &amp; \neg a \lor \neg(b \land \neg c)  &amp; \textrm{Given} \\
+   2. &amp; \equiv a  \rightarrow \neg(b \land \neg c) &amp; \textrm{Implication Definition}\\
+   3. &amp; \equiv a  \rightarrow (\neg b \lor c) &amp; \textrm{DeMorgan&#39;s}\\
+   4. &amp; \equiv a  \rightarrow (b  \rightarrow c) &amp; \textrm{Implication Definition } \square \\
+\end{array}" class="math inline" /></p>
+</div>
+</body>
+</html>
