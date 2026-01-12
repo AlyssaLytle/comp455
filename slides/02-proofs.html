@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Alyssa Lytle" />
-  <meta name="date" content="2026-01-08" />
-  <title>Proofs</title>
+  <meta name="date" content="2026-01-13" />
+  <title>Proofs Review</title>
   <style type="text/css">
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,11 +36,11 @@
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Proofs</h1>
+  <h1 class="title">Proofs Review</h1>
   <p class="author">
 Alyssa Lytle
   </p>
-  <p class="date">January 8, 2026</p>
+  <p class="date">January 13, 2026</p>
 </div>
 <div class="slide section level2">
 
@@ -76,16 +76,12 @@ sent over it.</li>
 <h1>What a proof looks like</h1>
 <ul>
 <li>A good proof is like good code, clear and easy to follow!</li>
-<li>When we were proving our logical equivalences, we always stated what
-equivalence we were using to get from one line to the next. You can
-think of this as something similar to commenting your code. You want the
+<li>Think of narrating your proof like commenting your code–you want the
 next person to read it to be able to follow your train of thought.</li>
-<li>We’re going to write our proofs in this class in a specific way. As
-you advance in Computer Science or Math, you will find that you don’t
-need to be this structured when writing proofs. You can think of this
-method as your “training wheels”. The benefit of it is that it helps you
-practice writing down your reasoning in a linear way, and it helps you
-remember to justify every statement you make.</li>
+<li>I’m going to introduce a specific format for writing proofs. <em>You
+do not have to use this format for this course</em>, but it can be
+useful to make sure you are fully documenting and explaining your
+proofs. It also gives a linear structure to your argument.</li>
 </ul>
 </div>
 <div id="what-a-proof-looks-like-1" class="slide section level2">
@@ -256,6 +252,20 @@ src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
 title="t" class="math inline" />.</li>
 </ul>
 </div>
+<div id="main-types-of-proofs" class="slide section level2">
+<h1>Main Types of Proofs</h1>
+<p>The four typical ways we show <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cimplies%20Q"
+alt="P \implies Q" title="P \implies Q" class="math inline" /> are the
+following:</p>
+<ul>
+<li><p>Direct Proof</p></li>
+<li><p>Proof By Contradiction</p></li>
+<li><p>Proof By Contrapositive</p></li>
+<li><p>Proof By Counterexample</p></li>
+<li><p>Proof By Induction</p></li>
+</ul>
+</div>
 <div id="types-of-proofs---direct" class="slide section level2">
 <h1>Types of Proofs - Direct</h1>
 <p>The first type of proof we will discuss is called a <strong>direct
@@ -339,128 +349,727 @@ this is where your implication <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Crightarrow"
 alt="\rightarrow" title="\rightarrow" class="math inline" /> is coming
 in.</strong></p>
+<!-- ## Example Proof
+
+
+We want to show $x-1 < \left \lfloor{x}\right \rfloor$
+
+
+
+
+
+
+## Example Proof
+
+
+We want to show $x-1 < \left \lfloor{x}\right \rfloor$
+
+ $\begin{array}{l l l}
+     1. & x = y + d, y \in \mathbb{Z}, d \in [0,1) & \textrm{Rewrite of x}  \\
+     2. & d < 1 & \textrm{Defined in Line 1}\\
+     3. & d - 1 < 0 & \textrm{Subtracted }1 \textrm{ from both sides of Line 2}\\
+     4. & y + d - 1 < y & \textrm{Added } y \textrm{ to both sides}\\
+     5. & x - 1 < y & \textrm{Plugged in Line 1 to Line 4.} \\
+     6. & y = \left \lfloor{x}\right \rfloor & \textrm{Applied definition of floor to line 1.} \\
+     7. & x - 1 < \left \lfloor{x}\right \rfloor & \textrm{Plugged line 6 into line 5. } \square 
+ \end{array}$  
+ 
+ **Note that this is still a direct proof ($p  \rightarrow q$) but $p$ is never directly stated. If $p$ is never directly stated, you can just think of $p$ as your set of knowledge of the world.** -->
 </div>
-<div id="example-proof" class="slide section level2">
-<h1>Example Proof</h1>
-<p>We want to show <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
-alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
-title="x-1 &lt; \left \lfloor{x}\right \rfloor"
-class="math inline" /></p>
+<div id="proof-by-contradiction" class="slide section level2">
+<h1>Proof By Contradiction</h1>
+<ul>
+<li><p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cimplies%20Q%20%5Cequiv%20%5Cneg%28P%20%5Cland%20%5Cneg%20Q%29"
+alt="P \implies Q \equiv \neg(P \land \neg Q)"
+title="P \implies Q \equiv \neg(P \land \neg Q)"
+class="math inline" />.</p></li>
+<li><p>This leads to why we do proofs by contradiction.</p></li>
+<li><p>Instead of proving <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cimplies%20Q"
+alt="P \implies Q" title="P \implies Q" class="math inline" />, we prove
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cland%20%5Cneg%20Q"
+alt="P \land \neg Q" title="P \land \neg Q" class="math inline" /> does
+not hold.</p></li>
+<li><p>In other words, we start with <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cland%20%5Cneg%20Q"
+alt="P \land \neg Q" title="P \land \neg Q" class="math inline" /> and
+get to an impossible state <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbot"
+alt="\bot" title="\bot" class="math inline" />.</p></li>
+</ul>
+<h3 id="example-3">Example</h3>
+<ul>
+<li>A famous proof is the proof that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csqrt%7B2%7D"
+alt="\sqrt{2}" title="\sqrt{2}" class="math inline" /> is
+irrational.</li>
+</ul>
 </div>
-<div id="example-proof-1" class="slide section level2">
-<h1>Example Proof</h1>
-<p>We want to show <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
-alt="x-1 &lt; \left \lfloor{x}\right \rfloor"
-title="x-1 &lt; \left \lfloor{x}\right \rfloor"
+<div id="proof-by-contradiction---example" class="slide section level2">
+<h1>Proof By Contradiction - Example</h1>
+<ul>
+<li>We want to prove: If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is odd, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is odd.</li>
+</ul>
+<!-- ## Contradiction Example:
+
+For this proof we are going to use the following statement: 
+
+**Squared Evens Rule:** If $x^2$ is even, then $x$ is even.
+
+Additionally, recall the definition of a rational number:
+
+A rational number can be written as $\frac{a}{b}$ such that $a, b \in \mathbb{Z}$ and $GCD(a,b)=1$.
+
+## Contradiction Example
+
+\begin{equation*}
+\begin{array}{l l l}
+   1. &  \sqrt{2} \textrm{ is rational}  &  \textrm{Assumption} \\
+   2.  & \sqrt{2} = \frac{a}{b} \land a,b \in \mathbb{Z} \land GCD(a,b) = 1 & \textrm{Definition of Rational Numbers} \\
+   3. & \sqrt{2} b = a & \textrm{Took left side of 2. and multiplied both sides by } b \\
+   4. & 2 b^2 = a^2 & \textrm{Squared both sides} \\
+   5. & a^2 \textrm{ is even} & \textrm{Definition of even number} \\
+   6. & a \textrm{ is even} & \textrm{Squared Evens Rule}\\
+   7. & a = 2k \land k \in \mathbb{Z}  & \textrm{Definition of even number}\\
+   8. & 2b^2 = (2k)^2 & \textrm{Plugged in 7. to 4.}\\
+   9. & 2b^2 = 4k^2 & \textrm{Simplified}\\
+   10. & b^2 = 2k^2 & \textrm{Divided both sides by } 2 \\
+   11. & b^2 \textrm{ is even} & \textrm{Definition of even number} \\
+   12. & b \textrm{ is even} & \textrm{Squared Evens Rule}\\
+   13. & b= 2m \land m \in \mathbb{Z}  & \textrm{Definition of even number}\\
+   14. & 2 \textrm{ is a factor of both } a \textrm{ and } b & \textrm{Lines 7. and 13.} \\
+   15. & \bot & \textrm{Lines 2. and 14. contradict each other } \square
+\end{array}
+\end{equation*} -->
+</div>
+<div id="proof-by-contrapositive" class="slide section level2">
+<h1>Proof by Contrapositive</h1>
+<p>For a proof of contrapositive, you’re going to use the equality we
+proved last class:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cimplies%20Q%20%5Cequiv%20%5Cneg%20Q%20%5Cimplies%20%5Cneg%20P"
+alt="P \implies Q \equiv \neg Q \implies \neg P"
+title="P \implies Q \equiv \neg Q \implies \neg P"
+class="math inline" />.</p>
+<p>In other words, instead of proving <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%20%5Cimplies%20Q"
+alt="P \implies Q" title="P \implies Q" class="math inline" />, we are
+going to assume <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20Q"
+alt="\neg Q" title="\neg Q" class="math inline" /> and show that it
+leads to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20P"
+alt="\neg P" title="\neg P" class="math inline" />.</p>
+<h3 id="example-4">Example</h3>
+<ul>
+<li>We want to prove: If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is odd, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is odd.</li>
+</ul>
+</div>
+<div id="proof-by-counterexample" class="slide section level2">
+<h1>Proof by Counterexample</h1>
+<p>If you want to disprove something, the easiest way is usually by
+counter example.</p>
+<p>You don’t have to do this in the typical two column format as long as
+you make your reasoning clear.</p>
+<h3 id="example-5">Example</h3>
+<ul>
+<li>Say I ask you to prove the following is false: If <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is odd.</li>
+</ul>
+</div>
+<div id="other-types-of-proofs" class="slide section level2">
+<h1>Other Types of Proofs</h1>
+<p>You may see some other types of proofs that follow from the types of
+proofs we’ve already discussed.</p>
+<ul>
+<li>Forall
+<ul>
+<li>Exhaustive
+<ul>
+<li>Proof by Cases</li>
+</ul></li>
+</ul></li>
+<li>Existence
+<ul>
+<li>Proof by Construction</li>
+</ul></li>
+</ul>
+<!-- ## Biconditional Proofs
+
+- For our proofs, we are basically writing a $\implies$ to get from line to line.
+
+- Sometimes, instead of proving $P \implies Q$, you'll want to prove $P \iff Q$. 
+
+- The benefit of this type of proof is that you can start from $P$ or $Q$ to get to the other side. This is because $P \iff Q$  is the same as saying $Q \iff P$. 
+
+- The added requirement is that you have to use $\iff$ rules to get from line to line. Thankfully, most definitions are actually defined using $\iff$. -->
+<!-- ## Biconditional Proofs
+
+
+### Example
+We want to prove $x \in \overline{A \cap B} \iff x \in \bar{A} \cup \bar{B}$
+
+
+
+
+## Logical Equivalence
+Proofs of logical equivalence are of the form $P \iff Q$. 
+
+Why? Remember that if $P \equiv Q$, then $P \iff Q$ is always true!
+
+
+### Example
+Say we want to prove $a \implies b \equiv \neg b \implies \neg a$.
+
+So we can say $P: a \implies b$ and $Q: \neg b \implies \neg a$.
+
+First, let's do this proof starting at $P$ to get to $Q$.
+ 
+<!-- \begin{equation*}
+\begin{array}{l l l}
+    1. & a \implies b & \textrm{Given } (P) \\
+    2. & \equiv \neg a \lor b & \textrm{Implication Definition} \\
+    3. & \equiv b \lor \neg a & \textrm{Commutativity} \\
+    4. & \equiv \neg (\neg b) \lor \neg a & \textrm{Double Negation} \\
+    5. & \equiv \neg b \implies \neg a & \textrm{Implication Definition }  \square ~ (Q)~ \\ 
+\end{array}
+\end{equation*} -->
+<!-- ## Logical Equivalence Cont.
+
+As previously stated, we can also start at $Q$ to get to $P$.  -->
+<!-- \begin{equation*}
+\begin{array}{l l l}
+    1. & \equiv \neg b \implies \neg a & \textrm{Given } (Q) \\
+    2. & \equiv \neg \neg b \lor \neg a & \textrm{Implication Definition}\\
+    3. & \equiv b \lor \neg a & \textrm{Double Negation} \\ 
+    4. & \equiv \neg a \lor b & \textrm{Commutativity} \\
+    5. & \equiv a \implies b & \textrm{Implication Definition } \square ~ (P)    \\ 
+\end{array}
+\end{equation*} -->
+<!-- Either of these proofs are acceptable because they are saying the same thing! Which side you want to start at is really a personal preference. -->
+</div>
+<div id="forall" class="slide section level2">
+<h1>Forall</h1>
+<p>You may want to prove statements such as “<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20x%20%5Cin%20S%2C%20P%28x%29%20%5Cimplies%20Q%28x%29"
+alt="\forall x \in S, P(x) \implies Q(x)"
+title="\forall x \in S, P(x) \implies Q(x)" class="math inline" />.”</p>
+<p>As previously discussed, to prove a “for all” statement, you want to
+look at every element in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S" alt="S"
+title="S" class="math inline" /> and show that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%28x%29%20%5Cimplies%20Q%28x%29"
+alt="P(x) \implies Q(x)" title="P(x) \implies Q(x)"
+class="math inline" /> holds.</p>
+<p>You can often do this with a direct proof. All of the things we’ve
+directly proved so far are actually “for all” proofs.</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20x%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="\forall x \in \mathbb{Z}" title="\forall x \in \mathbb{Z}"
+class="math inline" />, If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is even, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E2"
+alt="x^2" title="x^2" class="math inline" /> is even</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20x%20%5Cin%20%5Cmathbb%7BZ%7D%2C%20%7B%7D%20x-1%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor"
+alt="\forall x \in \mathbb{Z}, {} x-1 &lt; \left \lfloor{x}\right \rfloor"
+title="\forall x \in \mathbb{Z}, {} x-1 &lt; \left \lfloor{x}\right \rfloor"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20a%2Cb%2Cc%20%5Cin%20%5C%7B%5Ctexttt%7BTrue%7D%2C%20%5Ctexttt%7BFalse%7D%5C%7D%2C%20%7B%7D%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%5Cequiv%20a%20%5Cimplies%20%28b%20%5Cimplies%20c%29"
+alt="\forall a,b,c \in \{\texttt{True}, \texttt{False}\}, {} \neg a \lor \neg(b \land \neg c) \equiv a \implies (b \implies c)"
+title="\forall a,b,c \in \{\texttt{True}, \texttt{False}\}, {} \neg a \lor \neg(b \land \neg c) \equiv a \implies (b \implies c)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20a%2Cb%2Cc%20%5Cin%20%5Cmathbb%7BZ%7D"
+alt="\forall a,b,c \in \mathbb{Z}" title="\forall a,b,c \in \mathbb{Z}"
+class="math inline" />, if <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cmid%20b"
+alt="a \mid b" title="a \mid b" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b%20%5Cmid%20c"
+alt="b \mid c" title="b \mid c" class="math inline" />, then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%5Cmid%20c"
+alt="a \mid c" title="a \mid c" class="math inline" /></li>
+</ul>
+</div>
+<div id="forall-exhaustive" class="slide section level2">
+<h1>Forall, Exhaustive</h1>
+<p>However, we can also prove “for all” statements by exhaustively
+looking at every element in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S" alt="S"
+title="S" class="math inline" /> and checking if <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%28x%29"
+alt="P(x)" title="P(x)" class="math inline" /> holds.</p>
+<p>Fittingly, this is called a <strong>Proof by Exhaustion</strong>.</p>
+<p>A good example is the set problem you’ve already seen:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%3D%20%5C%7B"
+alt="F = \{" title="F = \{" class="math inline" />Erik, José, Nicoleta,
+Aksana<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V%20%3D%20%5C%7B"
+alt="V = \{" title="V = \{" class="math inline" />Aksana, Erik<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /> is the set of your friends
+who are vegetarian</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%3D%20%5C%7B"
+alt="N = \{" title="N = \{" class="math inline" />Aksana<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /> is the set of your friends
+who are vegan</li>
+<li>We want to prove: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20x%20%5Cin%20F%2C%7B%7D%20x%20%5Cin%20N%20%5Cimplies%20x%20%5Cin%20V"
+alt="\forall x \in F,{} x \in N \implies x \in V"
+title="\forall x \in F,{} x \in N \implies x \in V"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="proof-by-cases" class="slide section level2">
+<h1>Proof by Cases</h1>
+<p>A <strong>Proof by Cases</strong> is a kind of proof by exhaustion.
+You are breaking the set you are proving something about into smaller
+sets.</p>
+<p>A good example is when we proved the definition of absolute
+value.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7Cx%7C%20%3D%20sgn%28x%29%20%5Ccdot%20x"
+alt="|x| = sgn(x) \cdot x" title="|x| = sgn(x) \cdot x"
 class="math inline" /></p>
 <p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%201.%20%26%20x%20%3D%20y%20%2B%20d%2C%20y%20%5Cin%20%5Cmathbb%7BZ%7D%2C%20d%20%5Cin%20%5B0%2C1%29%20%26%20%5Ctextrm%7BRewrite%20of%20x%7D%20%20%5C%5C%0A%20%20%20%20%202.%20%26%20d%20%3C%201%20%26%20%5Ctextrm%7BDefined%20in%20Line%201%7D%5C%5C%0A%20%20%20%20%203.%20%26%20d%20-%201%20%3C%200%20%26%20%5Ctextrm%7BSubtracted%20%7D1%20%5Ctextrm%7B%20from%20both%20sides%20of%20Line%202%7D%5C%5C%0A%20%20%20%20%204.%20%26%20y%20%2B%20d%20-%201%20%3C%20y%20%26%20%5Ctextrm%7BAdded%20%7D%20y%20%5Ctextrm%7B%20to%20both%20sides%7D%5C%5C%0A%20%20%20%20%205.%20%26%20x%20-%201%20%3C%20y%20%26%20%5Ctextrm%7BPlugged%20in%20Line%201%20to%20Line%204.%7D%20%5C%5C%0A%20%20%20%20%206.%20%26%20y%20%3D%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor%20%26%20%5Ctextrm%7BApplied%20definition%20of%20floor%20to%20line%201.%7D%20%5C%5C%0A%20%20%20%20%207.%20%26%20x%20-%201%20%3C%20%5Cleft%20%5Clfloor%7Bx%7D%5Cright%20%5Crfloor%20%26%20%5Ctextrm%7BPlugged%20line%206%20into%20line%205.%20%7D%20%5Csquare%0A%20%5Cend%7Barray%7D"
-alt="\begin{array}{l l l}
-     1. &amp; x = y + d, y \in \mathbb{Z}, d \in [0,1) &amp; \textrm{Rewrite of x}  \\
-     2. &amp; d &lt; 1 &amp; \textrm{Defined in Line 1}\\
-     3. &amp; d - 1 &lt; 0 &amp; \textrm{Subtracted }1 \textrm{ from both sides of Line 2}\\
-     4. &amp; y + d - 1 &lt; y &amp; \textrm{Added } y \textrm{ to both sides}\\
-     5. &amp; x - 1 &lt; y &amp; \textrm{Plugged in Line 1 to Line 4.} \\
-     6. &amp; y = \left \lfloor{x}\right \rfloor &amp; \textrm{Applied definition of floor to line 1.} \\
-     7. &amp; x - 1 &lt; \left \lfloor{x}\right \rfloor &amp; \textrm{Plugged line 6 into line 5. } \square
- \end{array}" title="\begin{array}{l l l}
-     1. &amp; x = y + d, y \in \mathbb{Z}, d \in [0,1) &amp; \textrm{Rewrite of x}  \\
-     2. &amp; d &lt; 1 &amp; \textrm{Defined in Line 1}\\
-     3. &amp; d - 1 &lt; 0 &amp; \textrm{Subtracted }1 \textrm{ from both sides of Line 2}\\
-     4. &amp; y + d - 1 &lt; y &amp; \textrm{Added } y \textrm{ to both sides}\\
-     5. &amp; x - 1 &lt; y &amp; \textrm{Plugged in Line 1 to Line 4.} \\
-     6. &amp; y = \left \lfloor{x}\right \rfloor &amp; \textrm{Applied definition of floor to line 1.} \\
-     7. &amp; x - 1 &lt; \left \lfloor{x}\right \rfloor &amp; \textrm{Plugged line 6 into line 5. } \square
- \end{array}" class="math inline" /></p>
-<p><strong>Note that this is still a direct proof (<img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
-alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />)
-but <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
-title="p" class="math inline" /> is never directly stated. If <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
-title="p" class="math inline" /> is never directly stated, you can just
-think of <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
-title="p" class="math inline" /> as your set of knowledge of the
-world.</strong></p>
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20sgn%28x%29%20%3D%20%5Cbegin%7Bcases%7D%0A%20%20%20%20-1%20%26%20x%3C0%5C%5C%0A%20%20%20%200%20%26%20x%20%3D0%5C%5C%0A%20%20%20%201%20%26%20x%3E0%0A%20%20%20%20%5Cend%7Bcases%7D"
+alt="sgn(x) = \begin{cases}
+    -1 &amp; x&lt;0\\
+    0 &amp; x =0\\
+    1 &amp; x&gt;0
+    \end{cases}" title="sgn(x) = \begin{cases}
+    -1 &amp; x&lt;0\\
+    0 &amp; x =0\\
+    1 &amp; x&gt;0
+    \end{cases}" class="math inline" /></p>
 </div>
-<div id="example-proof-2" class="slide section level2">
-<h1>Example Proof 2</h1>
-<p>Another example of this is when we do our logical equivalences.</p>
-<p>For example, you’ve previously proved <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%5Cequiv%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
-alt="\neg a \lor \neg(b \land \neg c) \equiv a  \rightarrow (b  \rightarrow c)"
-title="\neg a \lor \neg(b \land \neg c) \equiv a  \rightarrow (b  \rightarrow c)"
-class="math inline" />.</p>
-<p>Since you are showing <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%5Cequiv%20q"
-alt="p \equiv q" title="p \equiv q" class="math inline" />, you actually
-are showing <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Cleftrightarrow%20q"
-alt="p  \leftrightarrow q" title="p  \leftrightarrow q"
-class="math inline" /> rather than just <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
-alt="p  \rightarrow q" title="p  \rightarrow q"
-class="math inline" />.</p>
-<p>We could do this two ways. We could prove both <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p%20%20%5Crightarrow%20q"
-alt="p  \rightarrow q" title="p  \rightarrow q" class="math inline" />
-and <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q%20%20%5Crightarrow%20p"
-alt="q  \rightarrow p" title="q  \rightarrow p" class="math inline" />,
-or we can consolidate it into one proof by using <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cleftrightarrow"
-alt="\leftrightarrow" title="\leftrightarrow" class="math inline" /> at
-any step.</p>
-<p>We start at <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
-title="p" class="math inline" />: <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29"
-alt="\neg a \lor \neg(b \land \neg c)"
-title="\neg a \lor \neg(b \land \neg c)" class="math inline" /> and use
-our equivalences to get to <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
-title="q" class="math inline" />: <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
-alt="a  \rightarrow (b  \rightarrow c)"
-title="a  \rightarrow (b  \rightarrow c)" class="math inline" />.</p>
-</div>
-<div id="example-proof-2-1" class="slide section level2">
-<h1>Example Proof 2</h1>
-<p>We start at <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p" alt="p"
-title="p" class="math inline" />: <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29"
-alt="\neg a \lor \neg(b \land \neg c)"
-title="\neg a \lor \neg(b \land \neg c)" class="math inline" /> and use
-our equivalences to get to <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q" alt="q"
-title="q" class="math inline" />: <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29"
-alt="a  \rightarrow (b  \rightarrow c)"
-title="a  \rightarrow (b  \rightarrow c)" class="math inline" />.</p>
+<div id="proof-by-cases-1" class="slide section level2">
+<h1>Proof by Cases</h1>
+<p>A <strong>Proof by Cases</strong> is a kind of proof by exhaustion.
+You are breaking the set you are proving something about into smaller
+sets.</p>
+<p>A good example is when we proved the definition of absolute
+value.</p>
 <p><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%201.%20%26%20%5Cneg%20a%20%5Clor%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%20%26%20%5Ctextrm%7BGiven%7D%20%5C%5C%0A%20%20%202.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%5Cneg%28b%20%5Cland%20%5Cneg%20c%29%20%26%20%5Ctextrm%7BImplication%20Definition%7D%5C%5C%0A%20%20%203.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%28%5Cneg%20b%20%5Clor%20c%29%20%26%20%5Ctextrm%7BDeMorgan%27s%7D%5C%5C%0A%20%20%204.%20%26%20%5Cequiv%20a%20%20%5Crightarrow%20%28b%20%20%5Crightarrow%20c%29%20%26%20%5Ctextrm%7BImplication%20Definition%20%7D%20%5Csquare%20%5C%5C%0A%5Cend%7Barray%7D"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%7Cx%7C%20%3D%20sgn%28x%29%20%5Ccdot%20x"
+alt="|x| = sgn(x) \cdot x" title="|x| = sgn(x) \cdot x"
+class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20sgn%28x%29%20%3D%20%5Cbegin%7Bcases%7D%0A%20%20%20%20-1%20%26%20x%3C0%5C%5C%0A%20%20%20%200%20%26%20x%20%3D0%5C%5C%0A%20%20%20%201%20%26%20x%3E0%0A%20%20%20%20%5Cend%7Bcases%7D"
+alt="sgn(x) = \begin{cases}
+    -1 &amp; x&lt;0\\
+    0 &amp; x =0\\
+    1 &amp; x&gt;0
+    \end{cases}" title="sgn(x) = \begin{cases}
+    -1 &amp; x&lt;0\\
+    0 &amp; x =0\\
+    1 &amp; x&gt;0
+    \end{cases}" class="math inline" /></p>
+<p>Case 1: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%3E%200"
+alt="x &gt; 0" title="x &gt; 0" class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%20%201.%20%26%20x%20%3E%200%20%20%20%26%20%5Ctextrm%7BCase%20Assertion%7D%20%5C%5C%0A%20%20%20%20%20%202.%20%26%20sgn%28x%29%20%3D%201%20%20%26%20%5Ctextrm%7BSignum%20Def.%7D%20%5C%5C%0A%20%20%20%20%20%203.%20%26%20sgn%28x%29%20%5Ccdot%20x%20%3D%20x%20%26%20%5Ctextrm%7BMultiply%20both%20sides%20by%20%7D%20x%20%5C%5C%0A%20%20%20%20%20%204.%20%26%20%7Cx%7C%20%3D%20x%20%26%20%5Ctextrm%7BApplied%20Def.%20of%20Absolute%20Value%20to%20Line%201%7D%20%5C%5C%0A%20%20%20%20%20%205.%20%26%20sgn%28x%29%20%3D%20%7Cx%7C%20%26%20%5Ctextrm%7BCompared%20Lines%203%20and%205%7D%20%5C%5C%0A%20%20%20%20%5Cend%7Barray%7D"
 alt="\begin{array}{l l l}
-   1. &amp; \neg a \lor \neg(b \land \neg c)  &amp; \textrm{Given} \\
-   2. &amp; \equiv a  \rightarrow \neg(b \land \neg c) &amp; \textrm{Implication Definition}\\
-   3. &amp; \equiv a  \rightarrow (\neg b \lor c) &amp; \textrm{DeMorgan&#39;s}\\
-   4. &amp; \equiv a  \rightarrow (b  \rightarrow c) &amp; \textrm{Implication Definition } \square \\
-\end{array}" title="\begin{array}{l l l}
-   1. &amp; \neg a \lor \neg(b \land \neg c)  &amp; \textrm{Given} \\
-   2. &amp; \equiv a  \rightarrow \neg(b \land \neg c) &amp; \textrm{Implication Definition}\\
-   3. &amp; \equiv a  \rightarrow (\neg b \lor c) &amp; \textrm{DeMorgan&#39;s}\\
-   4. &amp; \equiv a  \rightarrow (b  \rightarrow c) &amp; \textrm{Implication Definition } \square \\
-\end{array}" class="math inline" /></p>
+      1. &amp; x &gt; 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = 1  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = x &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = x &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" title="\begin{array}{l l l}
+      1. &amp; x &gt; 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = 1  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = x &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = x &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" class="math inline" /></p>
+</div>
+<div id="proof-by-cases-cont." class="slide section level2">
+<h1>Proof by Cases Cont.</h1>
+<p>Case 2: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%3D%200"
+alt="x = 0" title="x = 0" class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%20%201.%20%26%20x%20%3D%200%20%20%20%26%20%5Ctextrm%7BCase%20Assertion%7D%20%5C%5C%0A%20%20%20%20%20%202.%20%26%20sgn%28x%29%20%3D%200%20%20%26%20%5Ctextrm%7BSignum%20Def.%7D%20%5C%5C%0A%20%20%20%20%20%203.%20%26%20sgn%28x%29%20%5Ccdot%20x%20%3D%200%20%26%20%5Ctextrm%7BMultiply%20both%20sides%20by%20%7D%20x%20%5C%5C%0A%20%20%20%20%20%204.%20%26%20%7Cx%7C%20%3D%200%20%26%20%5Ctextrm%7BApplied%20Def.%20of%20Absolute%20Value%20to%20Line%201%7D%20%5C%5C%0A%20%20%20%20%20%205.%20%26%20sgn%28x%29%20%3D%20%7Cx%7C%20%26%20%5Ctextrm%7BCompared%20Lines%203%20and%205%7D%20%5C%5C%0A%20%20%20%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+      1. &amp; x = 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = 0  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = 0 &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = 0 &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" title="\begin{array}{l l l}
+      1. &amp; x = 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = 0  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = 0 &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = 0 &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" class="math inline" /></p>
+<p>Case 3: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%3C%200"
+alt="x &lt; 0" title="x &lt; 0" class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%20%201.%20%26%20x%20%3C%200%20%20%20%26%20%5Ctextrm%7BCase%20Assertion%7D%20%5C%5C%0A%20%20%20%20%20%202.%20%26%20sgn%28x%29%20%3D%20-1%20%20%26%20%5Ctextrm%7BSignum%20Def.%7D%20%5C%5C%0A%20%20%20%20%20%203.%20%26%20sgn%28x%29%20%5Ccdot%20x%20%3D%20-x%20%26%20%5Ctextrm%7BMultiply%20both%20sides%20by%20%7D%20x%20%5C%5C%0A%20%20%20%20%20%204.%20%26%20%7Cx%7C%20%3D%20-x%20%26%20%5Ctextrm%7BApplied%20Def.%20of%20Absolute%20Value%20to%20Line%201%7D%20%5C%5C%0A%20%20%20%20%20%205.%20%26%20sgn%28x%29%20%3D%20%7Cx%7C%20%26%20%5Ctextrm%7BCompared%20Lines%203%20and%205%7D%20%5C%5C%0A%20%20%20%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+      1. &amp; x &lt; 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = -1  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = -x &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = -x &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" title="\begin{array}{l l l}
+      1. &amp; x &lt; 0   &amp; \textrm{Case Assertion} \\
+      2. &amp; sgn(x) = -1  &amp; \textrm{Signum Def.} \\
+      3. &amp; sgn(x) \cdot x = -x &amp; \textrm{Multiply both sides by } x \\
+      4. &amp; |x| = -x &amp; \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. &amp; sgn(x) = |x| &amp; \textrm{Compared Lines 3 and 5} \\
+    \end{array}" class="math inline" /></p>
+</div>
+<div id="proof-of-existence" class="slide section level2">
+<h1>Proof of Existence</h1>
+<p>Sometimes you just need to prove the existence of something.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cexists%20x%20%5Cin%20S%2C%20%7B%7D%20P%28x%29"
+alt="\exists x \in S, {} P(x)" title="\exists x \in S, {} P(x)"
+class="math inline" />.</p>
+<p>Again, like we discussed in class, you can show the existence of
+something by looking at every element of the set and finding an <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> such that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20P%28x%29"
+alt="P(x)" title="P(x)" class="math inline" /> is true.</p>
+<p>Let’s go back to our food example:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%3D%20%5C%7B"
+alt="F = \{" title="F = \{" class="math inline" />Erik, José, Nicoleta,
+Aksana<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V%20%3D%20%5C%7B"
+alt="V = \{" title="V = \{" class="math inline" />Aksana, Erik<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /> is the set of your friends
+who are vegetarian</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%3D%20%5C%7B"
+alt="N = \{" title="N = \{" class="math inline" />Aksana<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7D"
+alt="\}" title="\}" class="math inline" /> is the set of your friends
+who are vegan</li>
+<li>We want to prove: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cexists%20x%20%5Cin%20F%2C%7B%7D%20x%20%5Cin%20N%20%5Cimplies%20x%20%5Cin%20V"
+alt="\exists x \in F,{} x \in N \implies x \in V"
+title="\exists x \in F,{} x \in N \implies x \in V"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="proof-of-existence---constructive-proof"
+class="slide section level2">
+<h1>Proof of Existence - Constructive Proof</h1>
+<p>Sometimes you will have to prove the existence of more complicated
+things. You might have to <em>construct</em> a solution and then prove
+it’s a valid solution.</p>
+<p>This can also be called a <strong>constructive proof</strong> or
+<strong>proof by construction</strong> because you are literally
+constructing your own example.</p>
+</div>
+<div id="proof-by-construction---example" class="slide section level2">
+<h1>Proof by Construction - Example</h1>
+<p>For example, you might want to argue the usefulness of exponential
+encryption by proving that exponential encryption can be decrypted:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cexists%20e%2Cd%2Cx%2CN%20%5Cin%20%5Cmathbb%7BZ%7D%2C%20%7B%7D%20x%5E%7Be%20%5Ccdot%20d%7D%20%5Cbmod%20N%20%3D%20x"
+alt="\exists e,d,x,N \in \mathbb{Z}, {} x^{e \cdot d} \bmod N = x"
+title="\exists e,d,x,N \in \mathbb{Z}, {} x^{e \cdot d} \bmod N = x"
+class="math inline" /></p>
+<p>You can do this by using RSA as an example:</p>
+<h3 id="construction">Construction</h3>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%3D%20p%20%5Ccdot%20q"
+alt="N = p \cdot q" title="N = p \cdot q" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20e%20%5Ccdot%20d%20%3D%201%20%5Cbmod%20%28p-1%29%28q-1%29"
+alt="e \cdot d = 1 \bmod (p-1)(q-1)"
+title="e \cdot d = 1 \bmod (p-1)(q-1)" class="math inline" /></li>
+</ul>
+<h3 id="proof">Proof</h3>
+<p>Plug in <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N%20%3D%20p%20%5Ccdot%20q"
+alt="N = p \cdot q" title="N = p \cdot q" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20e%20%5Ccdot%20d%20%3D%201%20%5Cbmod%20%28p-1%29%28q-1%29"
+alt="e \cdot d = 1 \bmod (p-1)(q-1)"
+title="e \cdot d = 1 \bmod (p-1)(q-1)" class="math inline" /> to
+demonstrate <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%5E%7Be%20%5Ccdot%20d%7D%20%5Cbmod%20N%20%3D%20x"
+alt="x^{e \cdot d} \bmod N = x" title="x^{e \cdot d} \bmod N = x"
+class="math inline" />.</p>
+</div>
+<div id="proof-by-induction" class="slide section level2">
+<h1>Proof by Induction</h1>
+</div>
+<div id="strong-induction" class="slide section level2">
+<h1>(Strong) Induction</h1>
+<ul>
+<li>Induction is a type of proof we can do on recursively defined
+functions and sets</li>
+<li>Say we are trying to prove <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R%28x%29"
+alt="R(x)" title="R(x)" class="math inline" /> holds in a recursively
+defined set <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S%20%3D%20%5C%7BS_0%2C%20S_1%2C%20S_2%2C%20%5Cldots%20%5C%7D"
+alt="S = \{S_0, S_1, S_2, \ldots \}"
+title="S = \{S_0, S_1, S_2, \ldots \}" class="math inline" /></li>
+<li>We can prove this by:
+<ol style="list-style-type: decimal">
+<li>Showing <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R%28x%29"
+alt="R(x)" title="R(x)" class="math inline" /> holds for the base
+case(s) of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20S" alt="S"
+title="S" class="math inline" /></li>
+<li>Assuming <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20R%28k%29"
+alt="R(k)" title="R(k)" class="math inline" /> holds for all <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20k%20%3C%20n"
+alt="k &lt; n" title="k &lt; n" class="math inline" /> in the recursive
+rule, showing that it also holds for step <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" />. In other words, we’re showing <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbig%28R%28S_0%29%20%5Cland%20R%28S_1%29%20%5Cland%20%5Cldots%20%5Cland%20R%28S_%7Bn-2%7D%29%20%5Cland%20R%28S_%7Bn-1%7D%29%5Cbig%29%20%5Cimplies%20R%28S_%7Bn%7D%29"
+alt="\big(R(S_0) \land R(S_1) \land \ldots \land R(S_{n-2}) \land R(S_{n-1})\big) \implies R(S_{n})"
+title="\big(R(S_0) \land R(S_1) \land \ldots \land R(S_{n-2}) \land R(S_{n-1})\big) \implies R(S_{n})"
+class="math inline" />.<br />
+</li>
+</ol></li>
+<li>Remember that many things can be defined recursively, so even though
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%5Cin%20S"
+alt="x \in S" title="x \in S" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> isn’t necessarily a single element.
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> can also be a set/function/mapping etc!
+Think about our recursive powersets definition.</li>
+</ul>
+</div>
+<div id="lets-start-with-an-example" class="slide section level2">
+<h1>Let’s Start With an Example</h1>
+</div>
+<div id="example-with-template" class="slide section level2">
+<h1>Example with Template</h1>
+<p>Recall the Fibonacci series…</p>
+<ul>
+<li>The base case: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%280%29%20%3D%200%2C%20F%281%29%20%3D%201"
+alt="F(0) = 0, F(1) = 1" title="F(0) = 0, F(1) = 1"
+class="math inline" /></li>
+<li>Recursive rule: For <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3E%201"
+alt="n &gt; 1" title="n &gt; 1" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%28n%29%20%3D%20F%28n-1%29%20%2B%20F%28n-2%29"
+alt="F(n) = F(n-1) + F(n-2)" title="F(n) = F(n-1) + F(n-2)"
+class="math inline" />.</li>
+</ul>
+<p>We want to prove the following about the sum of the first <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" /> numbers of the series:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20n%20%5Cin%20%5Cmathbb%7BN%7D%2C%20F%280%29%20%2B%20F%281%29%20%2B%20F%282%29%20%2B%20%5Cldots%20%2B%20F%28n-1%29%20%2B%20F%28n%29%20%3D%20F%28n%2B2%29%20-%201"
+alt="\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1"
+title="\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1"
+class="math inline" />.</p>
+</div>
+<div id="example-with-template-1" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S1. State the ‘for all’ statement that you want to prove:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20n%20%5Cin%20%5Cmathbb%7BN%7D%2C%20%5Csum_%7Bi%3D0%7D%5En%20F%28i%29%20%3D%20F%28n%2B2%29%20-%201"
+alt="\forall n \in \mathbb{N}, \sum_{i=0}^n F(i) = F(n+2) - 1"
+title="\forall n \in \mathbb{N}, \sum_{i=0}^n F(i) = F(n+2) - 1"
+class="math inline" />.</li>
+</ul>
+<p>S2. Say “we prove this by induction on” and state the induction
+parameter.</p>
+<ul>
+<li>We prove this by induction on <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n" alt="n"
+title="n" class="math inline" />.</li>
+</ul>
+</div>
+<div id="example-with-template-2" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S3. Prove the base case(s).</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%3D0"
+alt="n=0" title="n=0" class="math inline" />:
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%280%29%20%3D%20F%282%29%20-%201"
+alt="F(0) = F(2) - 1" title="F(0) = F(2) - 1"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%200%20%3D%200"
+alt="0 = 0" title="0 = 0" class="math inline" /> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csquare"
+alt="\square" title="\square" class="math inline" /></li>
+</ul></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3D%201"
+alt="n = 1" title="n = 1" class="math inline" />:
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%280%29%20%2B%20F%281%29%20%3D%20F%283%29%20-%201"
+alt="F(0) + F(1) = F(3) - 1" title="F(0) + F(1) = F(3) - 1"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%201%20%3D%202%20-%201"
+alt="1 = 2 - 1" title="1 = 2 - 1" class="math inline" /> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csquare"
+alt="\square" title="\square" class="math inline" /></li>
+</ul></li>
+</ul>
+</div>
+<div id="example-with-template-3" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S4. Write Induction Step.</p>
+<ul>
+<li>For a given <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20n%20%3E%201"
+alt="n &gt; 1" title="n &gt; 1" class="math inline" />,</li>
+</ul>
+<p>S5. State the Induction Hypothesis (IH)</p>
+<ul>
+<li>I can assume for all <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%201%20%5Cleq%20k%20%5Cleq%20n"
+alt="1 \leq k \leq n" title="1 \leq k \leq n" class="math inline" />
+that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csum_%7Bi%3D0%7D%5Ek%20F%28i%29%20%3D%20F%28k%2B2%29%20-%201"
+alt="\sum_{i=0}^k F(i) = F(k+2) - 1"
+title="\sum_{i=0}^k F(i) = F(k+2) - 1" class="math inline" />,</li>
+</ul>
+<p>S6. State what you are going to prove about your specific value of
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> that was given to you in S4:</p>
+<ul>
+<li>and I want to prove <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Csum_%7Bi%3D0%7D%5En%20F%28i%29%20%3D%20F%28n%2B2%29%20-%201"
+alt="\sum_{i=0}^n F(i) = F(n+2) - 1"
+title="\sum_{i=0}^n F(i) = F(n+2) - 1" class="math inline" />.</li>
+</ul>
+</div>
+<div id="example-with-template-4" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S7. Do the proof for the specific <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" />.</p>
+</div>
+<div id="example-with-template-5" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S7. Do the proof for the specific <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" />.</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cbegin%7Barray%7D%7Bl%20l%20l%7D%0A%20%20%20%20%20%20%20%201.%20%26%20%5Cforall%201%20%5Cleq%20k%20%5Cleq%20n%2C%20%7B%7D%20%5Csum_%7Bi%3D0%7D%5Ek%20F%28i%29%20%3D%20F%28k%2B2%29%20-%201%20%26%20%5Ctextrm%7BIH%7D%20%5C%5C%0A%20%20%20%20%20%20%20%202.%20%26%20%5Ctextrm%7BLet%20%7D%20k%20%3D%20n%20-%201%2C%20%5Ctextrm%7B%20then%20%7D%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7D%20F%28i%29%20%3D%20F%28n-1%2B2%29%20-%201%20%26%20%5Ctextrm%7BApplied%20IH%7D%20%5C%5C%0A%20%20%20%20%20%20%20%203.%20%26%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7D%20F%28i%29%20%3D%20F%28n%2B1%29%20-%201%20%26%20%5Ctextrm%7BRewrote%20Line%202%7D%5C%5C%0A%20%20%20%20%20%20%20%204.%20%26%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7D%20F%28i%29%20%2B%20F%28n%29%20%3D%20F%28n%2B1%29%20-%201%20%2B%20F%28n%29%20%26%20%5Ctextrm%7BAdded%20%7D%20F%28n%29%20%5Ctextrm%7B%20to%20both%20sides.%7D%5C%5C%0A%20%20%20%20%20%20%20%205.%20%26%20F%28n%2B2%29%20%3D%20F%28n%2B1%29%20%2B%20F%28n%29%20%26%20%5Ctextrm%7BFibonacci%20Def.%7D%5C%5C%0A%20%20%20%20%20%20%20%206.%20%26%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7D%20F%28i%29%20%2B%20F%28n%29%20%3D%20F%28n%2B2%29%20-%201%20%26%20%5Ctextrm%7BPlugged%205.%20into%204.%7D%5C%5C%0A%20%20%20%20%20%20%20%207.%20%26%20%5Csum_%7Bi%3D0%7D%5En%20F%28i%29%20%3D%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7D%20F%28i%29%20%2B%20F%28n%29%20%26%20%5Ctextrm%7BDef.%20of%20Sum%7D%20%5C%5C%0A%20%20%20%20%20%20%20%208.%20%26%20%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20F%28i%29%20%3D%20F%28n%2B2%29%20-%201%20%26%20%5Ctextrm%7BPlugged%207.%20into%206.%7D%20%5Csquare%0A%20%20%20%20%5Cend%7Barray%7D"
+alt="\begin{array}{l l l}
+        1. &amp; \forall 1 \leq k \leq n, {} \sum_{i=0}^k F(i) = F(k+2) - 1 &amp; \textrm{IH} \\
+        2. &amp; \textrm{Let } k = n - 1, \textrm{ then } \sum_{i=0}^{n-1} F(i) = F(n-1+2) - 1 &amp; \textrm{Applied IH} \\
+        3. &amp; \sum_{i=0}^{n-1} F(i) = F(n+1) - 1 &amp; \textrm{Rewrote Line 2}\\
+        4. &amp; \sum_{i=0}^{n-1} F(i) + F(n) = F(n+1) - 1 + F(n) &amp; \textrm{Added } F(n) \textrm{ to both sides.}\\
+        5. &amp; F(n+2) = F(n+1) + F(n) &amp; \textrm{Fibonacci Def.}\\
+        6. &amp; \sum_{i=0}^{n-1} F(i) + F(n) = F(n+2) - 1 &amp; \textrm{Plugged 5. into 4.}\\
+        7. &amp; \sum_{i=0}^n F(i) = \sum_{i=0}^{n-1} F(i) + F(n) &amp; \textrm{Def. of Sum} \\
+        8. &amp; \sum_{i=0}^{n} F(i) = F(n+2) - 1 &amp; \textrm{Plugged 7. into 6.} \square
+    \end{array}" title="\begin{array}{l l l}
+        1. &amp; \forall 1 \leq k \leq n, {} \sum_{i=0}^k F(i) = F(k+2) - 1 &amp; \textrm{IH} \\
+        2. &amp; \textrm{Let } k = n - 1, \textrm{ then } \sum_{i=0}^{n-1} F(i) = F(n-1+2) - 1 &amp; \textrm{Applied IH} \\
+        3. &amp; \sum_{i=0}^{n-1} F(i) = F(n+1) - 1 &amp; \textrm{Rewrote Line 2}\\
+        4. &amp; \sum_{i=0}^{n-1} F(i) + F(n) = F(n+1) - 1 + F(n) &amp; \textrm{Added } F(n) \textrm{ to both sides.}\\
+        5. &amp; F(n+2) = F(n+1) + F(n) &amp; \textrm{Fibonacci Def.}\\
+        6. &amp; \sum_{i=0}^{n-1} F(i) + F(n) = F(n+2) - 1 &amp; \textrm{Plugged 5. into 4.}\\
+        7. &amp; \sum_{i=0}^n F(i) = \sum_{i=0}^{n-1} F(i) + F(n) &amp; \textrm{Def. of Sum} \\
+        8. &amp; \sum_{i=0}^{n} F(i) = F(n+2) - 1 &amp; \textrm{Plugged 7. into 6.} \square
+    \end{array}" class="math inline" /></p>
+</div>
+<div id="example-with-template-6" class="slide section level2">
+<h1>Example with Template</h1>
+<p>S8. Declare victory.</p>
+<ul>
+<li>Therefore, we have proved <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cforall%20n%20%5Cin%20%5Cmathbb%7BN%7D%2C%20F%280%29%20%2B%20F%281%29%20%2B%20F%282%29%20%2B%20%5Cldots%20%2B%20F%28n-1%29%20%2B%20F%28n%29%20%3D%20F%28n%2B2%29%20-%201"
+alt="\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1"
+title="\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1"
+class="math inline" />.</li>
+</ul>
+</div>
+<div id="tips-for-proving-something-by-induction-s7"
+class="slide section level2">
+<h1>Tips for Proving Something by Induction (S7)</h1>
+<ul>
+<li>Your Inductive Hypothesis (Step 5) should be line 1 in your
+proof.</li>
+<li>The recursive definition of any structures you’re using (e.g. sum,
+factorial, exponents, etc.) should be the next lines of your proof.</li>
+<li>Step 6 is what the <em>last</em> line of your proof should be.</li>
+<li>To start, think about how you can use your inductive hypothesis and
+recursive definitions to get to step 6. (Usually this means plugging a
+smaller version of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> into your inductive hypothesis and
+using your recursive definitions to rewrite it.)</li>
+</ul>
 </div>
 </body>
 </html>
