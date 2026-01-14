@@ -1,287 +1,309 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Alyssa Lytle" />
-  <meta name="date" content="2025-08-21" />
-  <title>Finite Automata and Regular Languages</title>
-  <style type="text/css">
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print"
-    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
-  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
-    charset="utf-8" type="text/javascript"></script>
-</head>
-<body>
-<div class="slide titlepage">
-  <h1 class="title">Finite Automata and Regular Languages</h1>
-  <p class="author">
-Alyssa Lytle
-  </p>
-  <p class="date">August 21, 2025</p>
-</div>
-<div class="slide section level2">
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Finite Automata and Regular Languages},
+  pdfauthor={Alyssa Lytle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
-<!-- pandoc -t slidy -s notes/01-fa.md -o slides/03-finite-automata.html --webtex -->
-</div>
-<div id="finite-automata-and-regular-languages"
-class="title-slide slide section level1">
-<h1>Finite Automata and Regular Languages</h1>
+\title{Finite Automata and Regular Languages}
+\author{Alyssa Lytle}
+\date{August 21, 2025}
 
-</div>
-<div id="finite-automaton-an-example" class="slide section level2">
-<h1>Finite Automaton: An Example</h1>
-<p>Our example: an automatic door</p>
-<p><img src="../static/slide_figs/auto-door.png" /><a href="#fn1"
-class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>Front pad: detect person to walk through</p>
-<p>Rear pad: Confirm person has passed through, don’t hit other person
-standing there</p>
-</div>
-<div id="rules-of-operation" class="slide section level2">
-<h1>Rules of Operation</h1>
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">Front</th>
-<th align="center">Rear</th>
-<th align="center">Both</th>
-<th align="center">Neither</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Closed</strong></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td><strong>Open</strong></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="rules-of-operation-1" class="slide section level2">
-<h1>Rules of Operation</h1>
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center">Front</th>
-<th align="center">Rear</th>
-<th align="center">Both</th>
-<th align="center">Neither</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Closed</strong></td>
-<td align="center">Open</td>
-<td align="center">Closed</td>
-<td align="center">Closed</td>
-<td align="center">Closed</td>
-</tr>
-<tr>
-<td><strong>Open</strong></td>
-<td align="center">Open</td>
-<td align="center">Open</td>
-<td align="center">Open</td>
-<td align="center">Closed</td>
-</tr>
-</tbody>
-</table>
-<p>This is called a <strong>state transition table</strong>.</p>
-</div>
-<div id="state-diagram" class="slide section level2">
-<h1>State Diagram</h1>
-<p><img src="../static/slide_figs/autodoor-informal.png" /></p>
-<p>This is called a state diagram.</p>
-</div>
-<div id="formal-requirements" class="slide section level2">
-<h1>Formal Requirements</h1>
-<p>A finite automaton should have</p>
-<ul>
-<li>A finite set of states</li>
-<li>A finite alphabet</li>
-<li>A transition function</li>
-<li>A start state</li>
-<li>A set of accept states</li>
-</ul>
-</div>
-<div id="formal-definition" class="slide section level2">
-<h1>Formal Definition</h1>
-<p>A finite automaton can be expressed as 5-tuple <span
-class="math inline">(<em>Q</em>, <em>Σ</em>, <em>δ</em>, <em>q</em><sub>0</sub>, <em>F</em>)</span>
-where:</p>
-<ul>
-<li><span class="math inline"><em>Q</em></span>: A finite set of
-states</li>
-<li><span class="math inline"><em>Σ</em></span>: A finite alphabet</li>
-<li><span
-class="math inline"><em>δ</em> : <em>Q</em> × <em>Σ</em> → <em>Q</em></span>:
-A transition function</li>
-<li><span
-class="math inline"><em>q</em><sub>0</sub> ∈ <em>Q</em></span>: A start
-state</li>
-<li><span class="math inline"><em>F</em> ⊆ <em>Q</em></span>: A set of
-accept states</li>
-</ul>
-</div>
-<div id="if-were-being-technical-about-it" class="slide section level2">
-<h1>If We’re Being Technical About It…</h1>
-<p>(Which we are!)</p>
-<p><img src="../static/slide_figs/formal-door.png" /></p>
-<ul>
-<li><span
-class="math inline"><em>Q</em> : {<em>O</em><em>p</em><em>e</em><em>n</em>, <em>C</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>}</span></li>
-<li><span
-class="math inline"><em>Σ</em> : {<em>F</em><em>r</em><em>o</em><em>n</em><em>t</em>, <em>R</em><em>e</em><em>a</em><em>r</em>, <em>B</em><em>o</em><em>t</em><em>h</em>, <em>N</em><em>e</em><em>i</em><em>t</em><em>h</em><em>e</em><em>r</em>}</span></li>
-<li><span
-class="math inline"><em>δ</em> : <em>Q</em> × <em>Σ</em> → <em>Q</em> : Our
-transition table</span></li>
-<li><span
-class="math inline"><em>q</em><sub>0</sub> ∈ <em>Q</em> : <em>C</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em></span></li>
-<li><span
-class="math inline"><em>F</em> ⊆ <em>Q</em> : {<em>O</em><em>p</em><em>e</em><em>n</em>, <em>C</em><em>l</em><em>o</em><em>s</em><em>e</em><em>d</em>}</span></li>
-</ul>
-</div>
-<div id="the-language-of-the-machine" class="slide section level2">
-<h1>The Language of the Machine</h1>
-<p><img src="../static/slide_figs/formal-door.png" /></p>
-<p>For our machine <span class="math inline"><em>M</em></span>, The
-<em>language</em> of our machine <span
-class="math inline"><em>L</em>(<em>M</em>)</span> is the set of all
-string inputs that <span class="math inline"><em>M</em></span>
-accepts…</p>
-<p>E.g. <span
-class="math inline">{<em>ϵ</em>, <em>F</em><em>r</em><em>o</em><em>n</em><em>t</em>, <em>F</em><em>r</em><em>o</em><em>n</em><em>t</em><em>R</em><em>e</em><em>a</em><em>r</em>, <em>F</em><em>r</em><em>o</em><em>n</em><em>t</em><em>R</em><em>e</em><em>a</em><em>r</em><em>F</em><em>r</em><em>o</em><em>n</em><em>t</em>, <em>R</em><em>e</em><em>a</em><em>r</em><em>B</em><em>o</em><em>t</em><em>h</em>, ...}</span></p>
-<p><span class="math inline"><em>M</em></span> accepts or
-<em>recognizes</em> a string if it terminates in an accept state.</p>
-<p>(This isn’t the best example because this door accepts all input
-strings, so let’s try another one!)</p>
-</div>
-<div id="another-example" class="slide section level2">
-<h1>Another Example</h1>
-<p>Let <span class="math inline"><em>M</em></span> be:</p>
-<p><img src="../static/slide_figs/fa.png" /><a href="#fn2"
-class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>What are <span
-class="math inline">(<em>Q</em>, <em>Σ</em>, <em>δ</em>, <em>q</em><sub>0</sub>, <em>F</em>)</span>?</p>
-</div>
-<div id="another-example-1" class="slide section level2">
-<h1>Another Example</h1>
-<p>Let <span class="math inline"><em>M</em></span> be:</p>
-<p><img src="../static/slide_figs/fa.png" /><a href="#fn3"
-class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
-<p>What is <span class="math inline"><em>L</em>(<em>M</em>)</span>?</p>
-</div>
-<div id="formal-definition-of-computationsipser"
-class="slide section level2">
-<h1>Formal Definition of Computation<a href="#fn4" class="footnote-ref"
-id="fnref4"><sup>4</sup></a></h1>
-<p>Let <span
-class="math inline"><em>M</em> = (<em>Q</em>, <em>Σ</em>, <em>δ</em>, <em>q</em><sub>0</sub>, <em>F</em>)</span></p>
-<p>Let <span
-class="math inline"><em>w</em> = <em>w</em><sub>1</sub><em>w</em><sub>2</sub>…<em>w</em><sub><em>n</em></sub></span>
-be a string where each <span
-class="math inline"><em>w</em><sub><em>i</em></sub></span> is a member
-of the alphabet <span class="math inline"><em>Σ</em></span></p>
-<p><span class="math inline"><em>M</em></span> accepts <span
-class="math inline"><em>w</em></span> if there exists a sequence of
-<em>states</em> <span
-class="math inline"><em>r</em><sub>1</sub>, <em>r</em><sub>2</sub>, …, <em>r</em><sub><em>n</em></sub></span>
-such that:</p>
-<ol style="list-style-type: decimal">
-<li><span
-class="math inline"><em>r</em><sub>0</sub> = <em>q</em><sub>0</sub></span></li>
-<li><span
-class="math inline"><em>δ</em>(<em>r</em><sub><em>i</em></sub>, <em>w</em><sub><em>i</em> + 1</sub>) = <em>r</em><sub><em>i</em> + 1</sub></span>
-for <span class="math inline"><em>i</em> = 0, …, <em>n</em> − 1</span>,
-and</li>
-<li><span
-class="math inline"><em>r</em><sub><em>n</em></sub> ∈ <em>F</em></span></li>
-</ol>
-</div>
-<div id="a-regular-language" class="slide section level2">
-<h1>A Regular Language</h1>
-<p>A language is a <em>regular language</em> if there exists a finite
-automaton that recognizes it.</p>
-</div>
-<div id="language-operations" class="slide section level2">
-<h1>Language Operations</h1>
-<ul>
-<li><p>Union: <span
-class="math inline"><em>A</em> ∪ <em>B</em> = {<em>x</em>|<em>x</em> ∈ <em>A</em>
-or <em>x</em> ∈ <em>B</em>}</span></p></li>
-<li><p>Concatenation: <span
-class="math inline"><em>A</em> ∘ <em>B</em> = {<em>x</em><em>y</em>|<em>x</em> ∈ <em>A</em>
-and <em>y</em> ∈ <em>B</em>}</span></p></li>
-<li><p>Star: <span
-class="math inline"><em>A</em><sup>*</sup> = {<em>x</em><sub>1</sub><em>x</em><sub>2</sub>…<em>x</em><sub><em>k</em></sub>|<em>k</em> ≥ 0
-and each <em>x</em><sub><em>i</em></sub> ∈ <em>A</em>}</span></p></li>
-</ul>
-</div>
-<div id="language-operations-example" class="slide section level2">
-<h1>Language Operations Example</h1>
-<p>Let <span class="math inline"><em>Σ</em></span> be the standard
-English alphabet</p>
-<p>If <span class="math inline"><em>A</em> = {good, bad}</span> <span
-class="math inline"><em>B</em> = {cat, dog}</span></p>
-<ul>
-<li><p><span class="math inline"><em>A</em> ∪ <em>B</em></span></p></li>
-<li><p><span class="math inline"><em>A</em> ∘ <em>B</em></span></p></li>
-<li><p><span class="math inline"><em>A</em><sup>*</sup></span></p></li>
-</ul>
-</div>
-<div id="resources" class="slide section level2">
-<h1>Resources</h1>
-</div>
+\begin{document}
+\maketitle
 
-<div class="footnotes slide">
-<hr />
-<ol>
-<li id="fn1"><p>Sipser, Michael. “Introduction to the Theory of
-Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref1"
-class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Sipser, Michael. “Introduction to the Theory of
-Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref2"
-class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Sipser, Michael. “Introduction to the Theory of
-Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref3"
-class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Sipser, Michael. “Introduction to the Theory of
-Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref4"
-class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-</body>
-</html>
+\section{Finite Automata and Regular
+Languages}\label{finite-automata-and-regular-languages}
+
+\subsection{Finite Automaton: An
+Example}\label{finite-automaton-an-example}
+
+Our example: an automatic door
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/auto-door.png}}\footnote{Sipser,
+  Michael. ``Introduction to the Theory of Computation.'' ACM Sigact
+  News 27.1 (1996): 27-29.}
+
+Front pad: detect person to walk through
+
+Rear pad: Confirm person has passed through, don't hit other person
+standing there
+
+\subsection{Rules of Operation}\label{rules-of-operation}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}lcccc@{}}
+\toprule\noalign{}
+& Front & Rear & Both & Neither \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Closed} & & & & \\
+\textbf{Open} & & & & \\
+\end{longtable}
+}
+
+\subsection{Rules of Operation}\label{rules-of-operation-1}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}lcccc@{}}
+\toprule\noalign{}
+& Front & Rear & Both & Neither \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Closed} & Open & Closed & Closed & Closed \\
+\textbf{Open} & Open & Open & Open & Closed \\
+\end{longtable}
+}
+
+This is called a \textbf{state transition table}.
+
+\subsection{State Diagram}\label{state-diagram}
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/autodoor-informal.png}}
+
+This is called a state diagram.
+
+\subsection{Formal Requirements}\label{formal-requirements}
+
+A finite automaton should have
+
+\begin{itemize}
+\tightlist
+\item
+  A finite set of states
+\item
+  A finite alphabet
+\item
+  A transition function
+\item
+  A start state
+\item
+  A set of accept states
+\end{itemize}
+
+\subsection{Formal Definition}\label{formal-definition}
+
+A finite automaton can be expressed as 5-tuple
+\((Q, \Sigma, \delta,q_0, F)\) where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q\): A finite set of states
+\item
+  \(\Sigma\): A finite alphabet
+\item
+  \(\delta: Q \times \Sigma \to Q\): A transition function
+\item
+  \(q_0 \in Q\): A start state
+\item
+  \(F \subseteq Q\): A set of accept states
+\end{itemize}
+
+\subsection{If We're Being Technical About
+It\ldots{}}\label{if-were-being-technical-about-it}
+
+(Which we are!)
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/formal-door.png}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q: \{Open, Closed\}\)
+\item
+  \(\Sigma: \{Front, Rear, Both, Neither\}\)
+\item
+  \(\delta: Q \times \Sigma \to Q: \textrm{Our transition table}\)
+\item
+  \(q_0 \in Q: Closed\)
+\item
+  \(F \subseteq Q: \{Open, Closed\}\)
+\end{itemize}
+
+\subsection{The Language of the
+Machine}\label{the-language-of-the-machine}
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/formal-door.png}}
+
+For our machine \(M\), The \emph{language} of our machine \(L(M)\) is
+the set of all string inputs that \(M\) accepts\ldots{}
+
+E.g. \(\{\epsilon, Front, FrontRear, FrontRearFront, RearBoth, ...\}\)
+
+\(M\) accepts or \emph{recognizes} a string if it terminates in an
+accept state.
+
+(This isn't the best example because this door accepts all input
+strings, so let's try another one!)
+
+\subsection{Another Example}\label{another-example}
+
+Let \(M\) be:
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/fa.png}}\footnote{Sipser,
+  Michael. ``Introduction to the Theory of Computation.'' ACM Sigact
+  News 27.1 (1996): 27-29.}
+
+What are \((Q, \Sigma, \delta,q_0, F)\)?
+
+\subsection{Another Example}\label{another-example-1}
+
+Let \(M\) be:
+
+\pandocbounded{\includegraphics[keepaspectratio]{../static/slide_figs/fa.png}}\footnote{Sipser,
+  Michael. ``Introduction to the Theory of Computation.'' ACM Sigact
+  News 27.1 (1996): 27-29.}
+
+What is \(L(M)\)?
+
+\subsection[Formal Definition of Computation]{\texorpdfstring{Formal
+Definition of
+Computation\footnote{Sipser, Michael. ``Introduction to the Theory of
+  Computation.'' ACM Sigact News 27.1 (1996): 27-29.}}{Formal Definition of Computation}}\label{formal-definition-of-computationsipser}
+
+Let \(M = (Q, \Sigma, \delta,q_0, F)\)
+
+Let \(w = w_1w_2\ldots w_n\) be a string where each \(w_i\) is a member
+of the alphabet \(\Sigma\)
+
+\(M\) accepts \(w\) if there exists a sequence of \emph{states}
+\(r_1, r_2, \ldots, r_n\) such that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(r_0 = q_0\)
+\item
+  \(\delta(r_i,w_{i+1})= r_{i+1}\) for \(i = 0,\ldots,n-1\), and
+\item
+  \(r_n \in F\)
+\end{enumerate}
+
+\subsection{A Regular Language}\label{a-regular-language}
+
+A language is a \emph{regular language} if there exists a finite
+automaton that recognizes it.
+
+\subsection{Language Operations}\label{language-operations}
+
+\begin{itemize}
+\item
+  Union: \(A \cup B = \{x| x\in A \textrm{ or } x \in B\}\)
+\item
+  Concatenation: \(A \circ B = \{xy| x \in A \textrm{ and } y \in B\}\)
+\item
+  Star:
+  \(A^* = \{x_1 x_2 \ldots x_k | k \geq 0 \textrm{ and each } x_i \in A \}\)
+\end{itemize}
+
+\subsection{Language Operations
+Example}\label{language-operations-example}
+
+Let \(\Sigma\) be the standard English alphabet
+
+If \(A = \{\textrm{good}, \textrm{bad}\}\)
+\(B= \{\textrm{cat}, \textrm{dog}\}\)
+
+\begin{itemize}
+\item
+  \(A \cup B\)
+\item
+  \(A \circ B\)
+\item
+  \(A^*\)
+\end{itemize}
+
+\subsection{Gumball Machine Problem}\label{gumball-machine-problem}
+
+\begin{verbatim}
+Design a DFA that represents a gumball machine with the following properties:
+
+* It takes nickels and dimes as inputs
+* If it receives 15 cents total, it dispenses a gumball
+* If it receives more than 15 cents, it dispenses a gumball and change
+
+
+Think of an "accept" state as one where a gumball is dispensed.
+
+(It's ok if your solution doesn't look quite like your neighbor's! There are multiple correct answers! We're going to compare!)
+\end{verbatim}
+
+\subsection{Gumball Machine Solutions}\label{gumball-machine-solutions}
+
+\subsection{Resources}\label{resources}
+
+\end{document}
