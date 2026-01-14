@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2025-08-21" />
+  <title>Finite Automata and Regular Languages</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Finite Automata and Regular Languages</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">August 21, 2025</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/01-fa.md -o slides/03-finite-automata.html --webtex -->
+<!-- pandoc -t slidy -s notes/01-fa.md -o pdfs/03-finite-automata.tex -->
+</div>
+<div id="finite-automata-and-regular-languages"
+class="title-slide slide section level1">
+<h1>Finite Automata and Regular Languages</h1>
+
+</div>
+<div id="finite-automaton-an-example" class="slide section level2">
+<h1>Finite Automaton: An Example</h1>
+<p>Our example: an automatic door</p>
+<p><img src="../static/slide_figs/auto-door.png" /><a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Front pad: detect person to walk through</p>
+<p>Rear pad: Confirm person has passed through, don’t hit other person
+standing there</p>
+</div>
+<div id="rules-of-operation" class="slide section level2">
+<h1>Rules of Operation</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Front</th>
+<th align="center">Rear</th>
+<th align="center">Both</th>
+<th align="center">Neither</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Closed</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td><strong>Open</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="rules-of-operation-1" class="slide section level2">
+<h1>Rules of Operation</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Front</th>
+<th align="center">Rear</th>
+<th align="center">Both</th>
+<th align="center">Neither</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Closed</strong></td>
+<td align="center">Open</td>
+<td align="center">Closed</td>
+<td align="center">Closed</td>
+<td align="center">Closed</td>
+</tr>
+<tr>
+<td><strong>Open</strong></td>
+<td align="center">Open</td>
+<td align="center">Open</td>
+<td align="center">Open</td>
+<td align="center">Closed</td>
+</tr>
+</tbody>
+</table>
+<p>This is called a <strong>state transition table</strong>.</p>
+</div>
+<div id="state-diagram" class="slide section level2">
+<h1>State Diagram</h1>
+<p><img src="../static/slide_figs/autodoor-informal.png" /></p>
+<p>This is called a state diagram.</p>
+</div>
+<div id="formal-requirements" class="slide section level2">
+<h1>Formal Requirements</h1>
+<p>A finite automaton should have</p>
+<ul>
+<li>A finite set of states</li>
+<li>A finite alphabet</li>
+<li>A transition function</li>
+<li>A start state</li>
+<li>A set of accept states</li>
+</ul>
+</div>
+<div id="formal-definition" class="slide section level2">
+<h1>Formal Definition</h1>
+<p>A finite automaton can be expressed as 5-tuple <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2Cq_0%2C%20F%29"
+alt="(Q, \Sigma, \delta,q_0, F)" title="(Q, \Sigma, \delta,q_0, F)"
+class="math inline" /> where:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" />: A finite set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" />: A finite
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CSigma%20%5Cto%20Q"
+alt="\delta: Q \times \Sigma \to Q"
+title="\delta: Q \times \Sigma \to Q" class="math inline" />: A
+transition function</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_0%20%5Cin%20Q"
+alt="q_0 \in Q" title="q_0 \in Q" class="math inline" />: A start
+state</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q"
+alt="F \subseteq Q" title="F \subseteq Q" class="math inline" />: A set
+of accept states</li>
+</ul>
+</div>
+<div id="if-were-being-technical-about-it" class="slide section level2">
+<h1>If We’re Being Technical About It…</h1>
+<p>(Which we are!)</p>
+<p><img src="../static/slide_figs/formal-door.png" /></p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%3A%20%5C%7BOpen%2C%20Closed%5C%7D"
+alt="Q: \{Open, Closed\}" title="Q: \{Open, Closed\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%3A%20%5C%7BFront%2C%20Rear%2C%20Both%2C%20Neither%5C%7D"
+alt="\Sigma: \{Front, Rear, Both, Neither\}"
+title="\Sigma: \{Front, Rear, Both, Neither\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CSigma%20%5Cto%20Q%3A%20%5Ctextrm%7BOur%20transition%20table%7D"
+alt="\delta: Q \times \Sigma \to Q: \textrm{Our transition table}"
+title="\delta: Q \times \Sigma \to Q: \textrm{Our transition table}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_0%20%5Cin%20Q%3A%20Closed"
+alt="q_0 \in Q: Closed" title="q_0 \in Q: Closed"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q%3A%20%5C%7BOpen%2C%20Closed%5C%7D"
+alt="F \subseteq Q: \{Open, Closed\}"
+title="F \subseteq Q: \{Open, Closed\}" class="math inline" /></li>
+</ul>
+</div>
+<div id="the-language-of-the-machine" class="slide section level2">
+<h1>The Language of the Machine</h1>
+<p><img src="../static/slide_figs/formal-door.png" /></p>
+<p>For our machine <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" />, The <em>language</em> of our machine
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M%29"
+alt="L(M)" title="L(M)" class="math inline" /> is the set of all string
+inputs that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> accepts…</p>
+<p>E.g. <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7B%5Cepsilon%2C%20Front%2C%20FrontRear%2C%20FrontRearFront%2C%20RearBoth%2C%20...%5C%7D"
+alt="\{\epsilon, Front, FrontRear, FrontRearFront, RearBoth, ...\}"
+title="\{\epsilon, Front, FrontRear, FrontRearFront, RearBoth, ...\}"
+class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> accepts or <em>recognizes</em> a string
+if it terminates in an accept state.</p>
+<p>(This isn’t the best example because this door accepts all input
+strings, so let’s try another one!)</p>
+</div>
+<div id="another-example" class="slide section level2">
+<h1>Another Example</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> be:</p>
+<p><img src="../static/slide_figs/fa.png" /><a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>What are <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2Cq_0%2C%20F%29"
+alt="(Q, \Sigma, \delta,q_0, F)" title="(Q, \Sigma, \delta,q_0, F)"
+class="math inline" />?</p>
+</div>
+<div id="another-example-1" class="slide section level2">
+<h1>Another Example</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> be:</p>
+<p><img src="../static/slide_figs/fa.png" /><a href="#fn3"
+class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>What is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M%29"
+alt="L(M)" title="L(M)" class="math inline" />?</p>
+</div>
+<div id="formal-definition-of-computationsipser"
+class="slide section level2">
+<h1>Formal Definition of Computation<a href="#fn4" class="footnote-ref"
+id="fnref4"><sup>4</sup></a></h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M%20%3D%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2Cq_0%2C%20F%29"
+alt="M = (Q, \Sigma, \delta,q_0, F)"
+title="M = (Q, \Sigma, \delta,q_0, F)" class="math inline" /></p>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%20%3D%20w_1w_2%5Cldots%20w_n"
+alt="w = w_1w_2\ldots w_n" title="w = w_1w_2\ldots w_n"
+class="math inline" /> be a string where each <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w_i" alt="w_i"
+title="w_i" class="math inline" /> is a member of the alphabet <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> accepts <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> if there exists a sequence of
+<em>states</em> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_1%2C%20r_2%2C%20%5Cldots%2C%20r_n"
+alt="r_1, r_2, \ldots, r_n" title="r_1, r_2, \ldots, r_n"
+class="math inline" /> such that:</p>
+<ol style="list-style-type: decimal">
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_0%20%3D%20q_0"
+alt="r_0 = q_0" title="r_0 = q_0" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%28r_i%2Cw_%7Bi%2B1%7D%29%3D%20r_%7Bi%2B1%7D"
+alt="\delta(r_i,w_{i+1})= r_{i+1}" title="\delta(r_i,w_{i+1})= r_{i+1}"
+class="math inline" /> for <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20i%20%3D%200%2C%5Cldots%2Cn-1"
+alt="i = 0,\ldots,n-1" title="i = 0,\ldots,n-1" class="math inline" />,
+and</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_n%20%5Cin%20F"
+alt="r_n \in F" title="r_n \in F" class="math inline" /></li>
+</ol>
+</div>
+<div id="a-regular-language" class="slide section level2">
+<h1>A Regular Language</h1>
+<p>A language is a <em>regular language</em> if there exists a finite
+automaton that recognizes it.</p>
+</div>
+<div id="language-operations" class="slide section level2">
+<h1>Language Operations</h1>
+<ul>
+<li><p>Union: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccup%20B%20%3D%20%5C%7Bx%7C%20x%5Cin%20A%20%5Ctextrm%7B%20or%20%7D%20x%20%5Cin%20B%5C%7D"
+alt="A \cup B = \{x| x\in A \textrm{ or } x \in B\}"
+title="A \cup B = \{x| x\in A \textrm{ or } x \in B\}"
+class="math inline" /></p></li>
+<li><p>Concatenation: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccirc%20B%20%3D%20%5C%7Bxy%7C%20x%20%5Cin%20A%20%5Ctextrm%7B%20and%20%7D%20y%20%5Cin%20B%5C%7D"
+alt="A \circ B = \{xy| x \in A \textrm{ and } y \in B\}"
+title="A \circ B = \{xy| x \in A \textrm{ and } y \in B\}"
+class="math inline" /></p></li>
+<li><p>Star: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%5E%2A%20%3D%20%5C%7Bx_1%20x_2%20%5Cldots%20x_k%20%7C%20k%20%5Cgeq%200%20%5Ctextrm%7B%20and%20each%20%7D%20x_i%20%5Cin%20A%20%5C%7D"
+alt="A^* = \{x_1 x_2 \ldots x_k | k \geq 0 \textrm{ and each } x_i \in A \}"
+title="A^* = \{x_1 x_2 \ldots x_k | k \geq 0 \textrm{ and each } x_i \in A \}"
+class="math inline" /></p></li>
+</ul>
+</div>
+<div id="language-operations-example" class="slide section level2">
+<h1>Language Operations Example</h1>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> be the standard
+English alphabet</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%3D%20%5C%7B%5Ctextrm%7Bgood%7D%2C%20%5Ctextrm%7Bbad%7D%5C%7D"
+alt="A = \{\textrm{good}, \textrm{bad}\}"
+title="A = \{\textrm{good}, \textrm{bad}\}" class="math inline" /> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B%3D%20%5C%7B%5Ctextrm%7Bcat%7D%2C%20%5Ctextrm%7Bdog%7D%5C%7D"
+alt="B= \{\textrm{cat}, \textrm{dog}\}"
+title="B= \{\textrm{cat}, \textrm{dog}\}" class="math inline" /></p>
+<ul>
+<li><p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccup%20B"
+alt="A \cup B" title="A \cup B" class="math inline" /></p></li>
+<li><p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccirc%20B"
+alt="A \circ B" title="A \circ B" class="math inline" /></p></li>
+<li><p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%5E%2A"
+alt="A^*" title="A^*" class="math inline" /></p></li>
+</ul>
+</div>
+<div id="gumball-machine-problem" class="slide section level2">
+<h1>Gumball Machine Problem</h1>
+<pre><code>Design a DFA that represents a gumball machine with the following properties:
+
+* It takes nickels and dimes as inputs
+* If it receives 15 cents total, it dispenses a gumball
+* If it receives more than 15 cents, it dispenses a gumball and change
+
+
+Think of an &quot;accept&quot; state as one where a gumball is dispensed.
+
+(It&#39;s ok if your solution doesn&#39;t look quite like your neighbor&#39;s! There are multiple correct answers! We&#39;re going to compare!)</code></pre>
+</div>
+<div id="gumball-machine-solutions" class="slide section level2">
+<h1>Gumball Machine Solutions</h1>
+</div>
+<div id="resources" class="slide section level2">
+<h1>Resources</h1>
+</div>
+
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref3"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Sipser, Michael. “Introduction to the Theory of
+Computation.” ACM Sigact News 27.1 (1996): 27-29.<a href="#fnref4"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+</body>
+</html>

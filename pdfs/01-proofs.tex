@@ -1,0 +1,625 @@
+\subsection{Proofs}\label{proofs}
+
+\begin{itemize}
+\tightlist
+\item
+  Proofs are useful because they let you say something about the tools
+  you're using and building!
+\item
+  In the real world, this is useful because it helps you explain your
+  work and really convince people of your contribution.
+\item
+  Proofs are also helpful because they force you to write down your
+  thoughts. In writing down your thoughts, you might find out that your
+  thinking is flawed or you're making assumptions where you shouldn't.\\
+\item
+  Examples of some things that you might prove:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This cryptography scheme is secure.
+  \item
+    This new algorithm is the fastest out there.
+  \item
+    This network will lose less than \(.001 \%\) of the messages sent
+    over it.
+  \item
+    This new robot won't become sentient and kill you.
+  \end{itemize}
+\end{itemize}
+
+\subsection{What a proof looks like}\label{what-a-proof-looks-like}
+
+\begin{itemize}
+\tightlist
+\item
+  A good proof is like good code, clear and easy to follow!
+\item
+  Think of narrating your proof like commenting your code--you want the
+  next person to read it to be able to follow your train of thought.
+\item
+  I'm going to introduce a specific format for writing proofs. \emph{You
+  do not have to use this format for this course}, but it can be useful
+  to make sure you are fully documenting and explaining your proofs. It
+  also gives a linear structure to your argument.
+\end{itemize}
+
+\subsection{What a proof looks like}\label{what-a-proof-looks-like-1}
+
+The two column format looks like this:
+
+\(\begin{array}{l l l}
+ & \textrm{Column 1} & \textrm{Column 2} \\
+ \hline
+    1. & \textrm{Your conclusion} & \textrm{How you came to that conclusion}  \\
+     2. & \ldots\\
+     3. & \ldots\\
+     \vdots \\
+      \square
+ \end{array}\)
+
+\subsection{Finding P and Q}\label{finding-p-and-q}
+
+\subsubsection{Example}\label{example}
+
+\begin{itemize}
+\tightlist
+\item
+  ``If \(x\) is even, \(x^2\) is even.''
+\item
+  \(P:\) \(x\) is even
+\item
+  \(Q:\) \(x^2\) is even
+\end{itemize}
+
+\subsection{Finding P and Q}\label{finding-p-and-q-1}
+
+\subsubsection{Example}\label{example-1}
+
+\begin{itemize}
+\tightlist
+\item
+  ``There are infinitely many primes.''
+\item
+  This can be restated as ``For all \(a \in \mathbb{Z}\), if \(a\) is
+  prime, then there exists a prime \(b \in \mathbb{Z}\) such that
+  \(b>a\).'\,'\\
+\item
+  \(P:\) \(a \in \mathbb{Z}\) is prime
+\item
+  \(Q:\) There exists \(b \in \mathbb{Z}\) such that \(b>a\)
+\end{itemize}
+
+\subsection{Finding P and Q}\label{finding-p-and-q-2}
+
+\subsubsection{Example}\label{example-2}
+
+\begin{itemize}
+\tightlist
+\item
+  ``\(x-1 < \left \lfloor{x}\right \rfloor\)''
+\item
+  \(P:\) Everything you know about math is true
+\item
+  \(Q:\) \(x-1 < \left \lfloor{x}\right \rfloor\)
+\end{itemize}
+
+\subsection{Rewrites}\label{rewrites}
+
+Here are some common rewrites you might see when constructing your
+proofs:
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\) is an even integer converts to \(n = 2t\) for some \(t\)
+\item
+  \(n\) is an odd integer converts to \(n = 2t + 1\) for some \(t\)
+\item
+  \(n\) is a rational number converts to \(n = \frac{a}{b}\) where \(a\)
+  and \(b\) are integers
+\item
+  \(n\) divides \(m\) converts to \(m = nt\) for some integer \(t\)
+\item
+  \(n\) is a square converts to \(n = t^2\) for some integer \(t\).
+\item
+  \(n = a \bmod b\) converts to \(n = bt + a\) for some integer \(t\).
+\end{itemize}
+
+\subsection{Main Types of Proofs}\label{main-types-of-proofs}
+
+The four typical ways we show \(P \implies Q\) are the following:
+
+\begin{itemize}
+\item
+  Direct Proof
+\item
+  Proof By Contradiction
+\item
+  Proof By Contrapositive
+\item
+  Proof By Counterexample
+\item
+  Proof By Induction
+\end{itemize}
+
+\subsection{Types of Proofs - Direct}\label{types-of-proofs---direct}
+
+The first type of proof we will discuss is called a \textbf{direct
+proof}. Basically, we are trying to to prove \(p  \rightarrow q\) by
+starting at \(p\) and getting to \(q\).
+
+For example, say we want to prove the following: ``If \(x\) is even,
+\(x^2\) is even''.
+
+Then \(p\) is ``\(x\) is even'' and \(q\) is ``\(x^2\) is even''
+
+\subsection{Types of Proofs - Direct}\label{types-of-proofs---direct-1}
+
+The first type of proof we will discuss is called a \textbf{direct
+proof}. Basically, we are trying to to prove \(p  \rightarrow q\) by
+starting at \(p\) and getting to \(q\).
+
+For example, say we want to prove the following: ``If \(x\) is even,
+\(x^2\) is even''.
+
+Then \(p\) is ``\(x\) is even'' and \(q\) is ``\(x^2\) is even''
+
+\(\begin{array}{l l l}
+      1. & x \textrm{ is even} & \textrm{Given (In other words, this is our } p \textrm{)}\\
+      2. & x = 2k, {} k \in \mathbb{Z} & \textrm{Definition of Even Number}\\
+      3. & x^2 = (2k)^2 & \textrm{Squared both sides of Line 2} \\
+      4. & x^2 = 4k^2 & \textrm{Simplified Line 3} \\
+      5. & x^2 = 2(2k^2) & \textrm{Rewrote Line 4} \\
+      6. & x^2 \textrm{ is even} & \textrm{Definition of Even Number } \square
+    \end{array}\)
+
+\textbf{Note that at every step you're basically saying,
+``Therefore\ldots{}'' this is where your implication \(\rightarrow\) is
+coming in.}
+
+\subsection{Proof By Contradiction}\label{proof-by-contradiction}
+
+\begin{itemize}
+\item
+  \(P \implies Q \equiv \neg(P \land \neg Q)\).
+\item
+  This leads to why we do proofs by contradiction.
+\item
+  Instead of proving \(P \implies Q\), we prove \(P \land \neg Q\) does
+  not hold.
+\item
+  In other words, we start with \(P \land \neg Q\) and get to an
+  impossible state \(\bot\).
+\end{itemize}
+
+\subsubsection{Example}\label{example-3}
+
+\begin{itemize}
+\tightlist
+\item
+  A famous proof is the proof that \(\sqrt{2}\) is irrational.
+\end{itemize}
+
+\subsection{Proof By Contradiction -
+Example}\label{proof-by-contradiction---example}
+
+\begin{itemize}
+\tightlist
+\item
+  We want to prove: If \(x^2\) is odd, \(x\) is odd.
+\end{itemize}
+
+\subsection{Proof by Contrapositive}\label{proof-by-contrapositive}
+
+For a proof of contrapositive, you're going to use the equality we
+proved last class:
+
+\(P \implies Q \equiv \neg Q \implies \neg P\).
+
+In other words, instead of proving \(P \implies Q\), we are going to
+assume \(\neg Q\) and show that it leads to \(\neg P\).
+
+\subsubsection{Example}\label{example-4}
+
+\begin{itemize}
+\tightlist
+\item
+  We want to prove: If \(x^2\) is odd, \(x\) is odd.
+\end{itemize}
+
+\subsection{Proof by Counterexample}\label{proof-by-counterexample}
+
+If you want to disprove something, the easiest way is usually by counter
+example.
+
+You don't have to do this in the typical two column format as long as
+you make your reasoning clear.
+
+\subsubsection{Example}\label{example-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Say I ask you to prove the following is false: If \(x\) is even,
+  \(x^2\) is odd.
+\end{itemize}
+
+\subsection{Other Types of Proofs}\label{other-types-of-proofs}
+
+You may see some other types of proofs that follow from the types of
+proofs we've already discussed.
+
+\begin{itemize}
+\tightlist
+\item
+  Forall
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Exhaustive
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Proof by Cases
+    \end{itemize}
+  \end{itemize}
+\item
+  Existence
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Proof by Construction
+  \end{itemize}
+\end{itemize}
+
+\subsection{Forall}\label{forall}
+
+You may want to prove statements such as
+``\(\forall x \in S, P(x) \implies Q(x)\).''
+
+As previously discussed, to prove a ``for all'' statement, you want to
+look at every element in \(S\) and show that \(P(x) \implies Q(x)\)
+holds.
+
+You can often do this with a direct proof. All of the things we've
+directly proved so far are actually ``for all'' proofs.
+
+\begin{itemize}
+\tightlist
+\item
+  \(\forall x \in \mathbb{Z}\), If \(x\) is even, \(x^2\) is even
+\item
+  \(\forall x \in \mathbb{Z}, {} x-1 < \left \lfloor{x}\right \rfloor\)
+\item
+  \(\forall a,b,c \in \{\texttt{True}, \texttt{False}\}, {} \neg a \lor \neg(b \land \neg c) \equiv a \implies (b \implies c)\)
+\item
+  \(\forall a,b,c \in \mathbb{Z}\), if \(a \mid b\) and \(b \mid c\),
+  then \(a \mid c\)
+\end{itemize}
+
+\subsection{Forall, Exhaustive}\label{forall-exhaustive}
+
+However, we can also prove ``for all'' statements by exhaustively
+looking at every element in \(S\) and checking if \(P(x)\) holds.
+
+Fittingly, this is called a \textbf{Proof by Exhaustion}.
+
+A good example is the set problem you've already seen:
+
+\begin{itemize}
+\tightlist
+\item
+  \(F = \{\)Erik, José, Nicoleta, Aksana\(\}\)
+\item
+  \(V = \{\)Aksana, Erik\(\}\) is the set of your friends who are
+  vegetarian
+\item
+  \(N = \{\)Aksana\(\}\) is the set of your friends who are vegan
+\item
+  We want to prove: \(\forall x \in F,{} x \in N \implies x \in V\)
+\end{itemize}
+
+\subsection{Proof by Cases}\label{proof-by-cases}
+
+A \textbf{Proof by Cases} is a kind of proof by exhaustion. You are
+breaking the set you are proving something about into smaller sets.
+
+A good example is when we proved the definition of absolute value.
+
+\(|x| = sgn(x) \cdot x\)
+
+\(sgn(x) = \begin{cases}
+    -1 & x<0\\
+    0 & x =0\\
+    1 & x>0
+    \end{cases}\)
+
+\subsection{Proof by Cases}\label{proof-by-cases-1}
+
+A \textbf{Proof by Cases} is a kind of proof by exhaustion. You are
+breaking the set you are proving something about into smaller sets.
+
+A good example is when we proved the definition of absolute value.
+
+\(|x| = sgn(x) \cdot x\)
+
+\(sgn(x) = \begin{cases}
+    -1 & x<0\\
+    0 & x =0\\
+    1 & x>0
+    \end{cases}\)
+
+Case 1: \(x > 0\)
+
+\(\begin{array}{l l l}
+      1. & x > 0   & \textrm{Case Assertion} \\
+      2. & sgn(x) = 1  & \textrm{Signum Def.} \\
+      3. & sgn(x) \cdot x = x & \textrm{Multiply both sides by } x \\
+      4. & |x| = x & \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. & sgn(x) = |x| & \textrm{Compared Lines 3 and 5} \\
+    \end{array}\)
+
+\subsection{Proof by Cases Cont.}\label{proof-by-cases-cont.}
+
+Case 2: \(x = 0\)
+
+\(\begin{array}{l l l}
+      1. & x = 0   & \textrm{Case Assertion} \\
+      2. & sgn(x) = 0  & \textrm{Signum Def.} \\
+      3. & sgn(x) \cdot x = 0 & \textrm{Multiply both sides by } x \\
+      4. & |x| = 0 & \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. & sgn(x) = |x| & \textrm{Compared Lines 3 and 5} \\
+    \end{array}\)
+
+Case 3: \(x < 0\)
+
+\(\begin{array}{l l l}
+      1. & x < 0   & \textrm{Case Assertion} \\
+      2. & sgn(x) = -1  & \textrm{Signum Def.} \\
+      3. & sgn(x) \cdot x = -x & \textrm{Multiply both sides by } x \\
+      4. & |x| = -x & \textrm{Applied Def. of Absolute Value to Line 1} \\
+      5. & sgn(x) = |x| & \textrm{Compared Lines 3 and 5} \\
+    \end{array}\)
+
+\subsection{Proof of Existence}\label{proof-of-existence}
+
+Sometimes you just need to prove the existence of something.
+
+\(\exists x \in S, {} P(x)\).
+
+Again, like we discussed in class, you can show the existence of
+something by looking at every element of the set and finding an \(x\)
+such that \(P(x)\) is true.
+
+Let's go back to our food example:
+
+\begin{itemize}
+\tightlist
+\item
+  \(F = \{\)Erik, José, Nicoleta, Aksana\(\}\)
+\item
+  \(V = \{\)Aksana, Erik\(\}\) is the set of your friends who are
+  vegetarian
+\item
+  \(N = \{\)Aksana\(\}\) is the set of your friends who are vegan
+\item
+  We want to prove: \(\exists x \in F,{} x \in N \implies x \in V\)
+\end{itemize}
+
+\subsection{Proof of Existence - Constructive
+Proof}\label{proof-of-existence---constructive-proof}
+
+Sometimes you will have to prove the existence of more complicated
+things. You might have to \emph{construct} a solution and then prove
+it's a valid solution.
+
+This can also be called a \textbf{constructive proof} or \textbf{proof
+by construction} because you are literally constructing your own
+example.
+
+\subsection{Proof by Construction -
+Example}\label{proof-by-construction---example}
+
+For example, you might want to argue the usefulness of exponential
+encryption by proving that exponential encryption can be decrypted:
+
+\(\exists e,d,x,N \in \mathbb{Z}, {} x^{e \cdot d} \bmod N = x\)
+
+You can do this by using RSA as an example:
+
+\subsubsection{Construction}\label{construction}
+
+\begin{itemize}
+\tightlist
+\item
+  \(N = p \cdot q\)
+\item
+  \(e \cdot d = 1 \bmod (p-1)(q-1)\)
+\end{itemize}
+
+\subsubsection{Proof}\label{proof}
+
+Plug in \(N = p \cdot q\) and \(e \cdot d = 1 \bmod (p-1)(q-1)\) to
+demonstrate \(x^{e \cdot d} \bmod N = x\).
+
+\subsection{Proof by Induction}\label{proof-by-induction}
+
+\subsection{(Strong) Induction}\label{strong-induction}
+
+\begin{itemize}
+\tightlist
+\item
+  Induction is a type of proof we can do on recursively defined
+  functions and sets
+\item
+  Say we are trying to prove \(R(x)\) holds in a recursively defined set
+  \(S = \{S_0, S_1, S_2, \ldots \}\)
+\item
+  We can prove this by:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Showing \(R(x)\) holds for the base case(s) of \(S\)
+  \item
+    Assuming \(R(k)\) holds for all \(k < n\) in the recursive rule,
+    showing that it also holds for step \(n\). In other words, we're
+    showing
+    \(\big(R(S_0) \land R(S_1) \land \ldots \land R(S_{n-2}) \land R(S_{n-1})\big) \implies R(S_{n})\).\\
+  \end{enumerate}
+\item
+  Remember that many things can be defined recursively, so even though
+  \(x \in S\), \(x\) isn't necessarily a single element. \(x\) can also
+  be a set/function/mapping etc! Think about our recursive powersets
+  definition.
+\end{itemize}
+
+\subsection{Let's Start With an
+Example}\label{lets-start-with-an-example}
+
+\subsection{Example with Template}\label{example-with-template}
+
+Recall the Fibonacci series\ldots{}
+
+\begin{itemize}
+\tightlist
+\item
+  The base case: \(F(0) = 0, F(1) = 1\)
+\item
+  Recursive rule: For \(n > 1\), \(F(n) = F(n-1) + F(n-2)\).
+\end{itemize}
+
+We want to prove the following about the sum of the first \(n\) numbers
+of the series:
+
+\(\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1\).
+
+\subsection{Example with Template}\label{example-with-template-1}
+
+S1. State the `for all' statement that you want to prove:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\forall n \in \mathbb{N}, \sum_{i=0}^n F(i) = F(n+2) - 1\).
+\end{itemize}
+
+S2. Say ``we prove this by induction on'' and state the induction
+parameter.
+
+\begin{itemize}
+\tightlist
+\item
+  We prove this by induction on \(n\).
+\end{itemize}
+
+\subsection{Example with Template}\label{example-with-template-2}
+
+S3. Prove the base case(s).
+
+\begin{itemize}
+\tightlist
+\item
+  \(n=0\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(F(0) = F(2) - 1\)
+  \item
+    \(0 = 0\) \(\square\)
+  \end{itemize}
+\item
+  \(n = 1\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(F(0) + F(1) = F(3) - 1\)
+  \item
+    \(1 = 2 - 1\) \(\square\)
+  \end{itemize}
+\end{itemize}
+
+\subsection{Example with Template}\label{example-with-template-3}
+
+S4. Write Induction Step.
+
+\begin{itemize}
+\tightlist
+\item
+  For a given \(n > 1\),
+\end{itemize}
+
+S5. State the Induction Hypothesis (IH)
+
+\begin{itemize}
+\tightlist
+\item
+  I can assume for all \(1 \leq k \leq n\) that
+  \(\sum_{i=0}^k F(i) = F(k+2) - 1\),
+\end{itemize}
+
+S6. State what you are going to prove about your specific value of \(x\)
+that was given to you in S4:
+
+\begin{itemize}
+\tightlist
+\item
+  and I want to prove \(\sum_{i=0}^n F(i) = F(n+2) - 1\).
+\end{itemize}
+
+\subsection{Example with Template}\label{example-with-template-4}
+
+S7. Do the proof for the specific \(x\).
+
+\subsection{Example with Template}\label{example-with-template-5}
+
+S7. Do the proof for the specific \(x\).
+
+\(\begin{array}{l l l}
+        1. & \forall 1 \leq k \leq n, {} \sum_{i=0}^k F(i) = F(k+2) - 1 & \textrm{IH} \\
+        2. & \textrm{Let } k = n - 1, \textrm{ then } \sum_{i=0}^{n-1} F(i) = F(n-1+2) - 1 & \textrm{Applied IH} \\
+        3. & \sum_{i=0}^{n-1} F(i) = F(n+1) - 1 & \textrm{Rewrote Line 2}\\
+        4. & \sum_{i=0}^{n-1} F(i) + F(n) = F(n+1) - 1 + F(n) & \textrm{Added } F(n) \textrm{ to both sides.}\\
+        5. & F(n+2) = F(n+1) + F(n) & \textrm{Fibonacci Def.}\\
+        6. & \sum_{i=0}^{n-1} F(i) + F(n) = F(n+2) - 1 & \textrm{Plugged 5. into 4.}\\
+        7. & \sum_{i=0}^n F(i) = \sum_{i=0}^{n-1} F(i) + F(n) & \textrm{Def. of Sum} \\
+        8. & \sum_{i=0}^{n} F(i) = F(n+2) - 1 & \textrm{Plugged 7. into 6.} \square
+    \end{array}\)
+
+\subsection{Example with Template}\label{example-with-template-6}
+
+S8. Declare victory.
+
+\begin{itemize}
+\tightlist
+\item
+  Therefore, we have proved
+  \(\forall n \in \mathbb{N}, F(0) + F(1) + F(2) + \ldots + F(n-1) + F(n) = F(n+2) - 1\).
+\end{itemize}
+
+\subsection{Tips for Proving Something by Induction
+(S7)}\label{tips-for-proving-something-by-induction-s7}
+
+\begin{itemize}
+\tightlist
+\item
+  Your Inductive Hypothesis (Step 5) should be line 1 in your proof.
+\item
+  The recursive definition of any structures you're using (e.g.~sum,
+  factorial, exponents, etc.) should be the next lines of your proof.
+\item
+  Step 6 is what the \emph{last} line of your proof should be.
+\item
+  To start, think about how you can use your inductive hypothesis and
+  recursive definitions to get to step 6. (Usually this means plugging a
+  smaller version of \(x\) into your inductive hypothesis and using your
+  recursive definitions to rewrite it.)
+\end{itemize}
