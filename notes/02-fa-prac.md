@@ -1,24 +1,32 @@
 % More on Finite Automata and Regular Languages
 % Alyssa Lytle
-% August 26, 2025
+% January 20, 2026
 
-<!-- pandoc -t slidy -s notes/02-fa-prac.md -o slides/02-finite-automata-practice.html --webtex -->
-
-# Finite Automata and Regular Languages Practice
-
-## Gumball Machine Problem
-    Design a DFA that represents a gumball machine with the following properties:
-
-    * It takes nickels and dimes as inputs
-    * If it receives 15 cents total, it dispenses a gumball
-    * If it receives more than 15 cents, it dispenses a gumball and change
+<!-- pandoc -t slidy -s notes/02-fa-prac.md -o slides/04-dfa-practice.html --webtex -->
 
 
-    Think of an "accept" state as one where a gumball is dispensed.
+<!-- pandoc -s notes/02-fa-prac.md -o slides/04-dfa-practice.html -->
 
-    (It's ok if your solution doesn't look quite like your neighbor's! There are multiple correct answers! We're going to compare!)
+# More on Finite Automata and Regular Languages 
 
-## Gumball Machine Solutions
+## Practice [^hopcroft]
+
+Let 
+
+$$ L = \{w | w \textrm{ is of even length and begins with } 01 \}$$
+
+Prove $L$ is a regular language.
+
+## Practice
+
+Let us design a DFA to accept the language:
+
+$$ L = \{w | w \textrm{ is of even length and begins with } 01 \}$$
+
+What we need to track:
+
+* Whether it starts with 01
+* Whether the input length is even
 
 ## More notation
 
@@ -47,26 +55,11 @@ Then
 $$\Hat{\delta}(q,w) = \delta(\Hat{\delta}(q,x),a)$$
 
 
-## Practice [^hopcroft]
 
-Let us design a DFA to accept the language:
-
-$$ L = \{w | w \textrm{ is of even length and begins with } 01 \}$$
 
 ## Practice
 
-Let us design a DFA to accept the language:
-
-$$ L = \{w | w \textrm{ is of even length and begins with } 01 \}$$
-
-What we need to track:
-
-* Whether it starts with 01
-* Whether the input length is even
-
-## Practice
-
-Show $\Hat{\delta}(q_0, 011101) = q_2$
+For the DFA we previously defined, show $\Hat{\delta}(q_0, 011101) = q_2$
 
 ## Proving Properties About Automata [^sipser] [^kozen]
 
@@ -90,9 +83,23 @@ With $L(M_1) = A$ and $L(M_2) = B$.
 
 To prove $A \cap B$ is regular, we need to build an automaton for it!
 
+*It's a proof by construction!*
 
+## Proof by Construction
 
-## Proving Properties Cont.
+Has two main elements:
+
+1. The construction
+2. Proof that the construction satisfies the claim
+
+## Proof by Construction
+
+Has two main elements:
+
+1. Construction of automaton $M_3$ 
+2. Proof that $L(M_3) = L(M_1) \cap L(M_2)$
+
+## Construction of $M_3$
 
 * $L(M_1) = A$ and $L(M_2) = B$.
 * $M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)$
@@ -103,20 +110,29 @@ Let $M_3 = (Q_3, \Sigma, \delta_3, s_3, F_3)$
 
 with 
 
-## Proving Properties Cont.
+## Proof that $L(M_3) = L(M_1) \cap L(M_2)$
 
-Given: 
+We're going to work with this assumption: 
+
+### Lemma A
 
 For all $x \in \Sigma^*$, $\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))$.
 
-## Proving Properties Cont.
 
-### WTP $L(M_3) = L(M_1) \cap L(M_2)$
+## Proof that $L(M_3) = L(M_1) \cap L(M_2)$
+
+### Our Toolbox (What We Know)
 
 * $L(M_1) = A$ and $L(M_2) = B$.
 * $M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)$
 * $M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)$
-* $\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))$.
+* Our Construction of $M_3= (Q_3, \Sigma, \delta_3, s_3, F_3)$
+    * $Q_3 = Q_1 \times Q_2 = \{(p,q) \mid p \in Q_1, q \in Q_2 \}$
+    * $\delta_3((p,q),d) = (\delta_1(p,d), \delta_2(q,d))$
+    * $s_3 = (s_1,s_2)$
+    * $F_3 = F_1 \times F_2$
+* Lemma A: $\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))$.
+
 
 
 ## Resources

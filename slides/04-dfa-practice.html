@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2026-01-20" />
+  <title>More on Finite Automata and Regular Languages</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">More on Finite Automata and Regular Languages</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">January 20, 2026</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/02-fa-prac.md -o slides/04-dfa-practice.html --webtex -->
+<!-- pandoc -s notes/02-fa-prac.md -o slides/04-dfa-practice.html -->
+</div>
+<div id="more-on-finite-automata-and-regular-languages"
+class="title-slide slide section level1">
+<h1>More on Finite Automata and Regular Languages</h1>
+
+</div>
+<div id="practice-hopcroft" class="slide section level2">
+<h1>Practice <a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a></h1>
+<p>Let</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20L%20%3D%20%5C%7Bw%20%7C%20w%20%5Ctextrm%7B%20is%20of%20even%20length%20and%20begins%20with%20%7D%2001%20%5C%7D"
+alt="L = \{w | w \textrm{ is of even length and begins with } 01 \}"
+title="L = \{w | w \textrm{ is of even length and begins with } 01 \}"
+class="math display" /></p>
+<p>Prove <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L" alt="L"
+title="L" class="math inline" /> is a regular language.</p>
+</div>
+<div id="practice" class="slide section level2">
+<h1>Practice</h1>
+<p>Let us design a DFA to accept the language:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20L%20%3D%20%5C%7Bw%20%7C%20w%20%5Ctextrm%7B%20is%20of%20even%20length%20and%20begins%20with%20%7D%2001%20%5C%7D"
+alt="L = \{w | w \textrm{ is of even length and begins with } 01 \}"
+title="L = \{w | w \textrm{ is of even length and begins with } 01 \}"
+class="math display" /></p>
+<p>What we need to track:</p>
+<ul>
+<li>Whether it starts with 01</li>
+<li>Whether the input length is even</li>
+</ul>
+</div>
+<div id="more-notation" class="slide section level2">
+<h1>More notation</h1>
+<p>Let’s talk more about our transition function <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" />…</p>
+<p>We’ve so far discussed <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" /> in terms of</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CSigma%20%5Cto%20Q"
+alt="\delta: Q \times \Sigma \to Q"
+title="\delta: Q \times \Sigma \to Q" class="math inline" /></li>
+</ul>
+<p>In other words <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta"
+alt="\delta" title="\delta" class="math inline" /> is handling state
+transitions given a single input from <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" />.</p>
+<p>What if we wanted to discuss <em>strings</em> of input?</p>
+</div>
+<div id="extending-the-transition-function-to-strings"
+class="slide section level2">
+<h1>Extending the Transition Function to Strings</h1>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5CHat%7B%5Cdelta%7D%3A%20Q%20%5Ctimes%20%5CSigma%5E%2A%20%5Cto%20Q"
+alt="\Hat{\delta}: Q \times \Sigma^* \to Q"
+title="\Hat{\delta}: Q \times \Sigma^* \to Q"
+class="math display" /></p>
+<h3 id="formal-definition">Formal Definition</h3>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w" alt="w"
+title="w" class="math inline" /> be a string of the form <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20xa" alt="xa"
+title="xa" class="math inline" />;</p>
+<p>That is <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%3D%20xa"
+alt="w= xa" title="w= xa" class="math inline" />, where <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is a string and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is a symbol.</p>
+<p>Then</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5CHat%7B%5Cdelta%7D%28q%2Cw%29%20%3D%20%5Cdelta%28%5CHat%7B%5Cdelta%7D%28q%2Cx%29%2Ca%29"
+alt="\Hat{\delta}(q,w) = \delta(\Hat{\delta}(q,x),a)"
+title="\Hat{\delta}(q,w) = \delta(\Hat{\delta}(q,x),a)"
+class="math display" /></p>
+</div>
+<div id="practice-1" class="slide section level2">
+<h1>Practice</h1>
+<p>For the DFA we previously defined, show <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta%7D%28q_0%2C%20011101%29%20%3D%20q_2"
+alt="\Hat{\delta}(q_0, 011101) = q_2"
+title="\Hat{\delta}(q_0, 011101) = q_2" class="math inline" /></p>
+</div>
+<div id="proving-properties-about-automata-sipser-kozen"
+class="slide section level2">
+<h1>Proving Properties About Automata <a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a> <a href="#fn3"
+class="footnote-ref" id="fnref3"><sup>3</sup></a></h1>
+<h3 id="want-to-prove-wtp">Want to Prove (WTP):</h3>
+<p>Assume <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> are regular languages. Then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccap%20B"
+alt="A \cap B" title="A \cap B" class="math inline" /> is also
+regular.</p>
+</div>
+<div id="proving-properties-about-automata"
+class="slide section level2">
+<h1>Proving Properties About Automata</h1>
+<h3 id="want-to-prove-wtp-1">Want to Prove (WTP):</h3>
+<p>Assume <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> are regular languages. Then <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccap%20B"
+alt="A \cap B" title="A \cap B" class="math inline" /> is also
+regular.</p>
+<p>If <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20B" alt="B"
+title="B" class="math inline" /> are regular, then there exist
+automata</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_1%20%3D%20%28Q_1%2C%20%5CSigma%2C%20%5Cdelta_1%2C%20s_1%2C%20F_1%29"
+alt="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+title="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+class="math inline" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_2%20%3D%20%28Q_2%2C%20%5CSigma%2C%20%5Cdelta_2%2C%20s_2%2C%20F_2%29"
+alt="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+title="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+class="math inline" /></p>
+<p>With <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_1%29%20%3D%20A"
+alt="L(M_1) = A" title="L(M_1) = A" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_2%29%20%3D%20B"
+alt="L(M_2) = B" title="L(M_2) = B" class="math inline" />.</p>
+<p>To prove <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A%20%5Ccap%20B"
+alt="A \cap B" title="A \cap B" class="math inline" /> is regular, we
+need to build an automaton for it!</p>
+<p><em>It’s a proof by construction!</em></p>
+</div>
+<div id="proof-by-construction" class="slide section level2">
+<h1>Proof by Construction</h1>
+<p>Has two main elements:</p>
+<ol style="list-style-type: decimal">
+<li>The construction</li>
+<li>Proof that the construction satisfies the claim</li>
+</ol>
+</div>
+<div id="proof-by-construction-1" class="slide section level2">
+<h1>Proof by Construction</h1>
+<p>Has two main elements:</p>
+<ol style="list-style-type: decimal">
+<li>Construction of automaton <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_3" alt="M_3"
+title="M_3" class="math inline" /></li>
+<li>Proof that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_3%29%20%3D%20L%28M_1%29%20%5Ccap%20L%28M_2%29"
+alt="L(M_3) = L(M_1) \cap L(M_2)" title="L(M_3) = L(M_1) \cap L(M_2)"
+class="math inline" /></li>
+</ol>
+</div>
+<div id="construction-of-m_3" class="slide section level2">
+<h1>Construction of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_3" alt="M_3"
+title="M_3" class="math inline" /></h1>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_1%29%20%3D%20A"
+alt="L(M_1) = A" title="L(M_1) = A" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_2%29%20%3D%20B"
+alt="L(M_2) = B" title="L(M_2) = B" class="math inline" />.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_1%20%3D%20%28Q_1%2C%20%5CSigma%2C%20%5Cdelta_1%2C%20s_1%2C%20F_1%29"
+alt="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+title="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_2%20%3D%20%28Q_2%2C%20%5CSigma%2C%20%5Cdelta_2%2C%20s_2%2C%20F_2%29"
+alt="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+title="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+class="math inline" /></li>
+</ul>
+<p>Let <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_3%20%3D%20%28Q_3%2C%20%5CSigma%2C%20%5Cdelta_3%2C%20s_3%2C%20F_3%29"
+alt="M_3 = (Q_3, \Sigma, \delta_3, s_3, F_3)"
+title="M_3 = (Q_3, \Sigma, \delta_3, s_3, F_3)"
+class="math inline" /></p>
+<p>with</p>
+</div>
+<div id="proof-that-lm_3-lm_1-cap-lm_2" class="slide section level2">
+<h1>Proof that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_3%29%20%3D%20L%28M_1%29%20%5Ccap%20L%28M_2%29"
+alt="L(M_3) = L(M_1) \cap L(M_2)" title="L(M_3) = L(M_1) \cap L(M_2)"
+class="math inline" /></h1>
+<p>We’re going to work with this assumption:</p>
+<h3 id="lemma-a">Lemma A</h3>
+<p>For all <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%5Cin%20%5CSigma%5E%2A"
+alt="x \in \Sigma^*" title="x \in \Sigma^*" class="math inline" />, <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta_3%7D%28%28p%2Cq%29%2Cx%29%20%3D%20%28%5CHat%7B%5Cdelta_1%7D%28p%2Cx%29%2C%5CHat%7B%5Cdelta_2%7D%28q%2Cx%29%29"
+alt="\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))"
+title="\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))"
+class="math inline" />.</p>
+</div>
+<div id="proof-that-lm_3-lm_1-cap-lm_2-1" class="slide section level2">
+<h1>Proof that <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_3%29%20%3D%20L%28M_1%29%20%5Ccap%20L%28M_2%29"
+alt="L(M_3) = L(M_1) \cap L(M_2)" title="L(M_3) = L(M_1) \cap L(M_2)"
+class="math inline" /></h1>
+<h3 id="our-toolbox-what-we-know">Our Toolbox (What We Know)</h3>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_1%29%20%3D%20A"
+alt="L(M_1) = A" title="L(M_1) = A" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20L%28M_2%29%20%3D%20B"
+alt="L(M_2) = B" title="L(M_2) = B" class="math inline" />.</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_1%20%3D%20%28Q_1%2C%20%5CSigma%2C%20%5Cdelta_1%2C%20s_1%2C%20F_1%29"
+alt="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+title="M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_2%20%3D%20%28Q_2%2C%20%5CSigma%2C%20%5Cdelta_2%2C%20s_2%2C%20F_2%29"
+alt="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+title="M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)"
+class="math inline" /></li>
+<li>Our Construction of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M_3%3D%20%28Q_3%2C%20%5CSigma%2C%20%5Cdelta_3%2C%20s_3%2C%20F_3%29"
+alt="M_3= (Q_3, \Sigma, \delta_3, s_3, F_3)"
+title="M_3= (Q_3, \Sigma, \delta_3, s_3, F_3)" class="math inline" />
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q_3%20%3D%20Q_1%20%5Ctimes%20Q_2%20%3D%20%5C%7B%28p%2Cq%29%20%5Cmid%20p%20%5Cin%20Q_1%2C%20q%20%5Cin%20Q_2%20%5C%7D"
+alt="Q_3 = Q_1 \times Q_2 = \{(p,q) \mid p \in Q_1, q \in Q_2 \}"
+title="Q_3 = Q_1 \times Q_2 = \{(p,q) \mid p \in Q_1, q \in Q_2 \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta_3%28%28p%2Cq%29%2Cd%29%20%3D%20%28%5Cdelta_1%28p%2Cd%29%2C%20%5Cdelta_2%28q%2Cd%29%29"
+alt="\delta_3((p,q),d) = (\delta_1(p,d), \delta_2(q,d))"
+title="\delta_3((p,q),d) = (\delta_1(p,d), \delta_2(q,d))"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s_3%20%3D%20%28s_1%2Cs_2%29"
+alt="s_3 = (s_1,s_2)" title="s_3 = (s_1,s_2)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F_3%20%3D%20F_1%20%5Ctimes%20F_2"
+alt="F_3 = F_1 \times F_2" title="F_3 = F_1 \times F_2"
+class="math inline" /></li>
+</ul></li>
+<li>Lemma A: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta_3%7D%28%28p%2Cq%29%2Cx%29%20%3D%20%28%5CHat%7B%5Cdelta_1%7D%28p%2Cx%29%2C%5CHat%7B%5Cdelta_2%7D%28q%2Cx%29%29"
+alt="\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))"
+title="\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))"
+class="math inline" />.</li>
+</ul>
+</div>
+<div id="resources" class="slide section level2">
+<h1>Resources</h1>
+</div>
+
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><ul>
+<li>Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman.
+“Introduction to automata theory, languages, and computation.” Acm
+Sigact News 32.1 (2001): 60-65.</li>
+</ul>
+<a href="#fnref1" class="footnote-back">↩︎</a></li>
+<li id="fn2"><ul>
+<li>Sipser, Michael. “Introduction to the Theory of Computation.” ACM
+Sigact News 27.1 (1996): 27-29</li>
+</ul>
+<a href="#fnref2" class="footnote-back">↩︎</a></li>
+<li id="fn3"><ul>
+<li>Kozen, Dexter C. Automata and computability. Springer Science &amp;
+Business Media, 2007.</li>
+</ul>
+<a href="#fnref3" class="footnote-back">↩︎</a></li>
+</ol>
+</div>
+</body>
+</html>
