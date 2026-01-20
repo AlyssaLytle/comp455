@@ -1,0 +1,256 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={More on Finite Automata and Regular Languages},
+  pdfauthor={Alyssa Lytle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{More on Finite Automata and Regular Languages}
+\author{Alyssa Lytle}
+\date{January 20, 2026}
+
+\begin{document}
+\maketitle
+
+\section{More on Finite Automata and Regular
+Languages}\label{more-on-finite-automata-and-regular-languages}
+
+\subsection[Practice ]{\texorpdfstring{Practice
+\footnote{\begin{itemize}
+  \tightlist
+  \item
+    Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman.
+    ``Introduction to automata theory, languages, and computation.'' Acm
+    Sigact News 32.1 (2001): 60-65.
+  \end{itemize}}}{Practice }}\label{practice-hopcroft}
+
+Let
+
+\[ L = \{w | w \textrm{ is of even length and begins with } 01 \}\]
+
+Prove \(L\) is a regular language.
+
+\subsection{Practice}\label{practice}
+
+Let us design a DFA to accept the language:
+
+\[ L = \{w | w \textrm{ is of even length and begins with } 01 \}\]
+
+What we need to track:
+
+\begin{itemize}
+\tightlist
+\item
+  Whether it starts with 01
+\item
+  Whether the input length is even
+\end{itemize}
+
+\subsection{More notation}\label{more-notation}
+
+Let's talk more about our transition function \(\delta\)\ldots{}
+
+We've so far discussed \(\delta\) in terms of
+
+\begin{itemize}
+\tightlist
+\item
+  \(\delta: Q \times \Sigma \to Q\)
+\end{itemize}
+
+In other words \(\delta\) is handling state transitions given a single
+input from \(\Sigma\).
+
+What if we wanted to discuss \emph{strings} of input?
+
+\subsection{Extending the Transition Function to
+Strings}\label{extending-the-transition-function-to-strings}
+
+\[\Hat{\delta}: Q \times \Sigma^* \to Q\]
+
+\subsubsection{Formal Definition}\label{formal-definition}
+
+Let \(w\) be a string of the form \(xa\);
+
+That is \(w= xa\), where \(x\) is a string and \(a\) is a symbol.
+
+Then
+
+\[\Hat{\delta}(q,w) = \delta(\Hat{\delta}(q,x),a)\]
+
+\subsection{Practice}\label{practice-1}
+
+For the DFA we previously defined, show
+\(\Hat{\delta}(q_0, 011101) = q_2\)
+
+\subsection[Proving Properties About Automata ]{\texorpdfstring{Proving
+Properties About Automata \footnote{\begin{itemize}
+  \tightlist
+  \item
+    Sipser, Michael. ``Introduction to the Theory of Computation.'' ACM
+    Sigact News 27.1 (1996): 27-29
+  \end{itemize}}
+\footnote{\begin{itemize}
+  \tightlist
+  \item
+    Kozen, Dexter C. Automata and computability. Springer Science \&
+    Business Media, 2007.
+  \end{itemize}}}{Proving Properties About Automata  }}\label{proving-properties-about-automata-sipser-kozen}
+
+\subsubsection{Want to Prove (WTP):}\label{want-to-prove-wtp}
+
+Assume \(A\) and \(B\) are regular languages. Then \(A \cap B\) is also
+regular.
+
+\subsection{Proving Properties About
+Automata}\label{proving-properties-about-automata}
+
+\subsubsection{Want to Prove (WTP):}\label{want-to-prove-wtp-1}
+
+Assume \(A\) and \(B\) are regular languages. Then \(A \cap B\) is also
+regular.
+
+If \(A\) and \(B\) are regular, then there exist automata
+
+\(M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)\)
+
+\(M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)\)
+
+With \(L(M_1) = A\) and \(L(M_2) = B\).
+
+To prove \(A \cap B\) is regular, we need to build an automaton for it!
+
+\emph{It's a proof by construction!}
+
+\subsection{Proof by Construction}\label{proof-by-construction}
+
+Has two main elements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The construction
+\item
+  Proof that the construction satisfies the claim
+\end{enumerate}
+
+\subsection{Proof by Construction}\label{proof-by-construction-1}
+
+Has two main elements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Construction of automaton \(M_3\)
+\item
+  Proof that \(L(M_3) = L(M_1) \cap L(M_2)\)
+\end{enumerate}
+
+\subsection{\texorpdfstring{Construction of
+\(M_3\)}{Construction of M\_3}}\label{construction-of-m_3}
+
+\begin{itemize}
+\tightlist
+\item
+  \(L(M_1) = A\) and \(L(M_2) = B\).
+\item
+  \(M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)\)
+\item
+  \(M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)\)
+\end{itemize}
+
+Let \(M_3 = (Q_3, \Sigma, \delta_3, s_3, F_3)\)
+
+with
+
+\subsection{\texorpdfstring{Proof that
+\(L(M_3) = L(M_1) \cap L(M_2)\)}{Proof that L(M\_3) = L(M\_1) \textbackslash cap L(M\_2)}}\label{proof-that-lm_3-lm_1-cap-lm_2}
+
+We're going to work with this assumption:
+
+\subsubsection{Lemma A}\label{lemma-a}
+
+For all \(x \in \Sigma^*\),
+\(\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))\).
+
+\subsection{\texorpdfstring{Proof that
+\(L(M_3) = L(M_1) \cap L(M_2)\)}{Proof that L(M\_3) = L(M\_1) \textbackslash cap L(M\_2)}}\label{proof-that-lm_3-lm_1-cap-lm_2-1}
+
+\subsubsection{Our Toolbox (What We
+Know)}\label{our-toolbox-what-we-know}
+
+\begin{itemize}
+\tightlist
+\item
+  \(L(M_1) = A\) and \(L(M_2) = B\).
+\item
+  \(M_1 = (Q_1, \Sigma, \delta_1, s_1, F_1)\)
+\item
+  \(M_2 = (Q_2, \Sigma, \delta_2, s_2, F_2)\)
+\item
+  Our Construction of \(M_3= (Q_3, \Sigma, \delta_3, s_3, F_3)\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(Q_3 = Q_1 \times Q_2 = \{(p,q) \mid p \in Q_1, q \in Q_2 \}\)
+  \item
+    \(\delta_3((p,q),d) = (\delta_1(p,d), \delta_2(q,d))\)
+  \item
+    \(s_3 = (s_1,s_2)\)
+  \item
+    \(F_3 = F_1 \times F_2\)
+  \end{itemize}
+\item
+  Lemma A:
+  \(\Hat{\delta_3}((p,q),x) = (\Hat{\delta_1}(p,x),\Hat{\delta_2}(q,x))\).
+\end{itemize}
+
+\subsection{Resources}\label{resources}
+
+\end{document}

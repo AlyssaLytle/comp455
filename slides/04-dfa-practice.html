@@ -137,9 +137,39 @@ class="math display" /></p>
 <h1>Practice</h1>
 <p>For the DFA we previously defined, show <img
 style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta%7D%28q_0%2C%20011101%29%20%3D%20q_2"
-alt="\Hat{\delta}(q_0, 011101) = q_2"
-title="\Hat{\delta}(q_0, 011101) = q_2" class="math inline" /></p>
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta%7D%28q_0%2C%200110%29%20%3D%20q_2"
+alt="\Hat{\delta}(q_0, 0110) = q_2"
+title="\Hat{\delta}(q_0, 0110) = q_2" class="math inline" /></p>
+</div>
+<div id="acceptance-redefined" class="slide section level2">
+<h1>Acceptance Redefined</h1>
+<p>Now we can use <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta%7D"
+alt="\Hat{\delta}" title="\Hat{\delta}" class="math inline" /> to define
+acceptance to a language!</p>
+<p>In other words, we now have a way to say:</p>
+<ul>
+<li>“String <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is recognized by this automaton”.</li>
+<li>“String <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x" alt="x"
+title="x" class="math inline" /> is accepted by the language generated
+by this automaton.”</li>
+</ul>
+<p>Acceptance means that the DFA ends in an accept state, so we can
+say:</p>
+<p>For automaton <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M%20%3D%20%28Q%2C%20%5CSigma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="M = (Q, \Sigma, \delta, s, F)"
+title="M = (Q, \Sigma, \delta, s, F)" class="math inline" />,</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20x%20%5Cin%20L%28M%29"
+alt="x \in L(M)" title="x \in L(M)" class="math inline" />, iff <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CHat%7B%5Cdelta%7D%28s%2Cx%29%20%5Cin%20F"
+alt="\Hat{\delta}(s,x) \in F" title="\Hat{\delta}(s,x) \in F"
+class="math inline" />.</p>
 </div>
 <div id="proving-properties-about-automata-sipser-kozen"
 class="slide section level2">
