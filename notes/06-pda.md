@@ -68,30 +68,7 @@ Where $\Sigma \cup \{\epsilon\}$ be denoted as $\Sigma_\epsilon$ and $\Gamma \cu
 and $\mathcal{P}(Q \times \Gamma_\epsilon)$ is the powerset of $\mathcal{P}(Q \times \Gamma_\epsilon)$ (aka all possible subsets of $Q \times \Gamma_\epsilon$).
 
 
-## An Aside: Epsilon Transitions
 
-* $\epsilon$-transitions can be useful in simplifying representation of a diagram. 
-
-* Essentially, they give us transitions over *no* input (aka the empty string $\epsilon$)
-
-<!-- * In this example, you'll see that they are helpful in handling the beginning and end of an input, which is where I intend to use them in this course. -->
-
-
-## Recall this problem: 
-
-Design an NFA for the following languages over the alphabet $\Sigma = \{a,b\}.$ 
-
-$L = \{w \mid w$  has $3m$ or $4m$ $a's$ for some $m \in \mathbb{N} \}$. 
-
-The solution can be written as follows: 
-
-![](../static/slide_figs/3m4m-no-epsilon.png)
-
-## Recall (cont.)
-
-However, with epsilon transitions, you can reduce the number of start states: 
-
-![](../static/slide_figs/3m4m-epsilon.png)
 
 
 
