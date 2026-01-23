@@ -107,7 +107,8 @@ A nondeterministic automaton is said to *accept* its input $w$ if there exists *
 
 Let's take an example DFA from a previous class...
 
-![](../static/slide_figs/fa.png)[^sipser]
+$$A = \{w \in \{a,b\}^* \mid w \textrm{ has odd length} \}$$
+
 
 ## Every NFA can be expressed as an DFA
 

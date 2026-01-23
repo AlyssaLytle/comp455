@@ -1,0 +1,260 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Nondeterministic Finite Automata},
+  pdfauthor={Alyssa Lytle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Nondeterministic Finite Automata}
+\author{Alyssa Lytle}
+\date{January 22, 2025}
+
+\begin{document}
+\maketitle
+
+\section{Nondeterministic Finite
+Automata}\label{nondeterministic-finite-automata}
+
+\subsection{Determinism}\label{determinism}
+
+``When a machine is in a given state and reads the next input symbol, we
+know what the next state will be--it is \emph{determined}.'' \footnote{\begin{itemize}
+  \tightlist
+  \item
+    Sipser, Michael. ``Introduction to the Theory of Computation.'' ACM
+    Sigact News 27.1 (1996): 27-29
+  \end{itemize}}
+
+\subsection{Nondeterminism}\label{nondeterminism}
+
+\begin{itemize}
+\item
+  ``A state is not uniquely determined by its current state.'' - Kozen
+  \footnote{\begin{itemize}
+    \tightlist
+    \item
+      Kozen, Dexter C. Automata and computability. Springer Science \&
+      Business Media, 2007.
+    \end{itemize}}
+\item
+  ``\ldots the power to be in several states at once.'' - Hopcroft et
+  al.\footnote{\begin{itemize}
+    \tightlist
+    \item
+      Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman.
+      ``Introduction to automata theory, languages, and computation.''
+      Acm Sigact News 32.1 (2001): 60-65.
+    \end{itemize}}
+\item
+  ``\ldots several choices may exist for the next state at any point.''
+  - Sipser \footnote{\begin{itemize}
+    \tightlist
+    \item
+      Sipser, Michael. ``Introduction to the Theory of Computation.''
+      ACM Sigact News 27.1 (1996): 27-29
+    \end{itemize}}
+\end{itemize}
+
+\subsection{Why???}\label{why}
+
+\begin{itemize}
+\item
+  Represents real-life situations where there's not
+  enough/incomplete/unpredictable/unreliable information about external
+  forces and how they impact the state.
+\item
+  Can be a useful tool in computation. Some algorithms rely on
+  nondeterminism for more efficient solutions.
+\item
+  Nondeterministic definitions can be simpler/more concise.
+\end{itemize}
+
+\subsection{Nondeterministic Finite
+Automata}\label{nondeterministic-finite-automata-1}
+
+A Nondeterministic Finite Automaton (NFA) has a similar 5-tuple
+definition as the Deterministic Finite Automata (DFA) we've seen so far:
+\((Q, \Sigma, \delta, s, F)\), but some components are defined
+differently.
+
+Thinking of our 5-tuple definition and the definition of nondeterminism,
+what components do you think are different?
+
+\subsection{Nondeterministic Finite
+Automata}\label{nondeterministic-finite-automata-2}
+
+We still have:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q\): A finite set of states
+\item
+  \(\Sigma\): A finite alphabet
+\item
+  \(F \subseteq Q\): A set of accept states
+\end{itemize}
+
+But we can have
+
+\begin{itemize}
+\item
+  a \emph{set} of start states!
+\item
+  \(\delta\) can transition to a \emph{set} of possible next-states! You
+  also don't \emph{have} to have a transition defined for every state,
+  input combination!
+\end{itemize}
+
+\subsection{Nondeterministic Finite Automata - Formal
+Definition}\label{nondeterministic-finite-automata---formal-definition}
+
+A \emph{nondeterministic finite automaton} (NFA) is a five-tuple:
+
+\[N = (Q, \Sigma, \Delta, S, F)\]
+
+where
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q\): A finite set of states
+\item
+  \(\Sigma\): A finite alphabet
+\item
+  \(\Delta\): a function \(Q \times \Sigma \to 2^Q\)
+\item
+  \(S \subseteq Q\): A \emph{set} of start states
+\item
+  \(F \subseteq Q\): A set of accept states
+\end{itemize}
+
+Where \(2^Q\) is the \emph{power set} of \(Q\).
+(\(\{A \mid A \subseteq Q\}\))
+
+\subsection{Example}\label{example}
+
+Draw an NFA over the alphabet \(\{a,b\}\) such that it accepts:
+
+\[A = \{w \in \{a,b\}^* \mid \textrm{the last symbol is } a \}\]
+
+E.g. it accepts \(ababba\) and \(aaa\) but not \(aab\) or \(babab\).
+
+\subsection{Another feature: Epsilon
+Transitions}\label{another-feature-epsilon-transitions}
+
+\begin{itemize}
+\item
+  \(\epsilon\)-transitions can be useful in simplifying representation
+  of a diagram.
+\item
+  Essentially, they give us transitions over \emph{no} input (aka the
+  empty string \(\epsilon\))
+\end{itemize}
+
+\subsection{Another example}\label{another-example}
+
+Draw an NFA over the alphabet \(\{a,b\}\) such that it accepts:
+
+\[A = \{w \in \{a,b\}^* \mid w \textrm{has } 2m \textrm{ or } 3m \textrm{ } a's \}\]
+
+\subsection{What does ``acceptance''
+mean?}\label{what-does-acceptance-mean}
+
+A nondeterministic automaton is said to \emph{accept} its input \(w\) if
+there exists \emph{at least} one computation path on input \(w\) from a
+start state to an accept state.
+
+\subsection{Some properties}\label{some-properties}
+
+\begin{itemize}
+\item
+  Every DFA can be expressed as an NFA. (Reasonable.)
+\item
+  Every NFA can be expressed as a DFA. (A little more complicated to
+  think about\ldots)
+\end{itemize}
+
+\subsection{Every DFA can be expressed as an
+NFA}\label{every-dfa-can-be-expressed-as-an-nfa}
+
+Let's take an example DFA from a previous class\ldots{}
+
+\[A = \{w \in \{a,b\}^* \mid w \textrm{ has odd length} \}\]
+
+\subsection{Every NFA can be expressed as an
+DFA}\label{every-nfa-can-be-expressed-as-an-dfa}
+
+Let's use our earlier example of our NFA that accepts
+
+\[A = \{w \in \{a,b\}^* \mid \textrm{the last symbol is } a \}\]
+
+\subsection{Basic Procedure}\label{basic-procedure}
+
+To convert NFA \(N = (Q_N, \Sigma, \Delta_N, S_N, F_N)\) to DFA
+\(M = (Q_M, \Sigma, \delta_M, s_M, F_M)\),
+
+From a high-level: Set the states of \(M\) to be the \emph{powerset} of
+the states of \(N\), and follow the rest of the construction logically
+from there.
+
+Formally:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Q_M = 2^{Q_N}\)
+\item
+  \(\delta_M(A,a) = \bigcup_{q \in A}\Delta_N(q,a)\)
+\item
+  \(s_M = S_N\)
+\item
+  \(F_M = \{A \subseteq Q_N | A \cap F_N \neq \emptyset\}\)
+\end{itemize}
+
+\section{Sources}\label{sources}
+
+\end{document}
