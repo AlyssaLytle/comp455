@@ -8,11 +8,18 @@ date: "February 26, 2026"
 
 # Pushdown Automata
 
+## Recall
+
+![](../static/slide_figs/reg-cf-hierarchy.png)
+
+
 ## Pushdown Automata
 
 DFAs/NFAs are computational models that recognize regular languages. 
 
 Similarly *pushdown automata* are computational models that recognize context-free languages.
+
+![](../static/slide_figs/reg-cf-table.png)
 
 ## Thinking of Finite Automata Differently
 
