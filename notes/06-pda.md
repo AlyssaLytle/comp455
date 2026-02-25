@@ -1,10 +1,10 @@
 ---
 title: "Pushdown Automata"
 author: "Alyssa Lytle"
-date: "September 25, 2025"
+date: "February 26, 2026"
 ---
 
-<!-- pandoc -t slidy -s notes/06-pda.md -o slides/06-pda.html --webtex -->
+<!-- pandoc -t slidy -s notes/06-pda.md -o slides/pdas.html --webtex -->
 
 # Pushdown Automata
 
@@ -129,7 +129,21 @@ $r_0,r_1,\ldots,r_m \in Q$ and strings $s_0,s_1,\ldots,s_m \in \Gamma^*$ exist t
 * $r_m \in F$ ($M$ ends in an accept state.)
 
 
+## Theorem 
 
+A language is context free if and only if some pushdown automaton recognizes it. 
+
+## Proof 
+
+(In one direction, just the construction)
+
+## Converting a CFG to a PDA
+
+1. Place the marker symbol \$ and the start variable on the stack.
+2. Repeat the following steps:
+    a. If the top element in the stack is a variable symbol (e.g. $A$), nondeterministically select one of the rules for $A$ and substitute $A$ by applying this rule. Push that new substution onto the stack.
+    b. If the top element in the stack is a terminal symbol (e.g. $a$), read the next symbol from the input to see if it matches $a$. If they match, continue. Otherwise, consider this a reject and try another "branch" of nondeterminism. (Apply a different rule in the previous step.)
+    c. If the top of the stack is \$, this means the stack is empty, so transition to the accept state. If the input has all be read, that means that the string is accepted.
 
 
 

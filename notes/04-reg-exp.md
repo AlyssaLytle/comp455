@@ -4,7 +4,7 @@ author: "Alyssa Lytle"
 date: "September 16, 2025"
 ---
 
-<!-- pandoc -t slidy -s notes/04-reg-exp.md -o slides/04-reg-exp.html --webtex -->
+<!-- pandoc -t slidy -s notes/04-reg-exp.md -o slides/06-reg-exp.html --webtex -->
 
 ## Patterns
 

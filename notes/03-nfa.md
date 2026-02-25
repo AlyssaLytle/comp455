@@ -6,6 +6,8 @@ date: "January 22, 2025"
 
 <!-- pandoc -t slidy -s notes/03-nfa.md -o slides/05-nfas.html --webtex -->
 
+<!-- pandoc -s notes/03-nfa.md -o pdfs/05-nfas.tex -->
+
 # Nondeterministic Finite Automata
 
 ## Determinism

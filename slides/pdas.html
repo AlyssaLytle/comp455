@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Alyssa Lytle" />
+  <meta name="date" content="2026-02-26" />
+  <title>Pushdown Automata</title>
+  <style type="text/css">
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Pushdown Automata</h1>
+  <p class="author">
+Alyssa Lytle
+  </p>
+  <p class="date">February 26, 2026</p>
+</div>
+<div class="slide section level2">
+
+<!-- pandoc -t slidy -s notes/06-pda.md -o slides/pdas.html --webtex -->
+</div>
+<div id="pushdown-automata" class="title-slide slide section level1">
+<h1>Pushdown Automata</h1>
+
+</div>
+<div id="pushdown-automata-1" class="slide section level2">
+<h1>Pushdown Automata</h1>
+<p>DFAs/NFAs are computational models that recognize regular
+languages.</p>
+<p>Similarly <em>pushdown automata</em> are computational models that
+recognize context-free languages.</p>
+</div>
+<div id="thinking-of-finite-automata-differently"
+class="slide section level2">
+<h1>Thinking of Finite Automata Differently</h1>
+<p>First, let’s think about DFAs/NFAs a little differently using this
+representation:</p>
+<p><img src="../static/slide_figs/fa-tape.png" /></p>
+<ul>
+<li>The control represents the states and transition function,</li>
+<li>the tape contains the input string,</li>
+<li>and the arrow represents the input head, pointing at the next input
+symbol to be read.</li>
+</ul>
+</div>
+<div id="pushdown-automata-2" class="slide section level2">
+<h1>Pushdown Automata</h1>
+<p>A pushdown automaton is similar in its design, but it includes a
+<em>stack</em> where the automaton can write symbols to read back
+later.</p>
+<p>Every time a new symbol is written to the stack, the other symbols
+are <em>pushed down</em>.</p>
+<p><img src="../static/slide_figs/pda-tape.png" /></p>
+<p>(Recall that adding an element to a stack is called <em>pushing</em>
+an element and removing one is called <em>popping</em>!)</p>
+<p>This design allows us to track things! You can recall that this was a
+limitation for finite automata, and was the reason they couldn’t be used
+to represent sets such as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Ba%5Enb%5En%20%7C%20n%20%5Cgeq%200%5C%7D"
+alt="\{a^nb^n | n \geq 0\}" title="\{a^nb^n | n \geq 0\}"
+class="math inline" />.</p>
+</div>
+<div id="using-a-pda-to-recognize-anbn" class="slide section level2">
+<h1>Using a PDA to Recognize <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
+alt="a^nb^n" title="a^nb^n" class="math inline" /></h1>
+<p>Abstractly, we can think of a strategy to use the stack to “track”
+that we have the same amount of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />s and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
+title="b" class="math inline" />s.</p>
+<p>Every time an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" /> is encountered, push an <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> counter onto the stack. For every <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
+title="b" class="math inline" /> input encountered, pop an <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> counter off the stack. At the end of
+the input string, the stack should be empty.</p>
+</div>
+<div id="pushdown-automaton" class="slide section level2">
+<h1>Pushdown Automaton</h1>
+<p>A <em>pushdown automaton</em> is a 6-tuple <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="(Q, \Sigma, \Gamma, \delta, s, F)"
+title="(Q, \Sigma, \Gamma, \delta, s, F)" class="math inline" />
+where</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q" alt="Q"
+title="Q" class="math inline" /> is the set of states</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma"
+alt="\Sigma" title="\Sigma" class="math inline" /> is the the input
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma"
+alt="\Gamma" title="\Gamma" class="math inline" /> is the stack
+alphabet</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cdelta%3A%20Q%20%5Ctimes%20%5CSigma_%5Cepsilon%20%5Ctimes%20%5CGamma_%5Cepsilon%20%5Cto%20%5Cmathcal%7BP%7D%28Q%20%5Ctimes%20%5CGamma_%5Cepsilon%29"
+alt="\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon \to \mathcal{P}(Q \times \Gamma_\epsilon)"
+title="\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon \to \mathcal{P}(Q \times \Gamma_\epsilon)"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%5Cin%20Q"
+alt="s \in Q" title="s \in Q" class="math inline" /> is the start
+state</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%5Csubseteq%20Q"
+alt="F \subseteq Q" title="F \subseteq Q" class="math inline" /> is the
+set of accept states</li>
+</ul>
+<p>Where <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%20%5Ccup%20%5C%7B%5Cepsilon%5C%7D"
+alt="\Sigma \cup \{\epsilon\}" title="\Sigma \cup \{\epsilon\}"
+class="math inline" /> be denoted as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma_%5Cepsilon"
+alt="\Sigma_\epsilon" title="\Sigma_\epsilon" class="math inline" /> and
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma%20%5Ccup%20%5C%7B%5Cepsilon%5C%7D"
+alt="\Gamma \cup \{\epsilon\}" title="\Gamma \cup \{\epsilon\}"
+class="math inline" /> be denoted as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma_%5Cepsilon"
+alt="\Gamma_\epsilon" title="\Gamma_\epsilon" class="math inline" /></p>
+<p>and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathcal%7BP%7D%28Q%20%5Ctimes%20%5CGamma_%5Cepsilon%29"
+alt="\mathcal{P}(Q \times \Gamma_\epsilon)"
+title="\mathcal{P}(Q \times \Gamma_\epsilon)" class="math inline" /> is
+the powerset of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathcal%7BP%7D%28Q%20%5Ctimes%20%5CGamma_%5Cepsilon%29"
+alt="\mathcal{P}(Q \times \Gamma_\epsilon)"
+title="\mathcal{P}(Q \times \Gamma_\epsilon)" class="math inline" />
+(aka all possible subsets of <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%20%5Ctimes%20%5CGamma_%5Cepsilon"
+alt="Q \times \Gamma_\epsilon" title="Q \times \Gamma_\epsilon"
+class="math inline" />).</p>
+</div>
+<div id="using-a-pda-to-recognize-anbn-continued"
+class="slide section level2">
+<h1>Using a PDA to Recognize <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
+alt="a^nb^n" title="a^nb^n" class="math inline" /> (continued)</h1>
+<p>Now, we will demonstrate how to formally define the PDA that
+recognizes <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Ba%5Enb%5En%20%7C%20n%20%5Cgeq%200%5C%7D"
+alt="\{a^nb^n | n \geq 0\}" title="\{a^nb^n | n \geq 0\}"
+class="math inline" /></p>
+<!-- ![](../static/slide_figs/anbn-pda.png) -->
+</div>
+<div id="formally-defining-it" class="slide section level2">
+<h1>Formally Defining It</h1>
+<p>Define our PDA as <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="(Q, \Sigma, \Gamma, \delta, s, F)"
+title="(Q, \Sigma, \Gamma, \delta, s, F)" class="math inline" />
+where:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%20%3D%20%5C%7Bq_1%2C%20q_2%2C%20q_3%2C%20q_4%5C%7D"
+alt="Q = \{q_1, q_2, q_3, q_4\}" title="Q = \{q_1, q_2, q_3, q_4\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%20%3D%20%5C%7Ba%2Cb%5C%7D"
+alt="\Sigma = \{a,b\}" title="\Sigma = \{a,b\}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma%20%3D%20%5C%7BA%2C%20%5C%24%20%5C%7D"
+alt="\Gamma = \{A, \$ \}" title="\Gamma = \{A, \$ \}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%3D%20q_1"
+alt="s = q_1" title="s = q_1" class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%3D%20%5C%7Bq_1%2C%20q_4%5C%7D"
+alt="F = \{q_1, q_4\}" title="F = \{q_1, q_4\}"
+class="math inline" /></li>
+</ul>
+</div>
+<div id="testing-for-the-end-of-the-input" class="slide section level2">
+<h1>Testing for the End of The Input</h1>
+<p>The way we’ve discussed acceptance of an input hasn’t required
+knowing where the <em>end</em> of an input is.</p>
+<p>For this example, we need to know both when the input is finished
+(aka we’ve transitioned over every input character) and when the stack
+is empty (because that tells us we’ve seen the same amount of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />s and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
+title="b" class="math inline" />s).</p>
+<p>In terms of knowing when we reach the end of the input, we
+essentially use an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
+alt="\epsilon" title="\epsilon" class="math inline" />-transition to an
+accept state to denote we’ve reached the end of the input tape.</p>
+</div>
+<div id="testing-for-an-empty-stack" class="slide section level2">
+<h1>Testing for an Empty Stack</h1>
+<p>To know when the stack is empty, we place that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> in the stack at the
+beginning. Since a stack is “last in first out”, we know that when we
+see the <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> again, we have removed every
+other item from the stack.</p>
+<p>We use an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
+alt="\epsilon" title="\epsilon" class="math inline" />-transition from
+our start state <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_1" alt="q_1"
+title="q_1" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_2" alt="q_2"
+title="q_2" class="math inline" /> to allow us to initalize that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> element in the stack.</p>
+<!-- Another common convention is to *not* use $\epsilon$-transitions but instead to just add a ``starting stack symbol'' to the tuple definition, making it a 7-tuple. For this class, let's stick the the former convention of always starting with an empty stack.  -->
+</div>
+<div id="acceptance-to-a-pda" class="slide section level2">
+<h1>Acceptance to a PDA</h1>
+<p>A PDA <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M%3D%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20F%29"
+alt="M=(Q, \Sigma, \Gamma, \delta, s, F)"
+title="M=(Q, \Sigma, \Gamma, \delta, s, F)" class="math inline" />
+<em>accepts</em> input <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w%20%3D%20w_1w_2%5Cldots%20w_m"
+alt="w = w_1w_2\ldots w_m" title="w = w_1w_2\ldots w_m"
+class="math inline" />, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20w_i%20%5Cin%20%5CSigma_%5Cepsilon"
+alt="w_i \in \Sigma_\epsilon" title="w_i \in \Sigma_\epsilon"
+class="math inline" /> if sequences of states <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_0%2Cr_1%2C%5Cldots%2Cr_m%20%5Cin%20Q"
+alt="r_0,r_1,\ldots,r_m \in Q" title="r_0,r_1,\ldots,r_m \in Q"
+class="math inline" /> and strings <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s_0%2Cs_1%2C%5Cldots%2Cs_m%20%5Cin%20%5CGamma%5E%2A"
+alt="s_0,s_1,\ldots,s_m \in \Gamma^*"
+title="s_0,s_1,\ldots,s_m \in \Gamma^*" class="math inline" /> exist
+that satisfy the following three conditions:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_0%20%3D%20s"
+alt="r_0 = s" title="r_0 = s" class="math inline" /> and <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s_0%20%3D%20%5Cepsilon"
+alt="s_0 = \epsilon" title="s_0 = \epsilon" class="math inline" /> (<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> starts out in the start state with an
+empty stack.)</li>
+<li>For <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20i%20%3D%200%2C%20%5Cldots%2C%20m-1"
+alt="i = 0, \ldots, m-1" title="i = 0, \ldots, m-1"
+class="math inline" />, <br> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28r_%7Bi%2B1%7D%2C%20b%29%20%5Cin%20%5Cdelta%28r_i%2C%20w_%7Bi%2B1%7D%2C%20a%29"
+alt="(r_{i+1}, b) \in \delta(r_i, w_{i+1}, a)"
+title="(r_{i+1}, b) \in \delta(r_i, w_{i+1}, a)" class="math inline" />,
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s_i%3D%20at"
+alt="s_i= at" title="s_i= at" class="math inline" />, and <br> <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s_%7Bi%2B1%7D%20%3D%20bt"
+alt="s_{i+1} = bt" title="s_{i+1} = bt" class="math inline" /> for <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%2C%20b%20%5Cin%20%5CGamma_%5Cepsilon"
+alt="a, b \in \Gamma_\epsilon" title="a, b \in \Gamma_\epsilon"
+class="math inline" /> <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t%20%5Cin%20%5CGamma%5E%2A"
+alt="t \in \Gamma^*" title="t \in \Gamma^*" class="math inline" />. <br>
+(Given this input string, <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> moves as expected over both the states
+and the stack.)</li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20r_m%20%5Cin%20F"
+alt="r_m \in F" title="r_m \in F" class="math inline" /> (<img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20M" alt="M"
+title="M" class="math inline" /> ends in an accept state.)</li>
+</ul>
+</div>
+<div id="theorem" class="slide section level2">
+<h1>Theorem</h1>
+<p>A language is context free if and only if some pushdown automaton
+recognizes it.</p>
+</div>
+<div id="proof" class="slide section level2">
+<h1>Proof</h1>
+<p>(In one direction, just the construction)</p>
+</div>
+<div id="converting-a-cfg-to-a-pda" class="slide section level2">
+<h1>Converting a CFG to a PDA</h1>
+<ol style="list-style-type: decimal">
+<li>Place the marker symbol $ and the start variable on the stack.</li>
+<li>Repeat the following steps:
+<ol style="list-style-type: lower-alpha">
+<li>If the top element in the stack is a variable symbol (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" />), nondeterministically select one of
+the rules for <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> and substitute <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
+title="A" class="math inline" /> by applying this rule. Push that new
+substution onto the stack.</li>
+<li>If the top element in the stack is a terminal symbol (e.g. <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />), read the next symbol from the input
+to see if it matches <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />. If they match, continue. Otherwise,
+consider this a reject and try another “branch” of nondeterminism.
+(Apply a different rule in the previous step.)</li>
+<li>If the top of the stack is $, this means the stack is empty, so
+transition to the accept state. If the input has all be read, that means
+that the string is accepted.</li>
+</ol></li>
+</ol>
+</div>
+</body>
+</html>
