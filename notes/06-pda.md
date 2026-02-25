@@ -133,10 +133,6 @@ $r_0,r_1,\ldots,r_m \in Q$ and strings $s_0,s_1,\ldots,s_m \in \Gamma^*$ exist t
 
 A language is context free if and only if some pushdown automaton recognizes it. 
 
-## Proof 
-
-(In one direction, just the construction)
-
 ## Converting a CFG to a PDA
 
 1. Place the marker symbol \$ and the start variable on the stack.
