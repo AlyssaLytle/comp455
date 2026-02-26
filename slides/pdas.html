@@ -50,10 +50,6 @@ Alyssa Lytle
 <h1>Pushdown Automata</h1>
 
 </div>
-<div id="recall" class="slide section level2">
-<h1>Recall</h1>
-<p><img src="../static/slide_figs/reg-cf-hierarchy.png" /></p>
-</div>
 <div id="pushdown-automata-1" class="slide section level2">
 <h1>Pushdown Automata</h1>
 <p>DFAs/NFAs are computational models that recognize regular
@@ -92,10 +88,11 @@ src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Ba%5Enb%5En%20%7C%
 alt="\{a^nb^n | n \geq 0\}" title="\{a^nb^n | n \geq 0\}"
 class="math inline" />.</p>
 </div>
-<div id="using-a-pda-to-recognize-anbn" class="slide section level2">
+<div id="using-a-pda-to-recognize-anbn---example"
+class="slide section level2">
 <h1>Using a PDA to Recognize <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
-alt="a^nb^n" title="a^nb^n" class="math inline" /></h1>
+alt="a^nb^n" title="a^nb^n" class="math inline" /> - Example</h1>
 <p>Abstractly, we can think of a strategy to use the stack to “track”
 that we have the same amount of <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
@@ -115,6 +112,48 @@ style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
 title="A" class="math inline" /> counter off the stack. At the end of
 the input string, the stack should be empty.</p>
+</div>
+<div id="testing-for-the-end-of-the-input" class="slide section level2">
+<h1>Testing for the End of The Input</h1>
+<p>The way we’ve discussed acceptance of an input hasn’t required
+knowing where the <em>end</em> of an input is.</p>
+<p>For this example, we need to know both when the input is finished
+(aka we’ve transitioned over every input character) and when the stack
+is empty (because that tells us we’ve seen the same amount of <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
+title="a" class="math inline" />s and <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
+title="b" class="math inline" />s).</p>
+<p>In terms of knowing when we reach the end of the input, we
+essentially use an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
+alt="\epsilon" title="\epsilon" class="math inline" />-transition to an
+accept state to denote we’ve reached the end of the input tape.</p>
+</div>
+<div id="testing-for-an-empty-stack" class="slide section level2">
+<h1>Testing for an Empty Stack</h1>
+<p>To know when the stack is empty, we place that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> in the stack at the
+beginning. Since a stack is “last in first out”, we know that when we
+see the <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> again, we have removed every
+other item from the stack.</p>
+<p>We use an <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
+alt="\epsilon" title="\epsilon" class="math inline" />-transition from
+our start state <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_1" alt="q_1"
+title="q_1" class="math inline" /> to <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_2" alt="q_2"
+title="q_2" class="math inline" /> to allow us to initalize that <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
+alt="\$" title="\$" class="math inline" /> element in the stack.</p>
+<!-- Another common convention is to *not* use $\epsilon$-transitions but instead to just add a ``starting stack symbol'' to the tuple definition, making it a 7-tuple. For this class, let's stick the the former convention of always starting with an empty stack.  -->
 </div>
 <div id="pushdown-automaton" class="slide section level2">
 <h1>Pushdown Automaton</h1>
@@ -180,83 +219,11 @@ class="slide section level2">
 <h1>Using a PDA to Recognize <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a%5Enb%5En"
 alt="a^nb^n" title="a^nb^n" class="math inline" /> (continued)</h1>
-<p>Now, we will demonstrate how to formally define the PDA that
-recognizes <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%7Ba%5Enb%5En%20%7C%20n%20%5Cgeq%200%5C%7D"
-alt="\{a^nb^n | n \geq 0\}" title="\{a^nb^n | n \geq 0\}"
-class="math inline" /></p>
-<!-- ![](../static/slide_figs/anbn-pda.png) -->
-</div>
-<div id="formally-defining-it" class="slide section level2">
-<h1>Formally Defining It</h1>
 <p>Define our PDA as <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%28Q%2C%20%5CSigma%2C%20%5CGamma%2C%20%5Cdelta%2C%20s%2C%20F%29"
 alt="(Q, \Sigma, \Gamma, \delta, s, F)"
 title="(Q, \Sigma, \Gamma, \delta, s, F)" class="math inline" />
 where:</p>
-<ul>
-<li><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20Q%20%3D%20%5C%7Bq_1%2C%20q_2%2C%20q_3%2C%20q_4%5C%7D"
-alt="Q = \{q_1, q_2, q_3, q_4\}" title="Q = \{q_1, q_2, q_3, q_4\}"
-class="math inline" /></li>
-<li><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CSigma%20%3D%20%5C%7Ba%2Cb%5C%7D"
-alt="\Sigma = \{a,b\}" title="\Sigma = \{a,b\}"
-class="math inline" /></li>
-<li><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5CGamma%20%3D%20%5C%7BA%2C%20%5C%24%20%5C%7D"
-alt="\Gamma = \{A, \$ \}" title="\Gamma = \{A, \$ \}"
-class="math inline" /></li>
-<li><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20s%20%3D%20q_1"
-alt="s = q_1" title="s = q_1" class="math inline" /></li>
-<li><img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20F%20%3D%20%5C%7Bq_1%2C%20q_4%5C%7D"
-alt="F = \{q_1, q_4\}" title="F = \{q_1, q_4\}"
-class="math inline" /></li>
-</ul>
-</div>
-<div id="testing-for-the-end-of-the-input" class="slide section level2">
-<h1>Testing for the End of The Input</h1>
-<p>The way we’ve discussed acceptance of an input hasn’t required
-knowing where the <em>end</em> of an input is.</p>
-<p>For this example, we need to know both when the input is finished
-(aka we’ve transitioned over every input character) and when the stack
-is empty (because that tells us we’ve seen the same amount of <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20a" alt="a"
-title="a" class="math inline" />s and <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20b" alt="b"
-title="b" class="math inline" />s).</p>
-<p>In terms of knowing when we reach the end of the input, we
-essentially use an <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
-alt="\epsilon" title="\epsilon" class="math inline" />-transition to an
-accept state to denote we’ve reached the end of the input tape.</p>
-</div>
-<div id="testing-for-an-empty-stack" class="slide section level2">
-<h1>Testing for an Empty Stack</h1>
-<p>To know when the stack is empty, we place that <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
-alt="\$" title="\$" class="math inline" /> in the stack at the
-beginning. Since a stack is “last in first out”, we know that when we
-see the <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
-alt="\$" title="\$" class="math inline" /> again, we have removed every
-other item from the stack.</p>
-<p>We use an <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cepsilon"
-alt="\epsilon" title="\epsilon" class="math inline" />-transition from
-our start state <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_1" alt="q_1"
-title="q_1" class="math inline" /> to <img style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20q_2" alt="q_2"
-title="q_2" class="math inline" /> to allow us to initalize that <img
-style="vertical-align:middle"
-src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5C%24"
-alt="\$" title="\$" class="math inline" /> element in the stack.</p>
-<!-- Another common convention is to *not* use $\epsilon$-transitions but instead to just add a ``starting stack symbol'' to the tuple definition, making it a 7-tuple. For this class, let's stick the the former convention of always starting with an empty stack.  -->
 </div>
 <div id="acceptance-to-a-pda" class="slide section level2">
 <h1>Acceptance to a PDA</h1>
@@ -325,14 +292,33 @@ title="M" class="math inline" /> ends in an accept state.)</li>
 <h1>Theorem</h1>
 <p>A language is context free if and only if some pushdown automaton
 recognizes it.</p>
+<p><img src="../static/slide_figs/reg-cf-hierarchy.png" /></p>
 </div>
 <div id="converting-a-cfg-to-a-pda" class="slide section level2">
+<h1>Converting a CFG to a PDA</h1>
+<p>From a high level:</p>
+<ul>
+<li><p>We can use the idea of <em>substitution</em> used by CFGs. In
+other words, CFGs use variables essentially as intermediate symbols and
+substitute them using the rules of the grammar until we get to a string
+of only terminal symbols.</p></li>
+<li><p>The PDA will use this same idea. It can push the start symbol on
+the stack and then:</p>
+<ul>
+<li>If the top element of the stack is a nonterminal, pop it and push a
+substitution</li>
+<li>If the top element of the stack is a terminal, pop it and check if
+it matches the input string</li>
+</ul></li>
+</ul>
+</div>
+<div id="converting-a-cfg-to-a-pda-1" class="slide section level2">
 <h1>Converting a CFG to a PDA</h1>
 <ol style="list-style-type: decimal">
 <li>Place the marker symbol $ and the start variable on the stack.</li>
 <li>Repeat the following steps:
 <ol style="list-style-type: lower-alpha">
-<li>If the top element in the stack is a variable symbol (e.g. <img
+<li>If the top element in the stack is a nonterminal symbol (e.g. <img
 style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20A" alt="A"
 title="A" class="math inline" />), nondeterministically select one of
