@@ -1,7 +1,7 @@
 ---
 title: "P vs NP"
 author: "Alyssa Lytle"
-date: "November 6, 2025"
+date: "April 16, 2026"
 ---
 
 <!-- pandoc -t slidy -s notes/13-p-vs-np.md -o slides/13-p-vs-np.html --webtex -->
@@ -30,15 +30,17 @@ P is important because it describes the class of problems that are realistically
 2. Present an Turing machine computable algorithm $M$ that decides $A$
 3. Argue the runtime of $M$
 
-## Example
-
-Show $RELPRIME \in P$ where $RELPRIME = \{\langle x,y \rangle \mid x$ and $y$ are relatively prime$\}$.
-
-First, what is our "problem"?
-
-## NP
+## NP (+ Important Disclaimer)
 
 So now, let's talk about the *other* problems... 
+
+Big difference here: we're not trying to prove something is *not* in P. 
+
+(In fact, anything in P is also in NP!)
+
+Rather, there are some problems we haven't been able to show are in P, but we still want to say something about them!
+
+## NP
 
 Let's talk about the "solvability" of a problem in a different way. 
 
