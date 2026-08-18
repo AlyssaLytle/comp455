@@ -1,0 +1,28 @@
+{
+  "name": "slidev-theme-unc-dfa",
+  "version": "0.1.0",
+  "description": "Carolina-blue / navy academic lecture theme for Slidev, adapted from the DFA lecture deck.",
+  "engines": {
+    "slidev": ">=0.39.0"
+  },
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "academic",
+    "lecture"
+  ],
+  "slidev": {
+    "defaults": {
+      "colorSchema": "light",
+      "highlighter": "shiki"
+    }
+  },
+  "files": [
+    "layouts",
+    "styles",
+    "index.ts"
+  ],
+  "peerDependencies": {
+    "@slidev/cli": "*"
+  }
+}
