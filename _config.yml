@@ -15,8 +15,15 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v3
 
-      - name: pnpm-setup
-        uses: pnpm/action-setup@v2
+      - name: Setup pnpm
+        uses: pnpm/setup-action@v4
+        with:
+          version: 9 # or your preferred version
+          # Specify the exact path to your lockfile here
+          cache-dependency-path: '455-slides/pnpm-lock.yaml' 
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
 
 title: Comp 455
 #email: your-email@example.com
