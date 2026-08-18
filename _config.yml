@@ -4,7 +4,7 @@ on:
   push:
     paths: 
       - 'index.md'
-      - '455-slides/dist/**'
+      - '455-slides/dist/00-syllabus.html'
 
 jobs:
   build:
