@@ -1,13 +1,22 @@
-uses: actions/setup-node@v4
-  with:
-    node-version: '20' # Or your preferred version
-    cache: 'npm@5'
+
 
 on:
   push:
     paths: 
       - 'index.md'
       - '455-slides/dist/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v3
+
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
 
 title: Comp 455
 #email: your-email@example.com
