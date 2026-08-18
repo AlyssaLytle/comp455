@@ -150,3 +150,5 @@ $$SUBSETSUM = \{\langle S, t \rangle | S = \{x_1, x_2, \ldots, x_k\},
 $$
 
 Show $SUBSETSUM$ is in NP.
+
+

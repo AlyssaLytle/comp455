@@ -39,9 +39,9 @@ The cardinality of a finite set  is denoted $|A|$.
 
 
 ## Sets - Notation
-$a \in A$ means $a$ is an element of $A$.
 
-$a \notin A$ means $a$ is *not* an element of $A$.
+- $a \in A$ means $a$ is an element of $A$.
+- $a \notin A$ means $a$ is *not* an element of $A$.
 
 
 ### Example

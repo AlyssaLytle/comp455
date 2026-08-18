@@ -58,3 +58,8 @@ plugins:
 show_downloads: false
 
 use_mathjax: true
+
+on:
+  push:
+    paths: 
+      - 'index.md'

@@ -7,7 +7,7 @@ contributors: Alyssa Byrnes
 
 # Comp 455: Models of Languages and Computation
 
-Comp 455-001, Fall 2026
+Comp 455-001, Summer II 2026
 
 The University of North Carolina at Chapel Hill
 
@@ -19,23 +19,25 @@ The University of North Carolina at Chapel Hill
 
 - Target Audience: This course is primarily intended for computer science majors.
 
-- Meeting Times: Tues/Thurs 8 am (section 01) and 9:30 am (section 02)
+- Meeting Times: M-F
 
-- Instructional Format: in-person
+- Instructional Format: remote
 
-- Location: Murphey Hall Rm 0116 (section 01) and Sitterson Hall Rm SN014 (section 02)
+- Location: virtual
 
 - Platforms: [Canvas](https://edtech.unc.edu/service/canvas/), [Gradescope](www.gradescope.com/), [EdStem](https://edstem.org/)
 
 ## Instructor Information
 
-- Name: Alyssa Lytle (she/her/hers)
+- Name: Alyssa Byrnes-Lytle (she/her/hers)
 
 - Email address: abyrnes1@cs.unc.edu
 
 - Office: FB136
 
-- Office Hours: By Appointment
+- Personal Office Hours: By Appointment
+
+- TA Office Hours: Shedule TBA 
 
 ## Course Description
 
@@ -47,33 +49,47 @@ You'll work with several models of computation — finite automata, pushdown aut
 
 There is no required text for this course. Lecture notes will be provided.
 
-## Class Expectations
+## Course Structure
+
+This course is fully remote, but I've designed it to feel structured and predictable so you always know what's coming next. Plan to spend about 1.5 hours each day on the material. Each week follows the same rhythm:
+
+* Monday–Wednesday — new material. recorded lectures, paired with lecture notes you can revisit anytime, multiple choice lessons (LS), and longer-form challenge questions (CQ). All of these are due on Wednesday night.
+* Thursday — practice. We'll work through harder problems together, dig into the trickier parts of the week's material, and answer questions you brought in. This is the day to come with confusion — it's what Thursday is for! I'll try to set up a *synchronous* meeting time via Zoom on Thursdays so you can ask live questions.
+* Friday — quiz. A short lockdown-browser quiz on the week's material. The format is steady, so by week two you'll know exactly what to expect.
+
+*One exception: the week of July 4, we'll move the Friday quiz to Thursday so you have the long weekend off.
+*
+
+We'll hold virtual office hours several days a week. We'll set the specific times during the first week of the course.
+
+We make use of multplie modalities to help you feel as supported in your learning goals as possible. This includes live lectures, recorded videos, problem sets, a discussion board on Edsteam, and office hours.
+
+## Expectations
 
 **What you can expect from me:** lectures and notes posted on time, quick replies to EdStem questions + emails (usually within 24 business hours), and timely feedback on graded assignments. 
 
-**What I'm asking from you:** show up to class and finishing the assignments promptly, keep up with the homework problem sets even though they aren't graded, and ask questions early — when something doesn't click, please don't wait until the quiz to flag it.
+**What I'm asking from you:** show up to class (by watching the recordings and finishing the LS + CQs promptly), keep up with the problem sets even though they aren't graded, and ask questions early — when something doesn't click, please don't wait until the quiz to flag it.
+
 
 ## Grading
 
-* Homework (0%): Problem sets are ungraded but essential. I won't collect them, but quiz and exam questions are drawn directly from this material — students who skip the problem sets tend to do significantly worse on quizzes. Treat them as your primary study tool. TAs can work through them with you and check your work in office hours.
+1. Homework (0%): Problem sets are ungraded but essential. I won't collect them, but quiz and exam questions are drawn directly from this material — students who skip the problem sets tend to do significantly worse on quizzes. Treat them as your primary study tool. TAs work through them with you in office hours.
 
-* Lessons (20%): There will be multiple choice Gradescope assignments throughout the semester to assess your understanding of the material.
+2. Lessons (20%): There will be multiple choice Gradescope assignments throughout the semester to assess your understanding of the material.
 
-* Lecture Notes (15%): These will be printable fill-in-the-blank assignments that will be your companion to the lecture videos. You can turn them in in-person at the end of class or upload the filled-in notes to Gradescope. (This can be completed on paper or on a tablet.)
+3. Challenge Questions (15%): There will be Gradescope Challenge Questions that involve a longer-form response. These may also include participation in an Edstem discussion.
 
-* Challenge Questions (15%): There will be Gradescope Challenge Questions that involve a longer-form response. Think of them like a mini-homework. This is your opportunity to get some written feedback on your work!
+4. Quizzes (50%): There will be four quizzes taken in a lock-down browser throughout the semester, worth 12.5% each. Expect multiple choice and short-response questions.
 
-* Quizzes (30%): There will be three quizzes taken throughout the semester. (Your lowest quiz grade will be dropped.)
-
-* Final Exam (20%): The final exam will be cumulative.
-
+5. Final Exam (15%): The final exam will be cumulative, and it will be taken in a lock-down browser. Expect multiple choice and short-response questions.
 
 ### Quiz Absence Policy
 
-As previously stated, your lowest quiz grade will be dropped, so one unexcused quiz absence is allowed.
+You may have an unexcused absence for up to one quiz.
 
-However, if you are sick and need to request a makeup, you must fill out the quiz absence form by the night of the quiz. (If the exam is today, you must submit it by 11:59 pm tonight.) You then will receive an email to schedule a makeup with the undergraduate testing center before end of day the following Tuesday.
+Being absent from a quiz results in the quiz’s credit being drawn down from your final exam score’s weight. As such, this is not a penalty; your mastery of this quiz’ material will be assessed on the cumulative final exam.
 
+If, and only if, you take all quizzes and your final examination score exceeds your lowest quiz score, then we will retroactively grant you an absence for the lowest quiz score and your final exam score will be worth 27.5%.
 
 ### Grading Scale
 
@@ -116,14 +132,13 @@ All Carolina students are expected to follow these AI guidelines:
 3. The use of AI must be open and documented. You should declare, explain, and cite any use of AI in the creation of your work using applicable standards (e.g., APA, MLA, course guidelines). Understand that you are ultimately 100% responsible for your final product.   
 4. Follow specific AI guidelines in this syllabus. If you are unsure, check with me. Guidance offered in this syllabus would be referenced should an issue be referred to Student Conduct for alleged academic misconduct.   
 
-
 #### *Artificial Intelligence: My Personal Stance*
 
 Theory of computation is a place where the work *is* the thinking. If you ask an LLM to do a pumping-lemma proof for you, you've outsourced the exact skill the quizzes measure. That said, AI is great for things like "explain this lecture concept a different way" or "check whether my proof structure is valid." My recommendation: use it as a study partner, not as a ghostwriter.
 
 #### *Syllabus Changes*
 
-The instructor reserves the right to make changes to the syllabus including project due dates and test dates. These changes will be announced as early as possible. 
+The instructor reserves the right to make changes to the syllabus including due dates and test dates. These changes will be announced as early as possible. 
 
 #### *Acceptable Use Policy*
 
